@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Storage: Hard Disk, SSD, Optical</title>
+<meta name="description" content="Year 12 Computer Science, Hardware lesson 1: the IGCSE fast pass, then how hard disks, SSDs and optical discs work.">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="grow"><div class="eyebrow">Year 12 · Hardware · Lesson 1</div><h1>Storage: hard disk, SSD and optical disc</h1></div>
+    <button class="stuckbtn" title="Tell your teacher this part was hard">I'm stuck</button>
+  </div>
+  <nav class="steps" aria-label="Lesson stages"></nav>
+  <div class="where" aria-live="polite"></div>
+</header>
+
+<main>
+
+<!-- 1 ============================================================ -->
+<section class="stage" data-title="Do Now" data-by="4">
+  <div class="stage-head"><div class="stage-num">1</div><div><h2>Do Now: what lives where?</h2><div class="by">About 4 minutes · on your own</div></div></div>
+  <div class="card do"><span class="tag">Do this</span>
+    <p>Open your <b>workbook</b> on Teams now (Assignments → <i>Hardware Lesson 1</i>) and type your name at the top. Keep it open all lesson.</p>
+    <p>Then sort the six things a <b>smart speaker</b> keeps. Is each one in <b>RAM</b>, <b>ROM</b> or <b>secondary storage</b> (flash)?</p>
+  </div>
+  <div class="card"><div id="donow"></div><p class="small muted" id="donowScore" style="margin-top:10px"></p></div>
+  <details class="help"><summary>Show me step by step</summary><div>
+    <p>Ask two questions about each item.</p>
+    <ol><li><b>Is it only needed while the speaker is on, and fine to lose when the power goes?</b> Then it is in <b>RAM</b> (fast, can be changed, lost when the power goes).</li>
+    <li><b>Is it the instructions the speaker needs to start up?</b> Then it is in <b>ROM</b> (can only be read, kept with no power).</li>
+    <li><b>Must it still be there after the power goes off, and can it change?</b> Then it is in <b>secondary storage</b>.</li></ol>
+  </div></details>
+</section>
+
+<!-- 2 ============================================================ -->
+<section class="stage" data-title="Today and key words" data-by="6">
+  <div class="stage-head"><div class="stage-num">2</div><div><h2>Today's plan and key words</h2><div class="by">About 2 minutes</div></div></div>
+  <div class="card">
+    <h3>Today you will</h3>
+    <ul class="clean">
+      <li>Check the hardware you learned at IGCSE in a quick 16-question fast pass, and fix anything you got wrong.</li>
+      <li>Learn how a <b>hard disk</b>, an <b>SSD</b> and an <b>optical disc</b> work, in the detail that AS questions give marks for.</li>
+      <li>Answer two real exam questions and mark them yourself.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Success looks like this</h3>
+    <ul class="clean">
+      <li><b>Everyone:</b> describe a hard disk with at least 3 of the points in today's animation.</li>
+      <li><b>Most:</b> write a full 5-mark hard disk answer, and describe an SSD and an optical disc.</li>
+      <li><b>Some:</b> choose a hard disk or an SSD for a given system and justify it with reasons linked to that system.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Key words <span class="small muted">(press 🔊 to hear each one)</span></h3>
+    <div class="kw" id="kw1"></div>
+  </div>
+</section>
+
+<!-- 3 ============================================================ -->
+<section class="stage" data-title="Fast pass" data-by="15">
+  <div class="stage-head"><div class="stage-num">3</div><div><h2>Fast pass: the IGCSE hardware you already know</h2><div class="by">About 9 minutes · on your own · no notes</div></div></div>
+  <div class="card do"><span class="tag">Do this</span>
+    <p>Answer all 16. If you do not know, choose <b>"I do not know yet"</b>. Guessing hides the gaps, and this is not a grade.</p>
+    <p>When you have answered every question, press <b>Mark my fast pass</b> at the bottom.</p>
+  </div>
+  <div id="fastpass"></div>
+  <div class="row" style="margin:6px 0 16px"><button class="btn primary" id="fpMark">Mark my fast pass</button><span id="fpLeft" class="muted"></span></div>
+  <div id="fpResult" style="display:none">
+    <div class="card"><h3>Your scores</h3><div class="score-tiles" id="fpTiles"></div></div>
+    <div class="card wb"><span class="tag">Workbook · Task 1</span>
+      <p>Copy your four scores into the <b>Task 1</b> table, and list the question numbers you got wrong. Your teacher uses these to plan the next lessons.</p>
+      <p class="big" id="fpCopy"></p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 ============================================================ -->
+<section class="stage" data-title="Fix your fast pass" data-by="20">
+  <div class="stage-head"><div class="stage-num">4</div><div><h2>Fix what you missed</h2><div class="by">About 5 minutes</div></div></div>
+  <div class="card do"><span class="tag">Do this</span>
+    <p>Below are the explanations for <b>only the questions you got wrong</b>. Read each one. If you got everything right, read the last card and move on.</p>
+  </div>
+  <div id="fixups"><div class="card muted">Do the fast pass first (stage 3), then come back here.</div></div>
+  <div class="card" id="gateCard" style="display:none">
+    <h3>Try the gates</h3>
+    <p>Pick a gate, then tap A and B to switch them between 0 and 1.</p>
+    <div class="row" id="gatePick" style="margin-bottom:10px"></div>
+    <div class="gate"><div class="ins"><button class="bit" id="gA">A = 0</button><button class="bit" id="gB">B = 0</button></div><div class="row"><span>Output X =</span><span class="out" id="gX">0</span><span id="gRule" class="muted"></span></div></div>
+  </div>
+  <div class="card exam"><span class="tag">What AS adds</span>
+    <p>At IGCSE, "data is stored in tracks and sectors" was enough. AS questions give marks for <b>each part named with its job</b>: platter, spindle, arm, read/write head, magnetic pattern, change in current. That is the rest of today.</p>
+  </div>
+</section>
+
+<!-- 5 ============================================================ -->
+<section class="stage" data-title="Be the marker" data-by="23">
+  <div class="stage-head"><div class="stage-num">5</div><div><h2>Be the marker: is an IGCSE answer enough?</h2><div class="by">About 3 minutes</div></div></div>
+  <div class="card">
+    <p><b>The question:</b> Describe the principal operations of a magnetic hard disk. <b>[5 marks]</b></p>
+    <p><b>A student wrote:</b></p>
+    <div class="quote">"A hard disk stores data using magnetism. It spins round and data is stored in tracks and sectors. A read/write head reads the data."</div>
+  </div>
+  <div class="card">
+    <h3>Tick every point this answer has earned</h3>
+    <p class="small muted">Each point is worth 1 mark, up to 5. Be strict: the idea has to be there, not just a similar word.</p>
+    <div id="marker"></div>
+  </div>
+</section>
+
+<!-- 6 ============================================================ -->
+<section class="stage" data-title="Hard disk" data-by="29">
+  <div class="stage-head"><div class="stage-num">6</div><div><h2>Inside a magnetic hard disk</h2><div class="by">About 6 minutes · watch, then check</div></div></div>
+  <div id="animHDD"></div>
+  <div class="card story"><span class="tag">The story</span>
+    <p>A failing hard disk often makes a repeated clicking sound. Technicians call it <b>the click of death</b>. The read/write head flies a few nanometres above a platter spinning thousands of times a minute. If the head touches the platter (a head crash), it scrapes off the magnetic coating and the data there is gone.</p>
+    <p><b>Why it matters for exams:</b> hard disks have moving parts, so they can be damaged by knocks. An SSD has <b>no moving parts</b>. That is one reason laptops and phones use solid-state storage.</p>
+  </div>
+  <div class="card"><h3>Check: put the hard disk steps in order</h3><div id="orderHDD"></div></div>
+  <details class="help"><summary>Show me step by step</summary><div>
+    <p>Think of it from the outside in.</p>
+    <ol><li>What is it made of? <b>Platters</b> that can be magnetised, inside a sealed box.</li><li>How does it move? On a <b>spindle</b>, spinning fast.</li><li>What reads it? A <b>head on an arm</b>, moved by electronic circuits.</li><li>How is the surface organised? <b>Tracks</b> and <b>sectors</b>; one track in one sector is a <b>block</b>.</li><li>How are the bits stored and read? As a <b>magnetic pattern</b>; reading turns a change in field into a <b>change in current</b>.</li></ol>
+  </div></details>
+</section>
+
+<!-- 7 ============================================================ -->
+<section class="stage" data-title="SSD" data-by="33">
+  <div class="stage-head"><div class="stage-num">7</div><div><h2>Inside an SSD (flash memory)</h2><div class="by">About 4 minutes · watch, then check</div></div></div>
+  <div id="animSSD"></div>
+  <div class="card"><h3>Check: fill the gaps</h3><div id="gapsSSD"></div></div>
+  <details class="help"><summary>Show me step by step</summary><div>
+    <p>Picture the floating gate as a <b>sealed box</b>. Writing pushes electrons into the box. Because the box is sealed by insulation, the electrons cannot get out, even with the power off. Reading asks one question: <b>does current flow through the cell or not?</b> That answer is the bit.</p>
+  </div></details>
+  <details class="further"><summary>Go further</summary><div>
+    <p><span class="label-beyond">Beyond AS</span><b>Why do SSDs wear out?</b> Each flash cell can only be erased and rewritten a limited number of times, because pushing electrons through the insulating layer slowly damages it. The SSD controller spreads writes evenly across all the cells (<b>wear levelling</b>) so no cell wears out long before the others. Find out what <b>TBW</b> means on an SSD specification.</p>
+  </div></details>
+</section>
+
+<!-- 8 ============================================================ -->
+<section class="stage" data-title="Optical disc" data-by="37">
+  <div class="stage-head"><div class="stage-num">8</div><div><h2>Inside an optical disc reader/writer</h2><div class="by">About 4 minutes · watch, then check</div></div></div>
+  <div id="animOPT"></div>
+  <div class="card"><h3>Check: put the optical steps in order</h3><div id="orderOPT"></div></div>
+  <details class="help"><summary>Show me step by step</summary><div>
+    <p>A <b>pit</b> is a tiny dip in the surface. A <b>land</b> is the flat part between pits. A laser bounces off them differently, a bit like light from a torch bouncing off a flat mirror compared with a dented one. The sensor notices the difference, and the differences become 1s and 0s.</p>
+  </div></details>
+</section>
+
+<!-- 9 ============================================================ -->
+<section class="stage" data-title="Write it" data-by="41">
+  <div class="stage-head"><div class="stage-num">9</div><div><h2>Write it: finish the answers</h2><div class="by">About 4 minutes · in your workbook</div></div></div>
+  <div class="card wb"><span class="tag">Workbook · Tasks 2 and 3</span>
+    <p><b>Task 2:</b> fill the gaps in the SSD answer. <b>Task 3:</b> fill the gaps in the optical disc answer. If you have time, add one more point of your own to each.</p>
+    <p>You can work with the person next to you, but <b>both of you write</b> in your own workbook.</p>
+    <p><b>Write yours first.</b> Then press the button to compare.</p>
+    <button class="btn amber" data-reveal="#modelWrite">I have written mine: show the model answers</button>
+  </div>
+  <div class="model" id="modelWrite">
+    <p><b>Solid state (flash) memory: model answer</b></p>
+    <ul><li>An SSD has no moving parts.</li><li>Data is stored in flash memory using NAND or NOR technology.</li><li>Each cell has 1 or 2 transistors.</li><li>The floating gate traps (retains) electrons, so the data is kept without power.</li><li>The control gate allows or stops current passing through the cell.</li><li>To read, the controller checks whether current flows, giving a 1 or a 0.</li></ul>
+    <p style="margin-top:10px"><b>Optical disc reader/writer: model answer</b></p>
+    <ul><li>The disc is spun at high speed.</li><li>A laser is shone onto the disc; the optical head moves it into position.</li><li>It follows a spiral track from the centre outwards.</li><li>Writing: the laser burns pits to represent the data.</li><li>Reading: the laser reflects from pits and lands; the reflection from a pit is different from a land.</li><li>A sensor detects the reflected light and the differences are interpreted as 1s and 0s.</li></ul>
+    <p class="small" style="margin-top:8px">Tick each point you had. Add any you missed in <b style="color:var(--good)">green</b>.</p>
+  </div>
+  <details class="help"><summary>Show me step by step</summary><div>
+    <p>Go back to stages 7 and 8 and press <b>Play</b> again. Each step of the animation is one sentence of the answer, in order. The gaps in the workbook follow the same order.</p>
+  </div></details>
+</section>
+
+<!-- 10 ============================================================ -->
+<section class="stage" data-title="Exam questions" data-by="50">
+  <div class="stage-head"><div class="stage-num">10</div><div><h2>Real exam questions</h2><div class="by">About 9 minutes · 5 minutes writing, 4 minutes marking</div></div></div>
+  <div class="card warn"><p><b>Everyone starts this stage by minute 41</b>, even if earlier stages are not finished. These answers are what your teacher reads.</p></div>
+  <div class="card wb"><span class="tag">Workbook · Task 4</span>
+    <ol><li>Answer <b>Question A</b> (CCTV, 4 marks) and <b>Question B</b> (video server, 4 marks) in the <b>My attempt</b> boxes. No notes, no looking back.</li>
+    <li>Only then go to the <b>Mark schemes</b> page at the back of your workbook.</li>
+    <li>Mark yourself. Write anything you missed in the <b>My corrections</b> box (it types in green).</li>
+    <li><b>Finished and marked?</b> Go straight on to <b>Question C</b> (hard disk, 4 marks) and <b>Question D</b> (optical disc, 4 marks). Write first, then mark them the same way.</li></ol>
+  </div>
+  <div class="card exam"><span class="tag">How these questions are marked</span>
+    <p>Each question asks for <b>two reasons</b>. Each reason gets 1 mark, and a second mark for <b>linking it to the system in the question</b>.</p>
+    <p>Not enough: <i>"Hard disks are cheaper."</i><br>Full marks: <i>"Magnetic storage costs less per unit of storage, <b>and the system stores large video files, so it needs a very large capacity</b>."</i></p>
+  </div>
+  <details class="help"><summary>Show me step by step</summary><div>
+    <p>Two reasons that work for systems that record or store lots of video:</p>
+    <ul class="clean"><li><b>Cost:</b> magnetic storage costs less per gigabyte … <i>so very large capacity is affordable for big video files.</i></li>
+    <li><b>Lasting longer:</b> the system writes all the time (a very large number of read/write operations) … <i>and magnetic storage lasts longer under that much writing.</i></li></ul>
+    <p>Sentence starter: <i>"Magnetic storage is more suitable because … This matters for this system because …"</i></p>
+  </div></details>
+  <details class="further"><summary>Go further</summary><div>
+    <p>A school wants storage for <b>10 years of CCTV recordings</b>, and a separate drive for the <b>head's office laptop</b>. Choose a hard disk or an SSD for each, and justify each choice with two reasons applied to that system. Write it at the end of your workbook.</p>
+  </div></details>
+</section>
+
+<!-- 11 ============================================================ -->
+<section class="stage" data-title="Check-out" data-by="55">
+  <div class="stage-head"><div class="stage-num">11</div><div><h2>Check-out</h2><div class="by">About 5 minutes · then turn in</div></div></div>
+  <div class="card"><h3>One question: answer it first, then write your letter in Task 5</h3><div id="hinge1"></div></div>
+  <div class="card wb"><span class="tag">Workbook · Task 5</span>
+    <ol><li>Write the letter you chose <b>first</b> for the question above.</li><li>Answer the three check-out questions. No notes.</li><li>Rate your confidence for each part of today (1 = lost, 5 = I could teach it).</li><li>Copy anything below into the <b>"Please go over again"</b> box.</li></ol>
+    <div class="stuckbox"><b>You pressed "I'm stuck" on:</b><div class="stuck-list" style="margin-top:6px"></div></div>
+  </div>
+  <div class="card do"><span class="tag">Before you leave</span>
+    <p>On Teams, press <b>Turn in</b> on the Hardware Lesson 1 assignment. Show your teacher the word <b>Turned in</b>.</p>
+  </div>
+</section>
+
+<p class="footer-note">Year 12 Computer Science · Hardware · Lesson 1</p>
+</main>
+
+<nav class="nav"><div class="nav-in"><button class="btn" id="back">← Back</button><button class="btn primary next" id="next">Next stage →</button></div></nav>
+
+<script src="assets/engine.js"></script>
+<script src="assets/h1.js"></script>
+</body>
+</html>

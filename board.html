@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Class Screen</title>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+body{background:#0b3954;color:#fff;min-height:100vh}
+.wrap{max-width:1400px;margin:auto;padding:20px 24px 40px}
+.head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.head h1{margin:0;font-size:clamp(1.3rem,2.4vw,2rem)}
+.head .eyebrow{font-size:.85rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#ffcf8a}
+.pick a{color:#fff;border:2px solid #ffffff60;border-radius:10px;padding:6px 14px;text-decoration:none;font-weight:700;margin-left:6px}
+.pick a.on{background:#b86400;border-color:#b86400}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-top:20px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+.panel{background:#ffffff12;border:1px solid #ffffff26;border-radius:18px;padding:22px 26px}
+.clock{font-size:clamp(3rem,9vw,7rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.clock small{font-size:.28em;font-weight:600;color:#cfe3ee;display:block;margin-top:6px}
+.now{margin-top:18px}
+.now .lbl{font-size:.9rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#ffcf8a}
+.now .t{font-size:clamp(2rem,5vw,3.6rem);font-weight:800;line-height:1.1;margin:4px 0 8px}
+.now .d{font-size:clamp(1.1rem,2.2vw,1.6rem);color:#e6f1f6}
+.left{font-size:1.3rem;margin-top:10px;color:#ffcf8a;font-weight:700}
+.bar{height:16px;border-radius:9px;background:#ffffff26;overflow:hidden;margin-top:18px}
+.bar span{display:block;height:100%;background:#b86400;width:0}
+.list{list-style:none;margin:0;padding:0;font-size:1.05rem}
+.list li{display:flex;gap:10px;padding:6px 8px;border-radius:8px}
+.list li .m{flex:0 0 72px;color:#cfe3ee;font-variant-numeric:tabular-nums}
+.list li.done{opacity:.45}
+.list li.on{background:#b86400;font-weight:800;opacity:1}
+.banner{display:none;margin-top:18px;background:#fff;color:#0b3954;border-radius:14px;padding:16px 20px;font-size:clamp(1.3rem,2.6vw,2rem);font-weight:800;border-left:12px solid #c0392b}
+.banner.show{display:block;animation:pulsebox 1.4s ease-in-out 6}
+@keyframes pulsebox{50%{transform:scale(1.02)}}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.ctl button{border:2px solid #fff;background:transparent;color:#fff;border-radius:12px;padding:10px 18px;font-weight:800;font-size:1.05rem}
+.ctl button.go{background:#1f8a4c;border-color:#1f8a4c;font-size:1.3rem;padding:12px 28px}
+.teacher{font-size:1rem;color:#e6f1f6}
+.teacher h2{margin:0 0 8px;font-size:1.1rem;color:#ffcf8a}
+.teacher ol{margin:0;padding-left:1.2em}.teacher li{margin:4px 0}
+.url{font-size:1.15rem;font-weight:800;background:#fff;color:#0b3954;border-radius:10px;padding:8px 12px;display:inline-block;margin-top:6px;word-break:break-all}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div><div class="eyebrow">Year 12 · Hardware · Class screen</div><h1 id="title"></h1></div>
+    <div class="pick"><a href="?l=1" id="p1">Lesson 1</a><a href="?l=2" id="p2">Lesson 2</a></div>
+  </div>
+  <div class="grid">
+    <div class="panel">
+      <div class="clock" id="clock">00:00<small>Press Start when the class is in</small></div>
+      <div class="now"><div class="lbl">Everyone should be on</div><div class="t" id="nowT">Waiting to start</div><div class="d" id="nowD">Pupils: open Teams, then open the lesson link in the assignment.</div><div class="left" id="left"></div></div>
+      <div class="bar"><span id="bar"></span></div>
+      <div class="banner" id="banner"></div>
+      <div class="ctl"><button class="go" id="start">▶ Start lesson</button><button id="pause">Pause</button><button id="minus">− 1 min</button><button id="plus">+ 1 min</button><button id="reset">Reset</button></div>
+    </div>
+    <div class="panel">
+      <ul class="list" id="list"></ul>
+      <div class="teacher" style="margin-top:18px">
+        <h2>Pupils open</h2>
+        <div class="url" id="url"></div>
+        <h2 style="margin-top:16px">Cover teacher</h2>
+        <ol><li>Press <b>Start</b> when the class is in.</li><li>Read the red messages out when they appear.</li><li>Content questions: "Press <i>Show me step by step</i>, then <i>I'm stuck</i>, and keep going."</li><li>Before they leave: every screen shows <b>Turned in</b>.</li></ol>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+const S={
+ 1:{title:"Lesson 1: Storage (hard disk, SSD, optical)",page:"h1.html",stages:[
+  [0,"Do Now","Open the workbook on Teams and type your name. Then sort the smart speaker items on the site."],
+  [4,"Today and key words","Read today's plan. Press 🔊 to hear the key words."],
+  [6,"Fast pass","16 questions on your own. No notes. Then mark it and copy your scores into Task 1."],
+  [15,"Fix your fast pass","Read the explanations for the questions you got wrong."],
+  [20,"Be the marker","How many marks does an IGCSE-style answer get?"],
+  [23,"Hard disk","Watch the animation, then put the steps in order."],
+  [29,"SSD","Watch the animation, then fill the gaps."],
+  [33,"Optical disc","Watch the animation, then put the steps in order."],
+  [37,"Write it","Workbook Tasks 2 and 3. Write first, then compare with the model answers."],
+  [41,"Exam questions","Workbook Task 4. Write for 5 minutes with no notes, then mark yourself in green."],
+  [50,"Check-out","Answer the question on the site, then workbook Task 5. Turn in on Teams."]],
+  banners:{41:"Everyone: go to Stage 10, Exam questions, now. Write your answers in Task 4. No notes.",46:"Stop writing. Open the mark schemes at the back of the workbook and mark yourself in green.",50:"Everyone: go to Stage 11, Check-out. Then press Turn in on Teams.",54:"One minute. Show me Turned in on Teams before you leave."}},
+ 2:{title:"Lesson 2: Memory chips and embedded systems",page:"h2.html",stages:[
+  [0,"Do Now","Open the workbook on Teams and type your name. Then the four Do Now questions on the site."],
+  [3,"Today and key words","Read the big question. Press 🔊 to hear the key words."],
+  [5,"Evidence hunt","Find the cache and RAM sizes in Task Manager (or use the table). Workbook Task 1."],
+  [9,"DRAM","Watch the animation, then switch the refresh off and watch the picture fade."],
+  [13,"SRAM vs DRAM","Watch, sort, then complete the table in workbook Task 2."],
+  [18,"The ROM family","Watch the animation, then sort PROM, EPROM and EEPROM."],
+  [24,"Update the firmware","Press Update on each device. Then workbook Task 3."],
+  [27,"Embedded systems","Watch the animation, then sort drawbacks and benefits."],
+  [32,"Chip choice","Choose a chip for each device. Workbook Task 4: two devices, two reasons each."],
+  [38,"Exam questions","Workbook Task 5. Write for 7 minutes with no notes, then mark yourself in green."],
+  [49,"Check-out","Answer the question on the site, then workbook Task 6. Turn in on Teams."]],
+  banners:{38:"Everyone: go to Stage 10, Exam questions, now. Write your answers in Task 5. No notes.",45:"Stop writing. Open the mark schemes at the back of the workbook and mark yourself in green.",49:"Everyone: go to Stage 11, Check-out. Then press Turn in on Teams.",54:"One minute. Show me Turned in on Teams before you leave."}}};
+const q=new URLSearchParams(location.search), n=q.get("l")==="2"?2:1, L=S[n], END=55;
+document.getElementById("p"+n).classList.add("on");
+document.getElementById("title").textContent=L.title;document.title="Class Screen: Lesson "+n;
+document.getElementById("url").textContent=new URL(L.page,location.href).href.replace(/^https?:\/\//,"");
+const key="board"+n; let st=null, paused=null, shown={};
+try{const v=JSON.parse(sessionStorage.getItem(key));if(v){st=v.st;paused=v.paused}}catch(e){}
+function save(){try{sessionStorage.setItem(key,JSON.stringify({st,paused}))}catch(e){}}
+const list=document.getElementById("list");
+list.innerHTML=L.stages.map((s,i)=>`<li><span class="m">${String(s[0]).padStart(2,"0")}–${String(i<L.stages.length-1?L.stages[i+1][0]:END).padStart(2,"0")}</span><span>${i+1}. ${s[1]}</span></li>`).join("");
+function el(){return st===null?0:((paused||Date.now())-st)/1000}
+function tick(){
+  const e=el(), m=e/60, mm=Math.floor(e/60), ss=Math.floor(e%60);
+  const clock=document.getElementById("clock");
+  clock.innerHTML=String(mm).padStart(2,"0")+":"+String(ss).padStart(2,"0")+`<small>${st===null?"Press Start when the class is in":paused?"Paused":"minutes into the lesson · ends at 55:00"}</small>`;
+  document.getElementById("start").textContent=st===null?"▶ Start lesson":paused?"▶ Resume":"● Running";
+  if(st===null)return;
+  let i=0;L.stages.forEach((s,k)=>{if(m>=s[0])i=k});
+  const s=L.stages[i], nx=i<L.stages.length-1?L.stages[i+1][0]:END;
+  document.getElementById("nowT").textContent="Stage "+(i+1)+": "+s[1];
+  document.getElementById("nowD").textContent=s[2];
+  const lm=Math.max(0,nx-m);document.getElementById("left").textContent=m>=END?"Lesson time is up. Check every screen shows Turned in.":(lm<1?"Less than a minute left on this stage":Math.ceil(lm)+" minutes left on this stage");
+  document.getElementById("bar").style.width=Math.min(100,m/END*100)+"%";
+  [...list.children].forEach((li,k)=>li.className=k<i?"done":k===i?"on":"");
+  const b=document.getElementById("banner");let msg=null;
+  Object.keys(L.banners).forEach(k=>{if(m>=+k&&m<+k+3)msg=L.banners[k]});
+  if(msg){if(b.textContent!==msg){b.textContent=msg;b.classList.remove("show");void b.offsetWidth}b.classList.add("show")}else b.classList.remove("show");
+}
+document.getElementById("start").onclick=()=>{if(st===null){st=Date.now();paused=null}else if(paused){st+=Date.now()-paused;paused=null}save();tick();
+  try{navigator.wakeLock&&navigator.wakeLock.request("screen").catch(()=>{})}catch(e){}};
+document.getElementById("pause").onclick=()=>{if(st===null)return;if(paused){st+=Date.now()-paused;paused=null}else paused=Date.now();save();tick()};
+document.getElementById("minus").onclick=()=>{if(st!==null){st+=60000;save();tick()}};
+document.getElementById("plus").onclick=()=>{if(st!==null){st-=60000;save();tick()}};
+document.getElementById("reset").onclick=()=>{st=null;paused=null;save();location.reload()};
+setInterval(tick,500);tick();
+})();
+</script>
+</body>
+</html>

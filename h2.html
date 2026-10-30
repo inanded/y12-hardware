@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memory Chips and Embedded Systems</title>
+<meta name="description" content="Year 12 Computer Science, Hardware lesson 2: SRAM and DRAM, PROM, EPROM and EEPROM, and embedded systems.">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="grow"><div class="eyebrow">Year 12 · Hardware · Lesson 2</div><h1>Memory chips and embedded systems</h1></div>
+    <button class="stuckbtn" title="Tell your teacher this part was hard">I'm stuck</button>
+  </div>
+  <nav class="steps" aria-label="Lesson stages"></nav>
+  <div class="where" aria-live="polite"></div>
+</header>
+
+<main>
+
+<!-- 1 -->
+<section class="stage" data-title="Do Now" data-by="3">
+  <div class="stage-head"><div class="stage-num">1</div><div><h2>Do Now: from memory</h2><div class="by">About 3 minutes · on your own</div></div></div>
+  <div class="card do"><span class="tag">Do this</span>
+    <p>Open your <b>workbook</b> on Teams now (Assignments → <i>Hardware Lesson 2</i>) and type your name at the top. Keep it open all lesson.</p>
+    <p>Then answer these four from memory. Each one tells you straight away if you are right.</p>
+  </div>
+  <div class="card" id="dn1"></div><div class="card" id="dn2"></div><div class="card" id="dn3"></div><div class="card" id="dn4"></div>
+</section>
+
+<!-- 2 -->
+<section class="stage" data-title="Today and key words" data-by="5">
+  <div class="stage-head"><div class="stage-num">2</div><div><h2>Today's plan and key words</h2><div class="by">About 2 minutes</div></div></div>
+  <div class="card story"><span class="tag">Today's big question</span>
+    <p class="lead">Your laptop has <b>gigabytes</b> of RAM but only <b>megabytes</b> of cache. Cache is faster. So why not make all of it cache?</p>
+    <p>You will find the real numbers on your own laptop, then answer it by stage 5.</p>
+  </div>
+  <div class="card">
+    <h3>Success looks like this</h3>
+    <ul class="clean">
+      <li><b>Everyone:</b> give three differences between SRAM and DRAM; say how PROM and EEPROM differ; give two drawbacks of an embedded system.</li>
+      <li><b>Most:</b> choose a memory chip for a device and justify it with two reasons.</li>
+      <li><b>Some:</b> explain why cache is MB and main memory is GB, using bit density and cost; explain why EEPROM suits firmware that will be updated.</li>
+    </ul>
+  </div>
+  <div class="card"><h3>Key words <span class="small muted">(press 🔊 to hear each one)</span></h3><div class="kw" id="kw2"></div></div>
+</section>
+
+<!-- 3 -->
+<section class="stage" data-title="Evidence hunt" data-by="9">
+  <div class="stage-head"><div class="stage-num">3</div><div><h2>Evidence hunt: what is inside your laptop?</h2><div class="by">About 4 minutes</div></div></div>
+  <div class="two">
+    <div class="card do"><span class="tag">On a Windows laptop</span>
+      <ol>
+        <li>Press <b>Ctrl + Shift + Esc</b> to open Task Manager. If it opens small, press <b>More details</b>.</li>
+        <li>Click the <b>Performance</b> tab (on Windows 11 it is the second icon down the left side).</li>
+        <li>Click <b>CPU</b>. Bottom right, find <b>L3 cache</b>. Write down the number. This is <b>SRAM</b>, inside the processor.</li>
+        <li>Click <b>Memory</b>. Top right, find the total in <b>GB</b>. This is <b>DRAM</b>, the main memory.</li>
+      </ol>
+    </div>
+    <div class="card"><h3>On a tablet, or Task Manager won't open?</h3>
+      <p>Pick one of these real laptops and use its numbers.</p>
+      <div class="scroll"><table class="t"><tr><th>Laptop processor</th><th>L3 cache (SRAM)</th><th>RAM (DRAM)</th></tr>
+      <tr><td>Intel Core i3-N305 (budget)</td><td>6 MB</td><td>8 GB</td></tr>
+      <tr><td>Intel Core i5-1235U (mid-range)</td><td>12 MB</td><td>16 GB</td></tr>
+      <tr><td>AMD Ryzen 7 7840U (high end)</td><td>16 MB</td><td>32 GB</td></tr></table></div>
+    </div>
+  </div>
+  <div class="card"><h3>How many times bigger is the main memory?</h3>
+    <div class="calc"><label>L3 cache in MB<input id="cMB" type="number" min="0.5" step="0.5" value="12" inputmode="decimal"></label><label>RAM in GB<input id="cGB" type="number" min="1" step="1" value="16" inputmode="decimal"></label><div><div class="small muted">Main memory is about</div><div class="big" id="cOut"></div></div></div>
+    <p class="small muted" style="margin-top:8px">Task Manager's MB and GB count in 1024s, so in exam terms they are really MiB and GiB.</p>
+  </div>
+  <div class="card wb"><span class="tag">Workbook · Task 1</span><p>Write your L3 cache, your RAM and how many times bigger the RAM is. Leave the "why" line until stage 5.</p></div>
+</section>
+
+<!-- 4 -->
+<section class="stage" data-title="DRAM" data-by="13">
+  <div class="stage-head"><div class="stage-num">4</div><div><h2>Inside a DRAM cell</h2><div class="by">About 4 minutes · watch, then try it</div></div></div>
+  <div id="animDRAM"></div>
+  <div class="card"><h3>Try it: switch the refresh off</h3>
+    <p>Each square is one DRAM cell. Dark = charged = 1. The orange band is the memory controller refreshing one row at a time. Switch refresh <b>off</b> and watch what happens to the picture.</p>
+    <div class="row" style="margin-bottom:10px"><b>Refresh:</b><button class="btn primary" id="rOn">ON</button><button class="btn" id="rOff">OFF</button><button class="btn" id="rReset">Reset picture</button><span class="muted small">1s lost: <b id="rLost">0</b></span></div>
+    <svg id="rGrid" viewBox="0 0 330 330" style="max-width:330px;width:100%;display:block;margin:auto" role="img" aria-label="Eight by eight grid of DRAM cells showing a smiley face. With refresh off, the charged cells fade and become 0s."></svg>
+    <p class="small muted" style="margin-top:8px">Slowed right down. Real DRAM refreshes every row at least once every 64 ms.</p>
+  </div>
+  <details class="help"><summary>Show me step by step</summary><div>
+    <p>Think of each capacitor as a <b>bucket with a small hole</b>. A full bucket is a 1. Water leaks out all the time. Refresh means someone checks every bucket and tops up the full ones before they drop too low. Turn the power off, and nobody tops them up: everything is lost.</p>
+  </div></details>
+</section>
+
+<!-- 5 -->
+<section class="stage" data-title="SRAM vs DRAM" data-by="18">
+  <div class="stage-head"><div class="stage-num">5</div><div><h2>SRAM vs DRAM</h2><div class="by">About 5 minutes · watch, sort, write</div></div></div>
+  <div id="animSRAM"></div>
+  <div class="card"><h3>Check: SRAM, DRAM or both?</h3><div id="sortRAM"></div></div>
+  <div class="card exam"><span class="tag">Write comparisons like this</span>
+    <p>A one-sided answer ("SRAM is faster") can lose the mark. Give <b>both sides</b>: "SRAM has faster access, <b>whereas</b> DRAM is slower."</p>
+  </div>
+  <div class="card wb"><span class="tag">Workbook · Task 2</span>
+    <p>Complete the SRAM vs DRAM table. Then go back to Task 1 and answer: <b>why is the fast memory so small?</b></p>
+    <button class="btn amber" data-reveal="#modelRAM">I have written mine: show the answers</button>
+    <div class="model" id="modelRAM"><div class="scroll"><table class="t"><tr><th></th><th>DRAM</th><th>SRAM</th></tr>
+      <tr><td>Refresh</td><td>Must be refreshed</td><td>Does not need refreshing</td></tr>
+      <tr><td>How a bit is stored</td><td>As charge (transistor and capacitor)</td><td>In a flip-flop</td></tr>
+      <tr><td>Cost</td><td>Less expensive to manufacture</td><td>More expensive</td></tr>
+      <tr><td>Speed</td><td>Slower access</td><td>Faster access</td></tr>
+      <tr><td>Bit density</td><td>Higher (more data per chip)</td><td>Lower</td></tr>
+      <tr><td>Used for</td><td>Main memory</td><td>Cache</td></tr></table></div>
+      <p style="margin-top:8px"><b>Why the cache is small:</b> cache is SRAM. An SRAM cell is much bigger than a DRAM cell, so it has a lower bit density and costs more per bit. Making all the memory SRAM would cost far more and need far more chip space.</p></div>
+  </div>
+  <details class="further"><summary>Go further</summary><div>
+    <p><span class="label-beyond">Year 13 skill</span>An SRAM cell is a <b>flip-flop</b>. Look at the loop in the animation: why does it keep its value without being refreshed? You will draw SR and JK flip-flops in Year 13.</p>
+    <p><span class="label-beyond">Beyond AS</span><b>Rowhammer.</b> In 2014 researchers showed that reading one DRAM row over and over very fast can disturb the charge in neighbouring rows and flip their bits. It became a real security problem. Using what you know about capacitors and refresh, explain why this can happen.</p>
+  </div></details>
+</section>
+
+<!-- 6 -->
+<section class="stage" data-title="The ROM family" data-by="24">
+  <div class="stage-head"><div class="stage-num">6</div><div><h2>The ROM family: PROM, EPROM, EEPROM</h2><div class="by">About 6 minutes</div></div></div>
+  <div class="card story"><span class="tag">The story</span>
+    <p>Every laptop warns you: <b>do not switch off during a BIOS update</b>. In the 1980s, arcade machines and early PCs kept their programs on EPROM chips with a little clear quartz window on top, covered by a sticker. Peel the sticker off and leave the chip in sunlight long enough, and the program could start to fade.</p>
+  </div>
+  <div id="animROM"></div>
+  <div class="card"><h3>Check: which chip?</h3><div id="sortROM"></div></div>
+  <details class="help"><summary>Show me step by step</summary><div>
+    <ul class="clean"><li><b>P</b>ROM: <b>P</b>rogrammed once. Then it is fixed.</li><li><b>E</b>PROM: <b>E</b>rasable with UV light. Take the chip out; the whole chip is wiped.</li><li><b>EE</b>PROM: <b>E</b>lectrically <b>E</b>rasable. It stays in the device, and you can change just part of it.</li></ul>
+  </div></details>
+</section>
+
+<!-- 7 -->
+<section class="stage" data-title="Update the firmware" data-by="27">
+  <div class="stage-head"><div class="stage-num">7</div><div><h2>Update the firmware</h2><div class="by">About 3 minutes</div></div></div>
+  <div class="card"><p><b>Firmware</b> is the program stored in a device's ROM: the BIOS of a laptop, the software in a printer or a smart TV. Press <b>Update</b> on each device and see what has to happen.</p></div>
+  <div class="two" id="fwGame"></div>
+  <div class="card wb"><span class="tag">Workbook · Task 3</span>
+    <p>Complete the PROM, EPROM and EEPROM table.</p>
+    <button class="btn amber" data-reveal="#modelROM">I have written mine: show the answers</button>
+    <div class="model" id="modelROM"><div class="scroll"><table class="t"><tr><th></th><th>PROM</th><th>EPROM</th><th>EEPROM</th></tr>
+      <tr><td>Written</td><td>Once only</td><td>Many times</td><td>Many times</td></tr>
+      <tr><td>Erased by</td><td>Cannot be erased</td><td>Ultraviolet (UV) light</td><td>Voltage (an electrical signal)</td></tr>
+      <tr><td>Where</td><td>Not applicable</td><td>Removed from the device</td><td>Stays in the circuit (in situ)</td></tr>
+      <tr><td>How much</td><td>Not applicable</td><td>The whole chip is erased before rewriting</td><td>Part of the data can be erased</td></tr></table></div>
+      <p class="small" style="margin-top:8px">Flash memory is a type of EEPROM.</p></div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="stage" data-title="Embedded systems" data-by="32">
+  <div class="stage-head"><div class="stage-num">8</div><div><h2>Embedded systems: where the firmware runs</h2><div class="by">About 5 minutes</div></div></div>
+  <div id="animEMB"></div>
+  <div class="card"><h3>Check: drawback or benefit?</h3><div id="sortEMB"></div></div>
+  <div class="card exam"><span class="tag">What to learn</span>
+    <p><b>Drawbacks</b> come up most often in questions: learn all four. Know the <b>benefits</b> too: small and low power, cheap to mass-produce, reliable because it does one job, starts instantly and responds in real time.</p>
+  </div>
+  <details class="help"><summary>Show me step by step</summary><div>
+    <p>Count the embedded systems you have used since you woke up: alarm clock, kettle, microwave, card reader on the bus, the school door entry system, a car. Each one does <b>one job</b>, and you cannot easily change what it does. The drawbacks all come from that.</p>
+  </div></details>
+</section>
+
+<!-- 9 -->
+<section class="stage" data-title="Chip choice" data-by="38">
+  <div class="stage-head"><div class="stage-num">9</div><div><h2>Chip choice: which memory for which device?</h2><div class="by">About 6 minutes</div></div></div>
+  <div class="card do"><span class="tag">Do this</span><p>Choose the best chip for each device. The feedback gives you the reasons in exam words.</p></div>
+  <div id="chips"></div>
+  <div class="card wb"><span class="tag">Workbook · Task 4</span>
+    <p>Pick <b>two</b> of the devices. For each, write the chip and <b>two reasons</b>, using the words from the feedback. You can work with the person next to you, but both of you write.</p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="stage" data-title="Exam questions" data-by="49">
+  <div class="stage-head"><div class="stage-num">10</div><div><h2>Real exam questions</h2><div class="by">About 11 minutes · 7 minutes writing, 4 minutes marking</div></div></div>
+  <div class="card warn"><p><b>Everyone starts this stage by minute 38</b>, even if earlier stages are not finished. These answers are what your teacher reads.</p></div>
+  <div class="card wb"><span class="tag">Workbook · Task 5</span>
+    <ol><li>Answer <b>Question A</b> (DRAM and SRAM, 3 marks) and <b>Question B</b> (an embedded system, 6 marks) in the <b>My attempt</b> boxes. No notes, no looking back.</li>
+    <li>Only then go to the <b>Mark schemes</b> page at the back of your workbook.</li>
+    <li>Mark yourself. Write anything you missed in the <b>My corrections</b> box (it types in green).</li>
+    <li><b>Finished and marked?</b> Go straight on to <b>Questions C, D and E</b> (memory chips, 14 marks), then <b>Question F</b> if you want a challenge. Write first, then mark them the same way.</li></ol>
+  </div>
+  <details class="help"><summary>Show me step by step</summary><div>
+    <ul class="clean"><li>Every comparison needs <b>both sides</b>: "EPROM is erased with UV light, <b>whereas</b> EEPROM is erased electrically."</li>
+    <li>For drawbacks, use the four from stage 8: hard to update the firmware; hard and expensive to fix; cannot be adapted for another task; thrown away, leading to e-waste.</li>
+    <li>For "why DRAM in an embedded system", think <b>cost</b> and <b>bit density</b>.</li></ul>
+  </div></details>
+</section>
+
+<!-- 11 -->
+<section class="stage" data-title="Check-out" data-by="55">
+  <div class="stage-head"><div class="stage-num">11</div><div><h2>Check-out</h2><div class="by">About 5 minutes · then turn in</div></div></div>
+  <div class="card"><h3>One question: answer it first, then write your letter in Task 6</h3><div id="hinge2"></div></div>
+  <div class="card wb"><span class="tag">Workbook · Task 6</span>
+    <ol><li>Write the letter you chose <b>first</b> for the question above.</li><li>Answer the three check-out questions. No notes.</li><li>Rate your confidence for each part of today (1 = lost, 5 = I could teach it).</li><li>Copy anything below into the <b>"Please go over again"</b> box.</li></ol>
+    <div class="stuckbox"><b>You pressed "I'm stuck" on:</b><div class="stuck-list" style="margin-top:6px"></div></div>
+  </div>
+  <div class="card do"><span class="tag">Before you leave</span>
+    <p>On Teams, press <b>Turn in</b> on the Hardware Lesson 2 assignment. Show your teacher the word <b>Turned in</b>.</p>
+  </div>
+</section>
+
+<p class="footer-note">Year 12 Computer Science · Hardware · Lesson 2</p>
+</main>
+
+<nav class="nav"><div class="nav-in"><button class="btn" id="back">← Back</button><button class="btn primary next" id="next">Next stage →</button></div></nav>
+<script src="assets/engine.js"></script>
+<script src="assets/h2.js"></script>
+</body>
+</html>

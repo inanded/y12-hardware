@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cover Teacher Notes</title>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+main{padding-bottom:40px}
+h2{color:var(--ocean);margin:18px 0 8px;font-size:1.25rem}
+.say-box{background:var(--amber-soft);border-left:6px solid var(--amber);border-radius:10px;padding:12px 16px;font-size:1.05rem}
+ol li,ul li{margin:4px 0}
+@media print{body{font-size:9.5pt;line-height:1.35}.card{padding:6px 10px;margin-bottom:6px}.lead{font-size:10pt}.say-box{font-size:10pt;padding:6px 10px}h2{margin:6px 0 3px;font-size:11pt}ol,ul{margin:2px 0}li{margin:1px 0!important}.top{display:block!important;position:static}.noprint{display:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in"><div class="grow"><div class="eyebrow">Year 12 Computer Science · Hardware</div><h1>Cover teacher notes</h1></div></div></header>
+<main>
+<div class="card">
+  <p class="lead"><b>You do not need any Computer Science knowledge.</b> Everything is on a website the pupils work through, with a class screen on the projector that keeps time. Your job is to start the clock, read out the red messages, and check that every pupil turns in their workbook.</p>
+  <p class="muted small">Two lessons, 55 minutes each, same routine. Lesson 1: storage. Lesson 2: memory chips and embedded systems.</p>
+</div>
+
+<h2>Before the lesson (2 minutes)</h2>
+<div class="card"><ol>
+  <li>Log in to the classroom PC and turn on the projector.</li>
+  <li>Open the class screen: <b><span class="siteurl"></span>board.html?l=1</b> for Lesson 1, or <b>?l=2</b> for Lesson 2. It is also on the site's home page under "Teachers".</li>
+  <li>Leave it on the projector, full screen if you can (F11).</li>
+</ol></div>
+
+<h2>When the class is in</h2>
+<div class="card"><p>Take the register as normal, then press <b>Start lesson</b> on the class screen and say:</p>
+<div class="say-box">"Open Teams and go to Assignments. Open today's Hardware assignment: there is a workbook and a link to the lesson website. Type your name in the workbook, then open the website and work through the stages in order. The board shows which stage you should be on. If you are stuck, use the help buttons on the site first."</div></div>
+
+<h2>During the lesson</h2>
+<div class="card"><ul>
+  <li>The class screen shows the stage everyone should be on, and how long is left.</li>
+  <li><b>Red messages</b> appear on the class screen at the key moments (exam questions, mark schemes, check-out, one minute left). Read each one out.</li>
+  <li><b>Content questions:</b> say "Press <i>Show me step by step</i> on that stage. If you are still stuck, press <i>I'm stuck</i> and keep going." The site lists what they were stuck on, and they copy it into the workbook for their teacher.</li>
+  <li>Pupils may talk to the person next to them on the "write it" and "chip choice" stages, but <b>both must write</b> in their own workbook. The exam question stage is <b>silent, with no notes</b>.</li>
+  <li>If the class falls behind, that is fine. At the red message for exam questions, <b>everyone moves on</b>, finished or not.</li>
+</ul></div>
+
+<h2>If something goes wrong</h2>
+<div class="card"><ul>
+  <li><b>The website will not load:</b> pupils open the <b>Offline Pack</b> PDF attached to the same Teams assignment. It has every stage as pictures and text. The workbook works as normal.</li>
+  <li><b>A pupil has no device:</b> they share with a neighbour; both names go on one workbook, and you note who.</li>
+  <li><b>Task Manager will not open</b> (Lesson 2, stage 3): the site has a table of example laptops to use instead.</li>
+</ul></div>
+
+<h2>Before they leave</h2>
+<div class="card"><ol>
+  <li>At the one-minute message, every pupil shows you <b>Turned in</b> on Teams.</li>
+  <li>Email the class teacher the names of anyone absent and anyone who did not turn in.</li>
+</ol></div>
+<p class="footer-note noprint"><a href="index.html">Back to the home page</a></p>
+</main>
+<script>document.querySelectorAll(".siteurl").forEach(e=>e.textContent=/^https?:/.test(location.href)?location.href.replace(/^https?:\/\//,"").replace(/cover\.html.*$/,""):"inanded.github.io/y12-hardware/")</script>
+</body>
+</html>
