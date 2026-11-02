@@ -85,11 +85,19 @@
     <p>Below are the explanations for <b>only the questions you got wrong</b>. Read each one. If you got everything right, read the last card and move on.</p>
   </div>
   <div id="fixups"><div class="card muted">Do the fast pass first (stage 3), then come back here.</div></div>
-  <div class="card" id="gateCard" style="display:none">
-    <h3>Try the gates</h3>
-    <p>Pick a gate, then tap A and B to switch them between 0 and 1.</p>
+  <div class="card" id="gateCard">
+    <h3>Try the logic gates</h3>
+    <p>Pick a gate. Tap <b>A</b> and <b>B</b> (or the input circles on the drawing) to switch them between 0 and 1. A wire carrying 1 lights up orange.</p>
     <div class="row" id="gatePick" style="margin-bottom:10px"></div>
-    <div class="gate"><div class="ins"><button class="bit" id="gA">A = 0</button><button class="bit" id="gB">B = 0</button></div><div class="row"><span>Output X =</span><span class="out" id="gX">0</span><span id="gRule" class="muted"></span></div></div>
+    <div class="gatewrap">
+      <svg id="gSvg" viewBox="0 0 520 240" role="img" aria-label="Logic gate diagram with inputs A and B and output X"></svg>
+      <div>
+        <div class="row" style="margin-bottom:10px"><button class="bit" id="gA">A = 0</button><button class="bit" id="gB">B = 0</button><span>X =</span><span class="out" id="gX">0</span></div>
+        <div class="gexpr" id="gExpr"></div>
+        <p class="small" id="gRule" style="margin:6px 0 10px"></p>
+        <table class="t gtt" id="gTT"></table>
+      </div>
+    </div>
   </div>
   <div class="card exam"><span class="tag">What AS adds</span>
     <p>At IGCSE, "data is stored in tracks and sectors" was enough. AS questions give marks for <b>each part named with its job</b>: platter, spindle, arm, read/write head, magnetic pattern, change in current. That is the rest of today.</p>

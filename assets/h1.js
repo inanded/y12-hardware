@@ -73,22 +73,61 @@ function markFP(){
   const fx=$("#fixups");
   fx.innerHTML=wrong.length?wrong.map(i=>`<div class="card fix"><h3>Question ${i+1} <span class="chip">${FP[i].a}</span></h3><p class="small muted">${FP[i].s}</p><p>${FP[i].fix}</p></div>`).join("")
     :`<div class="card fix"><h3>Full marks on the fast pass</h3><p>Nothing to fix. Read the card below, then move on to stage 5.</p></div>`;
-  if(wrong.some(i=>FP[i].a==="Logic"))$("#gateCard").style.display="block";
   $("#fpResult").scrollIntoView({behavior:"smooth"});
 }
 $("#fpMark").onclick=markFP;
 if(L.store.get("h1:fpDone",0)&&Object.keys(picks).length===FP.length)markFP();
-if(L.PRINT){$("#fixups").innerHTML=FP.map((q,i)=>`<div class="card fix"><h3>Question ${i+1} <span class="chip">${q.a}</span></h3><p class="small muted">${q.s}</p><p>${q.fix}</p></div>`).join("");$("#gateCard").style.display="none";$("#fpMark").style.display="none"}
+if(L.PRINT){$("#fixups").innerHTML=FP.map((q,i)=>`<div class="card fix"><h3>Question ${i+1} <span class="chip">${q.a}</span></h3><p class="small muted">${q.s}</p><p>${q.fix}</p></div>`).join("");$("#fpMark").style.display="none"}
 
-/* gate tryer */
-const G={AND:[(a,b)=>a&b,"1 only if both inputs are 1"],OR:[(a,b)=>a|b,"1 if either input is 1"],NAND:[(a,b)=>1-(a&b),"0 only if both inputs are 1"],NOR:[(a,b)=>1-(a|b),"1 only if both inputs are 0"],XOR:[(a,b)=>a^b,"1 only if the inputs are different"],NOT:[(a)=>1-a,"flips the input (one input only)"]};
+/* gate tryer: drawn symbols, live wires, written expression, truth table */
+const G={
+ AND:{f:(a,b)=>a&b,rule:"AND: the output is 1 only if both inputs are 1."},
+ OR:{f:(a,b)=>a|b,rule:"OR: the output is 1 if either input is 1 (or both)."},
+ NOT:{f:(a)=>1-a,rule:"NOT: one input. The output is the opposite of the input.",one:true},
+ NAND:{f:(a,b)=>1-(a&b),rule:"NAND (NOT AND): the output is 0 only if both inputs are 1. It is AND with the output flipped."},
+ NOR:{f:(a,b)=>1-(a|b),rule:"NOR (NOT OR): the output is 1 only if both inputs are 0. It is OR with the output flipped."},
+ XOR:{f:(a,b)=>a^b,rule:"XOR (exclusive OR): the output is 1 only if the inputs are different."}};
 let gate="AND",ga=0,gb=0;
-$("#gatePick").innerHTML=Object.keys(G).map(g=>`<button class="btn${g===gate?" primary":""}" data-g="${g}">${g}</button>`).join("");
-function gUpd(){const x=G[gate][0](ga,gb);$("#gA").textContent="A = "+ga;$("#gA").className="bit"+(ga?" one":"");$("#gB").textContent="B = "+gb;$("#gB").className="bit"+(gb?" one":"");$("#gB").style.visibility=gate==="NOT"?"hidden":"visible";
-  $("#gX").textContent=x;$("#gX").className="out"+(x?" one":"");$("#gRule").textContent=gate+": "+G[gate][1];
-  $$("#gatePick button").forEach(b=>b.className="btn"+(b.dataset.g===gate?" primary":""))}
+$("#gatePick").innerHTML=Object.keys(G).map(g=>`<button class="btn" data-g="${g}">${g}</button>`).join("");
+const ON="#e08a00",OFF="#9aa9b4";
+function body(g){
+ const and='<path d="M190 60 H250 A60 60 0 0 1 250 180 H190 Z" fill="#fff" stroke="#0b3954" stroke-width="4"/>';
+ const or='<path d="M180 60 Q245 60 312 120 Q245 180 180 180 Q215 120 180 60 Z" fill="#fff" stroke="#0b3954" stroke-width="4"/>';
+ const xorExtra='<path d="M166 60 Q201 120 166 180" fill="none" stroke="#0b3954" stroke-width="4"/>';
+ const not='<path d="M195 70 L285 120 L195 170 Z" fill="#fff" stroke="#0b3954" stroke-width="4"/>';
+ const bub=x=>`<circle cx="${x}" cy="120" r="9" fill="#fff" stroke="#0b3954" stroke-width="4"/>`;
+ return {AND:[and,310],NAND:[and+bub(319),328],OR:[or,312],NOR:[or+bub(321),330],XOR:[or+xorExtra,312],NOT:[not+bub(294),303]}[g];
+}
+function gDraw(x){
+ const one=G[gate].one, [shape,outX]=body(gate), inEnd=gate==="XOR"?172:(gate==="NOT"?195:(gate==="OR"||gate==="NOR"?196:190));
+ const w=(v)=>v?ON:OFF, sw=(v)=>v?7:5;
+ let h=`<text x="250" y="34" text-anchor="middle" font-size="22" font-weight="800" fill="#0b3954">${gate} gate</text>`;
+ if(one){h+=`<line x1="70" y1="120" x2="${inEnd}" y2="120" stroke="${w(ga)}" stroke-width="${sw(ga)}"/>`}
+ else{h+=`<line x1="70" y1="90" x2="${inEnd+12}" y2="90" stroke="${w(ga)}" stroke-width="${sw(ga)}"/><line x1="70" y1="150" x2="${inEnd+12}" y2="150" stroke="${w(gb)}" stroke-width="${sw(gb)}"/>`}
+ h+=shape;
+ h+=`<line x1="${outX}" y1="120" x2="430" y2="120" stroke="${w(x)}" stroke-width="${sw(x)}"/>`;
+ const inp=(id,y,v,l)=>`<g class="inp" data-in="${id}"><circle cx="48" cy="${y}" r="22" fill="${v?ON:"#fff"}" stroke="#0b3954" stroke-width="3"/><text x="48" y="${y+7}" text-anchor="middle" font-size="20" font-weight="800" fill="${v?"#fff":"#0b3954"}">${v}</text><text x="14" y="${y+7}" text-anchor="middle" font-size="18" font-weight="800" fill="#0b3954">${l}</text></g>`;
+ h+=one?inp("A",120,ga,"A"):inp("A",90,ga,"A")+inp("B",150,gb,"B");
+ h+=`<circle cx="458" cy="120" r="26" fill="${x?ON:"#fff"}" stroke="#0b3954" stroke-width="3"/><text x="458" y="128" text-anchor="middle" font-size="22" font-weight="800" fill="${x?"#fff":"#0b3954"}">${x}</text><text x="500" y="128" text-anchor="middle" font-size="20" font-weight="800" fill="#0b3954">X</text>`;
+ h+=`<text x="250" y="222" text-anchor="middle" font-size="15" fill="#566573">orange wire = 1 · grey wire = 0</text>`;
+ $("#gSvg").innerHTML=h;
+}
+function gUpd(){
+ const one=G[gate].one, x=one?G[gate].f(ga):G[gate].f(ga,gb);
+ $("#gA").textContent="A = "+ga;$("#gA").className="bit"+(ga?" one":"");
+ $("#gB").textContent="B = "+gb;$("#gB").className="bit"+(gb?" one":"");$("#gB").style.display=one?"none":"";
+ $("#gX").textContent=x;$("#gX").className="out"+(x?" one":"");
+ $("#gExpr").innerHTML=one?`<b>X = NOT A</b><br>X = NOT ${ga} = ${x}`:`<b>X = A ${gate} B</b><br>X = ${ga} ${gate} ${gb} = ${x}`;
+ $("#gRule").textContent=G[gate].rule;
+ const rows=one?[[0],[1]]:[[0,0],[0,1],[1,0],[1,1]];
+ $("#gTT").innerHTML=`<tr>${one?"<th>A</th>":"<th>A</th><th>B</th>"}<th>X</th></tr>`+rows.map(r=>{const rx=one?G[gate].f(r[0]):G[gate].f(r[0],r[1]);const cur=one?r[0]===ga:(r[0]===ga&&r[1]===gb);return `<tr class="${cur?"cur":""}">${r.map(v=>`<td>${v}</td>`).join("")}<td>${rx}</td></tr>`}).join("");
+ $$("#gatePick button").forEach(b=>b.className="btn"+(b.dataset.g===gate?" primary":""));
+ gDraw(x);
+}
 $("#gatePick").onclick=e=>{const b=e.target.closest("button");if(b){gate=b.dataset.g;gUpd()}};
-$("#gA").onclick=()=>{ga^=1;gUpd()};$("#gB").onclick=()=>{gb^=1;gUpd()};gUpd();
+$("#gA").onclick=()=>{ga^=1;gUpd()};$("#gB").onclick=()=>{gb^=1;gUpd()};
+$("#gSvg").addEventListener("click",e=>{const g=e.target.closest(".inp");if(!g)return;if(g.dataset.in==="A")ga^=1;else gb^=1;gUpd()});
+gUpd();
 
 /* ---------- 5 Be the marker ---------- */
 L.ticks($("#marker"),{points:[
@@ -239,6 +278,7 @@ L.gaps($("#gapsSSD"),{lines:[
    x+=w});
  const svg=`<svg viewBox="0 0 760 440" role="img" aria-label="Animated optical disc: the disc spins, a laser on an optical head follows a spiral track from the centre outwards, burns pits when writing, and a sensor reads the different reflections from pits and lands as 1s and 0s.">
  <defs><radialGradient id="oD"><stop offset=".12" stop-color="#f5f7f9"/><stop offset=".6" stop-color="#d8e2ea"/><stop offset=".8" stop-color="#e9dff2"/><stop offset="1" stop-color="#cfe0e6"/></radialGradient>
+ <marker id="oAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#e74c3c"/></marker>
  <clipPath id="oClip"><rect x="428" y="96" width="310" height="140"/></clipPath>
  <style>#oSpin{transform-box:view-box;transform-origin:${cx}px ${cy}px}.s1 #oSpin{animation:spin 1.6s linear infinite}
  #oHead{transition:transform 2s ease-in-out;transform:translateX(150px)}.s2 #oHead{transform:translateX(0)}.s3 #oHead{transform:translateX(95px);transition:transform 5s linear}
@@ -256,10 +296,11 @@ L.gaps($("#gapsSSD"),{lines:[
  <g data-from="4"><rect x="420" y="40" width="326" height="390" rx="12" fill="#fff" stroke="#0b3954" stroke-width="2"/>${lab(432,62,"Close-up: side view of the track",{fs:14,c:"#0b3954"})}
   <g clip-path="url(#oClip)"><g id="oStrip"><rect x="428" y="110" width="700" height="40" fill="#e8f1f6"/><line x1="428" y1="150" x2="1128" y2="150" stroke="#8a99a6" stroke-width="3"/>${pits}<g data-from="6">${bits}</g></g></g>
   ${lab(432,108,"disc surface",{fs:12,fw:600,c:"#566573"})}
-  <rect x="560" y="370" width="44" height="28" rx="5" fill="#3d5a80"/>${lab(546,416,"laser",{fs:13})}
-  <g data-only="4"><line x1="582" y1="370" x2="582" y2="162" stroke="#e74c3c" stroke-width="9" opacity=".85"/>${lab(432,262,"Writing: high-power laser",{fs:13,c:"#c0392b"})}${lab(432,279,"burns pits into the surface",{fs:13,c:"#c0392b"})}</g>
-  <g data-from="5"><line x1="582" y1="370" x2="582" y2="160" stroke="#e74c3c" stroke-width="3"/><line id="oRef" x1="582" y1="160" x2="672" y2="370" stroke="#e74c3c" stroke-width="3"/>
-   <rect x="652" y="370" width="44" height="28" rx="5" fill="#1f8a4c"/>${lab(642,416,"sensor",{fs:13})}
+  <rect x="518" y="372" width="44" height="28" rx="5" fill="#3d5a80"/>${lab(540,418,"laser",{fs:13,anchor:"middle"})}
+  <g data-only="4"><line x1="540" y1="372" x2="580" y2="161" stroke="#e74c3c" stroke-width="9" opacity=".85"/><circle cx="582" cy="150" r="7" fill="#e74c3c"/>${lab(432,262,"Writing: high-power laser",{fs:13,c:"#c0392b"})}${lab(432,279,"burns pits into the surface",{fs:13,c:"#c0392b"})}</g>
+  <g data-from="5"><line x1="540" y1="372" x2="580" y2="160" stroke="#e74c3c" stroke-width="3" marker-end="url(#oAr)"/><line id="oRef" x1="582" y1="150" x2="622" y2="360" stroke="#e74c3c" stroke-width="3" marker-end="url(#oAr)"/><circle cx="582" cy="150" r="5" fill="#e74c3c"/>
+   <line x1="582" y1="150" x2="582" y2="372" stroke="#8a99a6" stroke-width="1.5" stroke-dasharray="4 4"/>
+   <rect x="602" y="372" width="44" height="28" rx="5" fill="#1f8a4c"/>${lab(624,418,"sensor",{fs:13,anchor:"middle"})}
    ${lab(432,262,"pit and land reflect",{fs:13,c:"#0b3954"})}${lab(432,279,"the light differently",{fs:13,c:"#0b3954"})}</g>
   <g data-from="6">${lab(432,312,"sensor detects the changes",{fs:13,c:"#1f8a4c"})}${lab(432,329,"→ read as 1s and 0s",{fs:13,c:"#1f8a4c"})}</g>
  </g>

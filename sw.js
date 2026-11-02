@@ -1,5 +1,5 @@
 /* Offline cache: once a lesson has loaded, it keeps working if the Wi-Fi drops. */
-const C="y12-hardware-v1";
+const C="y12-hardware-v2";
 const FILES=["./","index.html","h1.html","h2.html","board.html","cover.html","assets/site.css","assets/engine.js","assets/h1.js","assets/h2.js"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
