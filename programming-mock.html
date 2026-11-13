@@ -33,6 +33,10 @@ code,pre,.mono{font-family:Consolas,"Courier New",monospace}
 pre{background:#f7f7f7;border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:.92rem;line-height:1.45;margin:8px 0}
 textarea{width:100%;min-height:90px;font-family:Consolas,"Courier New",monospace;font-size:.95rem;border:1px solid #b9b0ab;border-radius:8px;padding:8px;margin-top:8px;resize:vertical}
 textarea.tall{min-height:240px}
+input.cell,textarea.cell{width:100%;min-width:90px;border:1px solid #b9b0ab;border-radius:5px;padding:5px 7px;font-family:Consolas,"Courier New",monospace;font-size:.95rem;margin:0;background:#fffef8}
+textarea.cell{min-height:58px;resize:vertical}
+td.ansc{background:#fffef8}
+.lbl2{font-weight:600;margin:10px 0 2px;display:block}
 input[type=text]{font-size:1rem;padding:6px 8px;border:1px solid #b9b0ab;border-radius:6px;width:min(320px,100%)}
 button{font:inherit;font-size:.92rem;border-radius:8px;border:1px solid var(--green);background:#fff;color:var(--green);padding:6px 12px;cursor:pointer;margin:6px 6px 0 0}
 button.solid{background:var(--green);color:#fff}
@@ -135,12 +139,11 @@ footer{color:var(--grey);font-size:.85rem;text-align:center;padding:30px 10px}
 <p class="q">(a) The table shows four valid pseudocode expressions. Complete the table by giving the data type of each evaluated expression. <span class="marks">[4]</span></p>
 <table>
 <tr><th>Expression</th><th>Data type</th></tr>
-<tr><td class="mono">RIGHT(HeroName, 4) &amp; "!"</td><td>1</td></tr>
-<tr><td class="mono">LENGTH(HeroName) MOD 3</td><td>2</td></tr>
-<tr><td class="mono">Gold &gt; 50 OR Shield</td><td>3</td></tr>
-<tr><td class="mono">Gold / 4</td><td>4</td></tr>
+<tr><td class="mono">RIGHT(HeroName, 4) &amp; "!"</td><td class="ansc"><input type="text" class="cell" data-ans="1a1" placeholder="" autocomplete="off" autocapitalize="off" spellcheck="false"></td></tr>
+<tr><td class="mono">LENGTH(HeroName) MOD 3</td><td class="ansc"><input type="text" class="cell" data-ans="1a2" placeholder="" autocomplete="off" autocapitalize="off" spellcheck="false"></td></tr>
+<tr><td class="mono">Gold &gt; 50 OR Shield</td><td class="ansc"><input type="text" class="cell" data-ans="1a3" placeholder="" autocomplete="off" autocapitalize="off" spellcheck="false"></td></tr>
+<tr><td class="mono">Gold / 4</td><td class="ansc"><input type="text" class="cell" data-ans="1a4" placeholder="" autocomplete="off" autocapitalize="off" spellcheck="false"></td></tr>
 </table>
-<textarea data-ans="1a" placeholder="1 ...&#10;2 ...&#10;3 ...&#10;4 ..."></textarea>
 <button class="hint" data-hint="1a">Hint</button>
 <div class="reveal hintbox" id="hint-1a">Ask what the expression <b>gives back</b>, not what goes into it. Text functions that cut or join text give back text. Any comparison (&gt;, =, &lt;&gt;) or AND / OR / NOT gives TRUE or FALSE. MOD and DIV always give a whole number. The <span class="mono">/</span> operator is the odd one out: in Cambridge pseudocode it always gives a REAL, even when both numbers are whole. Write the Cambridge data type names in capitals.</div>
 </div>
@@ -155,15 +158,18 @@ footer{color:var(--grey);font-size:.85rem;text-align:center;padding:30px 10px}
 
 <div class="part" data-id="1b">
 <p class="q">(b) (i) State the number of dimensions of <span class="mono">Map</span>. <span class="marks">[1]</span></p>
+<input type="text" class="cell" data-ans="1b1" placeholder="" autocomplete="off" autocapitalize="off" spellcheck="false">
 <p class="q">(ii) State the total number of elements in <span class="mono">Map</span>. <span class="marks">[1]</span></p>
+<input type="text" class="cell" data-ans="1b2" placeholder="" autocomplete="off" autocapitalize="off" spellcheck="false">
 <p class="q">(iii) Give the pseudocode declaration for the array <span class="mono">Map</span>. <span class="marks">[2]</span></p>
-<textarea data-ans="1b" placeholder="(i) ...&#10;(ii) ...&#10;(iii) DECLARE ..."></textarea>
+<input type="text" class="cell" data-ans="1b3" placeholder="DECLARE ..." autocomplete="off" autocapitalize="off" spellcheck="false">
 <button class="hint" data-hint="1b">Hint</button>
 <div class="reveal hintbox" id="hint-1b">(i) Count the indexes inside the square brackets.<br>(ii) For each dimension: <b>upper bound − lower bound + 1</b>. Then multiply the two answers. Check the bounds carefully: they do not both start at the same number.<br>(iii) One mark is for both pairs of bounds written exactly as in the table, the other is for everything else: <span class="mono">DECLARE</span>, the identifier, a colon, <span class="mono">ARRAY[ , ]</span>, <span class="mono">OF</span> and the data type. What type is <span class="mono">"Trap"</span>?</div>
 </div>
 
 <details class="drill"><summary>Around the skill: extra practice (not part of the 38 marks)</summary>
-<div class="task"><b>A. Predict, then run.</b> For each expression, write down its value <i>and</i> its data type. Then copy this into pseudocode.pro and run it to check your values.
+<div class="task"><b>A. Predict, then run.</b> For each expression, write down its value <i>and</i> its data type. Then copy the code into pseudocode.pro and run it to check your values.
+<table><tr><th>#</th><th>Expression</th><th>Value</th><th>Data type</th></tr><tr><td>1</td><td class="mono">RIGHT(HeroName, 4) &amp; "!"</td><td class="ansc"><input type="text" class="cell" data-ans="d1v1" placeholder="" autocomplete="off" autocapitalize="off" spellcheck="false"></td><td class="ansc"><input type="text" class="cell" data-ans="d1t1" placeholder="" autocomplete="off" autocapitalize="characters"></td></tr><tr><td>2</td><td class="mono">LENGTH(HeroName) MOD 3</td><td class="ansc"><input type="text" class="cell" data-ans="d1v2" placeholder="" autocomplete="off" autocapitalize="characters"></td><td class="ansc"><input type="text" class="cell" data-ans="d1t2" placeholder="" autocomplete="off" autocapitalize="characters"></td></tr><tr><td>3</td><td class="mono">Gold &gt; 50 OR Shield</td><td class="ansc"><input type="text" class="cell" data-ans="d1v3" placeholder="" autocomplete="off" autocapitalize="characters"></td><td class="ansc"><input type="text" class="cell" data-ans="d1t3" placeholder="" autocomplete="off" autocapitalize="characters"></td></tr><tr><td>4</td><td class="mono">Gold / 4</td><td class="ansc"><input type="text" class="cell" data-ans="d1v4" placeholder="" autocomplete="off" autocapitalize="characters"></td><td class="ansc"><input type="text" class="cell" data-ans="d1t4" placeholder="" autocomplete="off" autocapitalize="characters"></td></tr><tr><td>5</td><td class="mono">Gold DIV 4</td><td class="ansc"><input type="text" class="cell" data-ans="d1v5" placeholder="" autocomplete="off" autocapitalize="characters"></td><td class="ansc"><input type="text" class="cell" data-ans="d1t5" placeholder="" autocomplete="off" autocapitalize="characters"></td></tr><tr><td>6</td><td class="mono">NUM_TO_STR(Gold) &amp; "g"</td><td class="ansc"><input type="text" class="cell" data-ans="d1v6" placeholder="" autocomplete="off" autocapitalize="characters"></td><td class="ansc"><input type="text" class="cell" data-ans="d1t6" placeholder="" autocomplete="off" autocapitalize="characters"></td></tr><tr><td>7</td><td class="mono">IS_NUM(HeroName)</td><td class="ansc"><input type="text" class="cell" data-ans="d1v7" placeholder="" autocomplete="off" autocapitalize="characters"></td><td class="ansc"><input type="text" class="cell" data-ans="d1t7" placeholder="" autocomplete="off" autocapitalize="characters"></td></tr></table>
 <div class="starter"><span class="lbl">Predict-then-run code</span> for pseudocode.pro<br><button class="copy solid">Copy starter code</button><a href="https://pseudocode.pro/editor" target="_blank" rel="noopener"><button>Open pseudocode.pro</button></a><button class="toggle">Hide code</button><pre>// DUNGEON DASH: predict, then run to check (practice for Question 1)
 // Write down the VALUE and the DATA TYPE of each expression first. Then press Run.
 DECLARE HeroName : STRING
@@ -185,15 +191,11 @@ OUTPUT &quot;7  IS_NUM(HeroName)            =  &quot;, IS_NUM(HeroName)
 <div class="reveal ans" id="d1a"><table><tr><th>#</th><th>Value</th><th>Type</th></tr><tr><td>1</td><td class="mono">"yrie!"</td><td>STRING</td></tr><tr><td>2</td><td>2 (8 MOD 3)</td><td>INTEGER</td></tr><tr><td>3</td><td>TRUE</td><td>BOOLEAN</td></tr><tr><td>4</td><td>21.75</td><td>REAL</td></tr><tr><td>5</td><td>21</td><td>INTEGER</td></tr><tr><td>6</td><td class="mono">"87g"</td><td>STRING</td></tr><tr><td>7</td><td>FALSE</td><td>BOOLEAN</td></tr></table></div>
 </div>
 <div class="task"><b>B. Spot the error.</b> Each statement may contain an error. State the error, or write NO ERROR.
-<table><tr><th>Statement</th></tr>
-<tr><td class="mono">1 &nbsp;Shield ← "FALSE"</td></tr>
-<tr><td class="mono">2 &nbsp;Total ← STR_TO_NUM("12") + 3</td></tr>
-<tr><td class="mono">3 &nbsp;Code ← LEFT(HeroName)</td></tr>
-<tr><td class="mono">4 &nbsp;Message ← "Gold: " &amp; Gold</td></tr></table>
+<table><tr><th>Statement</th><th>Error</th></tr><tr><td class="mono">1 &nbsp;Shield ← "FALSE"</td><td class="ansc"><textarea class="cell" data-ans="d1e1" placeholder=""></textarea></td></tr><tr><td class="mono">2 &nbsp;Total ← STR_TO_NUM("12") + 3</td><td class="ansc"><textarea class="cell" data-ans="d1e2" placeholder=""></textarea></td></tr><tr><td class="mono">3 &nbsp;Code ← LEFT(HeroName)</td><td class="ansc"><textarea class="cell" data-ans="d1e3" placeholder=""></textarea></td></tr><tr><td class="mono">4 &nbsp;Message ← "Gold: " &amp; Gold</td><td class="ansc"><textarea class="cell" data-ans="d1e4" placeholder=""></textarea></td></tr></table>
 <button data-show="d1b">Show answers</button>
 <div class="reveal ans" id="d1b">1 &nbsp;<span class="mono">"FALSE"</span> is a STRING but Shield is BOOLEAN: no quotation marks.<br>2 &nbsp;NO ERROR (12 + 3 = 15).<br>3 &nbsp;LEFT needs two parameters: the string and how many characters.<br>4 &nbsp;<span class="mono">&amp;</span> joins strings, but Gold is an INTEGER: use <span class="mono">NUM_TO_STR(Gold)</span>.</div>
 </div>
-<div class="task"><b>C. Count the elements.</b> How many elements in: (1) <span class="mono">ARRAY[1:12, 0:7]</span> (2) <span class="mono">ARRAY[0:9]</span> (3) <span class="mono">ARRAY[5:14, 5:14]</span>?
+<div class="task"><b>C. Count the elements.</b> How many elements in each array?<table><tr><th>Array</th><th>Number of elements</th></tr><tr><td class="mono">(1) ARRAY[1:12, 0:7]</td><td class="ansc"><input type="text" class="cell" data-ans="d1c1" placeholder="" autocomplete="off" autocapitalize="off" spellcheck="false"></td></tr><tr><td class="mono">(2) ARRAY[0:9]</td><td class="ansc"><input type="text" class="cell" data-ans="d1c2" placeholder="" autocomplete="off" autocapitalize="characters"></td></tr><tr><td class="mono">(3) ARRAY[5:14, 5:14]</td><td class="ansc"><input type="text" class="cell" data-ans="d1c3" placeholder="" autocomplete="off" autocapitalize="characters"></td></tr></table>
 <button data-show="d1c">Show answers</button>
 <div class="reveal ans" id="d1c">(1) 12 × 8 = 96 &nbsp; (2) 10 &nbsp; (3) 10 × 10 = 100. Always upper − lower + 1.</div>
 </div>
@@ -205,35 +207,19 @@ OUTPUT &quot;7  IS_NUM(HeroName)            =  &quot;, IS_NUM(HeroName)
 <!-- ===================== Q2 ===================== -->
 <section id="q2">
 <h2>Question 2: ClipStar <span class="marks">[5 marks]</span></h2>
-<span class="skill">Skill: describe an array algorithm in steps</span>
-<p>The video app <i>ClipStar</i> stores the number of views of each video in a 1D array <span class="mono">Views</span> of type INTEGER. The array contains 300 elements. Each element has a different value.</p>
-<p>An algorithm is needed to find the largest number of views and output it.</p>
+<span class="skill">Skill: an array algorithm (find the largest value)</span>
+<p>The video app <i>ClipStar</i> stores the number of views of each video in a global 1D array <span class="mono">Views</span> of type INTEGER. The array contains 300 elements. Each element has a different value.</p>
+<pre>DECLARE Views : ARRAY[1:300] OF INTEGER</pre>
+<p>An algorithm is needed to search the array for the largest number of views and output it.</p>
 
 <div class="part" data-id="2">
-<p class="q">Describe the steps that the algorithm should perform. <span class="marks">[5]</span></p>
-<p>Write numbered steps in English. You do not need to write pseudocode.</p>
-<textarea class="tall" data-ans="2" placeholder="1 ...&#10;2 ...&#10;3 ..."></textarea>
-<button class="hint" data-hint="2">Hint</button>
-<div class="reveal hintbox" id="hint-2">There is one mark for each clear step, up to 5. A strong answer covers all of these, in order:
-<ul><li>a variable that will hold the largest value (and its data type);</li><li>what that variable starts as (where should the starting value come from?);</li><li>a loop, and exactly how many times it repeats;</li><li>how the loop counter is used;</li><li>the comparison made each time round;</li><li>what happens when the comparison is true;</li><li>what happens after the loop ends.</li></ul>
-Answers lose marks for: inputting the 300 values (they are already in the array), starting the largest value at 0, saying "loop through the array" without saying how many times, and comparing an element with the next element instead of with the largest so far.</div>
-</div>
-
-<details class="drill"><summary>Around the skill: extra practice (not part of the 38 marks)</summary>
-<div class="task"><b>A. Spot the faults.</b> Sam wrote this answer and scored 1 out of 5. Find four things wrong with it.
-<pre>1. Set Max to 0
-2. Input the 300 values
-3. Loop through the array
-4. If the next element is bigger than the current element, swap them
-5. Output Max</pre>
-<button data-show="d2a">Show answers</button>
-<div class="reveal ans" id="d2a">1. Max should start as the <b>first element</b>, Views[1], not 0.<br>2. The values are already in the array, so there is nothing to input.<br>3. The loop must say how many times it repeats (300, or from 1 to 300) and that the loop counter is used as the index.<br>4. Each element should be compared with <b>Max</b>, and if it is bigger it is assigned to Max. Swapping is sorting, not searching.<br>Step 5 is fine, as long as it happens after the loop. That is the one mark Sam got.</div>
-</div>
-<div class="task"><b>B. Code it, and find the position too.</b> Turn your steps into pseudocode. As well as the largest value, output its position (index) in the array.
-<div class="starter"><span class="lbl">Starter code</span> for pseudocode.pro<br><button class="copy solid">Copy starter code</button><a href="https://pseudocode.pro/editor" target="_blank" rel="noopener"><button>Open pseudocode.pro</button></a><button class="toggle">Hide code</button><pre>// CLIPSTAR: find the most-viewed video (practice for Question 2)
+<p class="q">Write pseudocode for the algorithm. Declare any variables you use. <span class="marks">[5]</span></p>
+<p>The values are already in the array: do not input them.</p>
+<div class="starter"><span class="lbl">Starter code (with test data)</span> for pseudocode.pro<br><button class="copy solid">Copy starter code</button><a href="https://pseudocode.pro/editor" target="_blank" rel="noopener"><button>Open pseudocode.pro</button></a><button class="toggle">Hide code</button><pre>// QUESTION 2: CLIPSTAR - FIND THE MOST VIEWS
 // Views holds the number of views for each of 300 videos. Every value is different.
-// YOUR JOB: turn your Question 2 steps into code. Find the LARGEST value in Views,
-// then output it AND its position (index) in the array.
+// YOUR JOB: write pseudocode that finds the LARGEST value in Views and outputs it
+// with a suitable message. Declare every variable you use.
+// When it is right, Run shows the largest value: 300122
 
 DECLARE Views : ARRAY[1:300] OF INTEGER
 DECLARE Index : INTEGER
@@ -244,15 +230,58 @@ FOR Index &lt;-- 1 TO 300
 NEXT Index
 // ----------------------------------------------
 
-// Step 1: declare the variables you need (one for the largest value, one for its position)
-
-// Step 2: start them off using the FIRST element
-
-// Steps 3 to 6: loop through the array, compare, update
-
-// Step 7: after the loop, output the largest value and its position
+// write your code here
 </pre></div>
-<p>Expected output: the largest value is <b>300122</b>, at position <b>122</b>.</p>
+<p>When your code is right, Run outputs the largest value, <b>300122</b>, with your message.</p>
+<textarea class="tall" data-ans="2" placeholder="DECLARE ...&#10;..."></textarea>
+<button class="hint" data-hint="2">Hint</button>
+<button class="hint" data-hint="2b">Common mistakes</button>
+<div class="reveal hintbox" id="hint-2">There is one mark for each of these, up to 5:
+<ul><li>declaring a variable to hold the largest value, as an INTEGER;</li><li>giving it a starting value from the array (where should it come from?);</li><li>a loop that goes through the whole array, with clear start and end values;</li><li>using the loop counter as the array index;</li><li>comparing the current element with the largest so far;</li><li>if it is bigger, assigning it to the largest so far;</li><li>outputting the largest value after the loop.</li></ul></div>
+<div class="reveal hintbox" id="hint-2b">These lost marks in the real exam:<ul><li>starting the largest value at 0 (or not setting it at all);</li><li>inputting the 300 values, when they are already in the array;</li><li>comparing an element with the next element instead of with the largest so far;</li><li>swapping elements (that is sorting, not searching);</li><li>putting the OUTPUT inside the loop, so it prints 300 times.</li></ul></div>
+</div>
+
+<details class="drill"><summary>Around the skill: extra practice (not part of the 38 marks)</summary>
+<div class="task"><b>A. Spot the faults.</b> Sam's code runs, but it outputs 264300 instead of 300122. Run it, then find three faults.
+<div class="starter"><span class="lbl">Sam&#x27;s code</span> for pseudocode.pro<br><button class="copy solid">Copy starter code</button><a href="https://pseudocode.pro/editor" target="_blank" rel="noopener"><button>Open pseudocode.pro</button></a><button class="toggle">Hide code</button><pre>// EXTRA PRACTICE: SAM&#x27;S CODE (it runs, but it is wrong)
+// Run it, look at the output, then find the faults.
+
+DECLARE Views : ARRAY[1:300] OF INTEGER
+DECLARE Index : INTEGER
+FOR Index &lt;-- 1 TO 300
+    Views[Index] &lt;-- ((Index * 37) MOD 301) * 1000 + Index
+NEXT Index
+
+DECLARE Max : INTEGER
+Max &lt;-- 0
+FOR Index &lt;-- 1 TO 299
+    IF Views[Index + 1] &gt; Views[Index] THEN
+        Max &lt;-- Views[Index + 1]
+    ENDIF
+NEXT Index
+OUTPUT &quot;Most views: &quot;, Max
+</pre></div>
+<table><tr><th>Fault</th><th>What is wrong, and the fix</th></tr><tr><td>1</td><td class="ansc"><textarea class="cell" data-ans="d2f1" placeholder=""></textarea></td></tr><tr><td>2</td><td class="ansc"><textarea class="cell" data-ans="d2f2" placeholder=""></textarea></td></tr><tr><td>3</td><td class="ansc"><textarea class="cell" data-ans="d2f3" placeholder=""></textarea></td></tr></table>
+<button data-show="d2a">Show answers</button>
+<div class="reveal ans" id="d2a">1. <span class="mono">Max ← 0</span>: Max should start as the first element, <span class="mono">Max ← Views[1]</span>.<br>2. It compares each element with the <b>next element</b>, not with Max. So Max ends up as the last value that was bigger than its neighbour, not the largest. The test should be <span class="mono">IF Views[Index] &gt; Max</span>, assigning <span class="mono">Max ← Views[Index]</span>.<br>3. Because of the neighbour comparison, the loop stops at 299 and reads <span class="mono">Views[Index + 1]</span>. With the correct comparison, loop from 1 (or 2) to 300.</div>
+</div>
+<div class="task"><b>B. Find the position too.</b> Change your code so it also outputs the position (index) of the most-viewed video.
+<div class="starter"><span class="lbl">Starter code</span> for pseudocode.pro<br><button class="copy solid">Copy starter code</button><a href="https://pseudocode.pro/editor" target="_blank" rel="noopener"><button>Open pseudocode.pro</button></a><button class="toggle">Hide code</button><pre>// EXTRA PRACTICE: THE MOST VIEWS AND WHICH VIDEO
+// Change your Question 2 code so it also outputs the POSITION (index) of the most-viewed video.
+// When it is right, Run shows 300122 at position 122.
+
+DECLARE Views : ARRAY[1:300] OF INTEGER
+DECLARE Index : INTEGER
+
+// ---------- test data: do not change ----------
+FOR Index &lt;-- 1 TO 300
+    Views[Index] &lt;-- ((Index * 37) MOD 301) * 1000 + Index
+NEXT Index
+// ----------------------------------------------
+
+// write your code here
+</pre></div>
+<p>Expected output: <b>300122</b> at position <b>122</b>.</p>
 <button data-show="d2b">Show a model answer</button>
 <div class="reveal ans" id="d2b"><pre>DECLARE Max : INTEGER
 DECLARE MaxIndex : INTEGER
@@ -264,7 +293,12 @@ FOR Index ← 2 TO 300
         MaxIndex ← Index
     ENDIF
 NEXT Index
-OUTPUT "Most views: ", Max, " (video ", MaxIndex, ")"</pre></div>
+OUTPUT "Most views: ", Max, " at position ", MaxIndex</pre></div>
+</div>
+<div class="task"><b>C. The exam may ask for words, not code.</b> Some questions say "Describe the steps that the algorithm should perform". Write your code as numbered steps in English, with no pseudocode keywords.
+<textarea data-ans="d2c" placeholder="1 ...&#10;2 ..."></textarea>
+<button data-show="d2c">Show a model answer</button>
+<div class="reveal ans" id="d2c">1. Declare an integer variable Max.<br>2. Assign the value of the first element of Views to Max.<br>3. Set up a loop that repeats 300 times, from the first to the last element.<br>4. Use the loop counter as the array index.<br>5. If the value of the current element is greater than Max ...<br>6. ... then assign that value to Max.<br>7. After the loop, output Max.<br>One mark per step, up to 5. Vague steps such as "loop through the array" score nothing: say how many times.</div>
 </div>
 </details>
 
@@ -286,7 +320,7 @@ OUTPUT "Most views: ", Max, " (video ", MaxIndex, ")"</pre></div>
 
 <div class="part" data-id="3a">
 <p class="q">(a) Give the initial values that should be assigned to the two variables. <span class="marks">[1]</span></p>
-<textarea data-ans="3a" placeholder="NextFree = ...&#10;CardsOnPile = ..."></textarea>
+<table style="max-width:420px"><tr><th>Variable</th><th>Initial value</th></tr><tr><td class="mono">NextFree</td><td class="ansc"><input type="text" class="cell" data-ans="3a1" placeholder="" autocomplete="off" autocapitalize="off" spellcheck="false"></td></tr><tr><td class="mono">CardsOnPile</td><td class="ansc"><input type="text" class="cell" data-ans="3a2" placeholder="" autocomplete="off" autocapitalize="characters"></td></tr></table>
 <button class="hint" data-hint="3a">Hint</button>
 <div class="reveal hintbox" id="hint-3a">Both values are needed for the mark. Read the definition again: NextFree points to the next <b>free</b> location, not the top card. When the pile is empty, which element will the first card go into?</div>
 </div>
@@ -362,6 +396,7 @@ ENDFUNCTION</pre></div>
 <details class="drill"><summary>Around the skill: extra practice (not part of the 38 marks)</summary>
 <div class="task"><b>A. Trace it.</b> The pile starts empty. Show the contents of Pile[1] to Pile[4] and the values of NextFree and CardsOnPile after: <span class="mono">Push "R7", Push "G2", Push "G9", Pop, Push "B4"</span>.
 <button data-show="d3a">Show answer</button>
+<table><tr><th>Pile[1]</th><th>Pile[2]</th><th>Pile[3]</th><th>Pile[4]</th><th>NextFree</th><th>CardsOnPile</th></tr><tr><td class="ansc"><input type="text" class="cell" data-ans="d3t1" placeholder="" autocomplete="off" autocapitalize="off" spellcheck="false"></td><td class="ansc"><input type="text" class="cell" data-ans="d3t2" placeholder="" autocomplete="off" autocapitalize="characters"></td><td class="ansc"><input type="text" class="cell" data-ans="d3t3" placeholder="" autocomplete="off" autocapitalize="characters"></td><td class="ansc"><input type="text" class="cell" data-ans="d3t4" placeholder="" autocomplete="off" autocapitalize="characters"></td><td class="ansc"><input type="text" class="cell" data-ans="d3t5" placeholder="" autocomplete="off" autocapitalize="characters"></td><td class="ansc"><input type="text" class="cell" data-ans="d3t6" placeholder="" autocomplete="off" autocapitalize="characters"></td></tr></table>
 <div class="reveal ans" id="d3a"><table><tr><th>Pile[1]</th><th>Pile[2]</th><th>Pile[3]</th><th>Pile[4]</th><th>NextFree</th><th>CardsOnPile</th></tr><tr><td>"R7"</td><td>"G2"</td><td>"B4"</td><td>(empty)</td><td>4</td><td>3</td></tr></table>"G9" was popped, then "B4" was pushed into the same element and overwrote it. That is exactly why the array never needs initialising.</div>
 </div>
 <div class="task"><b>B. Write Pop().</b> Pop() removes the top card and returns it, or returns "EMPTY" if there are no cards. Careful: the top card is <b>not</b> at Pile[NextFree].
@@ -420,6 +455,7 @@ Pile[2] still holds G2 but it is not on the stack any more</pre>
 ENDFUNCTION</pre>Push stores then moves the pointer up. Pop is the mirror image: move the pointer down, then read.</div>
 </div>
 <div class="task"><b>C. The other way of doing it.</b> Some questions use a pointer <span class="mono">TopOfPile</span> that points to the <b>top card</b> instead. (1) What is its initial value? (2) How does Push() change? (3) What is the test for a full pile?
+<table><tr><th></th><th>Your answer</th></tr><tr><td>(1)</td><td class="ansc"><textarea class="cell" data-ans="d3c1" placeholder=""></textarea></td></tr><tr><td>(2)</td><td class="ansc"><textarea class="cell" data-ans="d3c2" placeholder=""></textarea></td></tr><tr><td>(3)</td><td class="ansc"><textarea class="cell" data-ans="d3c3" placeholder=""></textarea></td></tr></table>
 <button data-show="d3c">Show answer</button>
 <div class="reveal ans" id="d3c">(1) 0, because there is no top card yet.<br>(2) Move the pointer up <b>first</b> (<span class="mono">TopOfPile ← TopOfPile + 1</span>), then store (<span class="mono">Pile[TopOfPile] ← Card</span>).<br>(3) <span class="mono">TopOfPile = 108</span>. Always read the question to see which kind of pointer it uses.</div>
 </div>
@@ -480,13 +516,14 @@ CALL FizzBuzzCount()
 <pre>3, 10, 30, 7, 22, 0</pre>
 <p>The purpose of this test is to check the counts for a typical mix of values.</p>
 <p class="q">Give <b>three</b> other test data sequences that test different aspects of the procedure. For each one, give its purpose. Do not include invalid data. <span class="marks">[3]</span></p>
-<textarea class="tall" data-ans="4b" placeholder="Sequence 1: ...&#10;Purpose: ...&#10;&#10;Sequence 2: ...&#10;Purpose: ...&#10;&#10;Sequence 3: ..."></textarea>
+<table><tr><th></th><th>Test data</th><th>Purpose of test</th></tr><tr><td>Sequence 1</td><td class="ansc"><input type="text" class="cell" data-ans="4b1d" placeholder="..., 0" autocomplete="off" autocapitalize="off" spellcheck="false"></td><td class="ansc"><textarea class="cell" data-ans="4b1p" placeholder=""></textarea></td></tr><tr><td>Sequence 2</td><td class="ansc"><input type="text" class="cell" data-ans="4b2d" placeholder="..., 0" autocomplete="off" autocapitalize="characters"></td><td class="ansc"><textarea class="cell" data-ans="4b2p" placeholder=""></textarea></td></tr><tr><td>Sequence 3</td><td class="ansc"><input type="text" class="cell" data-ans="4b3d" placeholder="..., 0" autocomplete="off" autocapitalize="characters"></td><td class="ansc"><textarea class="cell" data-ans="4b3p" placeholder=""></textarea></td></tr></table>
 <button class="hint" data-hint="4b">Hint</button>
 <div class="reveal hintbox" id="hint-4b">One mark per sequence, and it must come with its purpose. Every sequence must <b>end with 0</b>: most candidates lost marks by forgetting it. Make each sequence test something the typical mix does not: values that only add to one count, values that add to both, values that add to neither, and what happens when there is nothing to count. Do not just change the numbers in the example.</div>
 </div>
 
 <details class="drill"><summary>Around the skill: extra practice (not part of the 38 marks)</summary>
 <div class="task"><b>A. One line, one lost mark.</b> Why does <span class="mono">OUTPUT "Threes: " &amp; ThreeCount</span> lose the mark when ThreeCount is an INTEGER? Give two ways to fix it.
+<textarea class="cell" data-ans="d4a" placeholder=""></textarea>
 <button data-show="d4a">Show answer</button>
 <div class="reveal ans" id="d4a">&amp; only joins strings (or a CHAR with a STRING). Fix 1: use a comma, <span class="mono">OUTPUT "Threes: ", ThreeCount</span>. Fix 2: convert first, <span class="mono">OUTPUT "Threes: " &amp; NUM_TO_STR(ThreeCount)</span>. pseudocode.pro lets the wrong version run, so you will not spot this by testing.</div>
 </div>
@@ -586,7 +623,8 @@ There is exactly one INPUT inside the loop. Two INPUTs in the loop was the most 
 <p>The lap times will be stored in a text file instead of the array.</p>
 <p class="q">(i) Give <b>two</b> benefits of using a text file instead of the array. <span class="marks">[2]</span></p>
 <p class="q">(ii) The REAL variable <span class="mono">LapTime</span> holds a lap time. The file <span class="mono">Laps.txt</span> is already open for APPEND. Write one pseudocode statement that writes LapTime to the file. <span class="marks">[1]</span></p>
-<textarea data-ans="5b" placeholder="(i) 1 ...&#10;    2 ...&#10;(ii) ..."></textarea>
+<table><tr><th>(i)</th><th>Benefit of a text file</th></tr><tr><td>1</td><td class="ansc"><textarea class="cell" data-ans="5b1" placeholder=""></textarea></td></tr><tr><td>2</td><td class="ansc"><textarea class="cell" data-ans="5b2" placeholder=""></textarea></td></tr></table>
+<span class="lbl2">(ii) Your statement</span><input type="text" class="cell" data-ans="5b3" placeholder="WRITEFILE ..." autocomplete="off" autocapitalize="off" spellcheck="false">
 <button class="hint" data-hint="5b">Hint</button>
 <div class="reveal hintbox" id="hint-5b">(i) Use the two bullet points: what limits how many values an array can hold, and what happens to the array's values when the program ends? Answer about the file, not about files in general.<br>(ii) A text file stores <b>strings</b>. What must happen to a REAL before it is written? Look at the insert. The statement starts <span class="mono">WRITEFILE "Laps.txt", ...</span></div>
 </div>
@@ -603,6 +641,7 @@ WHILE Index &lt;= 12
     ENDIF
     Index ← Index + 1
 ENDWHILE</pre>
+<table><tr><th>Problem</th><th>What is wrong</th></tr><tr><td>1</td><td class="ansc"><textarea class="cell" data-ans="d5p1" placeholder=""></textarea></td></tr><tr><td>2</td><td class="ansc"><textarea class="cell" data-ans="d5p2" placeholder=""></textarea></td></tr><tr><td>3</td><td class="ansc"><textarea class="cell" data-ans="d5p3" placeholder=""></textarea></td></tr></table>
 <button data-show="d5a">Show answer</button>
 <div class="reveal ans" id="d5a">1. The loop only tests whether the array is full, so the streak never ends on a slower lap: it always asks for 12 times.<br>2. A slower lap leaves Streak[Index] empty, but Index still goes up, so the next comparison uses that empty element.<br>3. There is no output of the count after the loop (and ThisTime and Index are not declared).</div>
 </div>
@@ -662,7 +701,7 @@ ENDPROCEDURE</pre>pseudocode.pro would also accept the line without NUM_TO_STR. 
 <p style="margin-top:16px"><b>2. Mark in green.</b> Write your mark for each question. Then pick the question where you lost most marks and do its "Around the skill" practice.</p>
 <table id="markTable"><tr><th>Question</th><th>Skill</th><th>Out of</th><th>My mark</th></tr>
 <tr><td>1</td><td>Data types, 2D arrays</td><td>8</td><td><input type="text" data-ans="mark1" style="width:70px"></td></tr>
-<tr><td>2</td><td>Describe an array algorithm</td><td>5</td><td><input type="text" data-ans="mark2" style="width:70px"></td></tr>
+<tr><td>2</td><td>Array algorithm (largest value)</td><td>5</td><td><input type="text" data-ans="mark2" style="width:70px"></td></tr>
 <tr><td>3</td><td>Stack, Push()</td><td>7</td><td><input type="text" data-ans="mark3" style="width:70px"></td></tr>
 <tr><td>4</td><td>Count procedure, test data</td><td>9</td><td><input type="text" data-ans="mark4" style="width:70px"></td></tr>
 <tr><td>5</td><td>Conditional loop, text file</td><td>9</td><td><input type="text" data-ans="mark5" style="width:70px"></td></tr>
@@ -673,7 +712,7 @@ ENDPROCEDURE</pre>pseudocode.pro would also accept the line without NUM_TO_STR. 
 <footer>Year 12 Computer Science · Cambridge School of Bucharest · Practice questions written for CSB in the style of Cambridge 9618 Paper 2. Not real exam questions.</footer>
 
 <script>
-const MS = {"1": "CjxoMz5RdWVzdGlvbiAxIG1hcmsgc2NoZW1lPC9oMz4KPHA+PGI+KGEpPC9iPiBPbmUgbWFyayBwZXIgcm93LiBbNF08L3A+Cjx0YWJsZT48dHI+PHRoPkV4cHJlc3Npb248L3RoPjx0aD5EYXRhIHR5cGU8L3RoPjwvdHI+Cjx0cj48dGQgY2xhc3M9Im1vbm8iPlJJR0hUKEhlcm9OYW1lLCA0KSAmYW1wOyAiISI8L3RkPjx0ZD5TVFJJTkc8L3RkPjwvdHI+Cjx0cj48dGQgY2xhc3M9Im1vbm8iPkxFTkdUSChIZXJvTmFtZSkgTU9EIDM8L3RkPjx0ZD5JTlRFR0VSPC90ZD48L3RyPgo8dHI+PHRkIGNsYXNzPSJtb25vIj5Hb2xkICZndDsgNTAgT1IgU2hpZWxkPC90ZD48dGQ+Qk9PTEVBTjwvdGQ+PC90cj4KPHRyPjx0ZCBjbGFzcz0ibW9ubyI+R29sZCAvIDQ8L3RkPjx0ZD5SRUFMPC90ZD48L3RyPjwvdGFibGU+CjxwPkNvbW1vbiBzbGlwczogQ0hBUiBmb3Igcm93IDEgKGl0IGlzIG1vcmUgdGhhbiBvbmUgY2hhcmFjdGVyKSwgSU5URUdFUiBmb3Igcm93IDQgKHRoZSAvIG9wZXJhdG9yIGdpdmVzIGEgUkVBTCkuPC9wPgo8cD48Yj4oYikoaSk8L2I+IDIgLyB0d28uIFsxXTwvcD4KPHA+PGI+KGIpKGlpKTwvYj4gNjAwLiBbMV0gJm5ic3A7KDIwIHJvd3M6IDE5IOKIkiAwICsgMSwgdGltZXMgMzAgY29sdW1uczogMzAg4oiSIDEgKyAxLikgTm90IDU3MCwgbm90IDYyMC48L3A+CjxwPjxiPihiKShpaWkpPC9iPiA8c3BhbiBjbGFzcz0ibW9ubyI+REVDTEFSRSBNYXAgOiBBUlJBWVswOjE5LCAxOjMwXSBPRiBTVFJJTkc8L3NwYW4+IFsyXTwvcD4KPHVsPjxsaT4xIG1hcms6IGNvcnJlY3QgbG93ZXIgYW5kIHVwcGVyIGJvdW5kcyBmb3IgYm90aCBkaW1lbnNpb25zLCA8c3BhbiBjbGFzcz0ibW9ubyI+WzA6MTksIDE6MzBdPC9zcGFuPjwvbGk+CjxsaT4xIG1hcms6IGFsbCBvdGhlciBwYXJ0cyBvZiB0aGUgZGVjbGFyYXRpb246IDxzcGFuIGNsYXNzPSJtb25vIj5ERUNMQVJFIE1hcCA6IEFSUkFZIC4uLiBPRiBTVFJJTkc8L3NwYW4+PC9saT48L3VsPgo=", "2": "CjxoMz5RdWVzdGlvbiAyIG1hcmsgc2NoZW1lPC9oMz4KPHA+T25lIG1hcmsgcGVyIHBvaW50LCBtYXggNS4gWzVdPC9wPgo8b2w+PGxpPkRlY2xhcmUgYSB2YXJpYWJsZSAvIGFuIGludGVnZXIgTWF4PC9saT4KPGxpPkFzc2lnbiB0aGUgdmFsdWUgb2YgdGhlIGZpcnN0IGVsZW1lbnQgdG8gTWF4PC9saT4KPGxpPlNldCB1cCBhIGxvb3AgdG8gcmVwZWF0IDMwMCB0aW1lcyAvIGZyb20gdGhlIHN0YXJ0IHRvIHRoZSBlbmQgb2YgdGhlIGFycmF5PC9saT4KPGxpPlVzZSB0aGUgbG9vcCBjb3VudGVyIGFzIHRoZSBhcnJheSBpbmRleDwvbGk+CjxsaT5JZiB0aGUgdmFsdWUgb2YgdGhlIGN1cnJlbnQgZWxlbWVudCBpcyBncmVhdGVyIHRoYW4gTWF4IC4uLjwvbGk+CjxsaT4uLi4gdGhlbiBhc3NpZ24gdGhhdCB2YWx1ZSB0byBNYXg8L2xpPgo8bGk+QWZ0ZXIgdGhlIGxvb3AsIG91dHB1dCBNYXg8L2xpPjwvb2w+CjxwPk5vIG1hcmtzIGZvcjogaW5wdXR0aW5nIHRoZSAzMDAgdmFsdWVzOyBzdGFydGluZyBNYXggYXQgMCAob3Igbm90IHNldHRpbmcgaXQgYXQgYWxsKTsgc2VhcmNoaW5nIGZvciBvbmUgcGFydGljdWxhciB2YWx1ZTsgc3dhcHBpbmcgYWRqYWNlbnQgZWxlbWVudHM7IGEgbG9vcCB3aXRoIG5vIG51bWJlciBvZiByZXBlYXRzOyB2YWd1ZSBjb21wYXJpc29ucyB3aXRoICJ0aGUgbmV4dCBlbGVtZW50Ii48L3A+Cg==", "3": "CjxoMz5RdWVzdGlvbiAzIG1hcmsgc2NoZW1lPC9oMz4KPHA+PGI+KGEpPC9iPiBOZXh0RnJlZTogMSAmbmJzcDsgQ2FyZHNPblBpbGU6IDAuIE9uZSBtYXJrIGZvciBib3RoIGNvcnJlY3QgdmFsdWVzLiBbMV08L3A+CjxwPjxiPihiKTwvYj4gT25lIG1hcmsgcGVyIHBvaW50LiBbMl08L3A+Cjx1bD48bGk+TVAxOiB2YWx1ZXMgYXQgb3IgYWJvdmUgTmV4dEZyZWUgY2Fubm90IGJlIHBvcHBlZCAvIHRha2VuIG9mZiB0aGUgc3RhY2sgLy8gdmFsdWVzIGxlZnQgaW4gdGhlIGFycmF5IGFyZSBuZXZlciB1c2VkIC8gY2Fubm90IGJlIGFjY2Vzc2VkIC4uLjwvbGk+CjxsaT5NUDI6IC4uLiB1bnRpbCBhIG5ldyB2YWx1ZSBoYXMgZmlyc3QgYmVlbiBwdXNoZWQsIHdoaWNoIG92ZXJ3cml0ZXMgdGhlIHByZXZpb3VzIHZhbHVlLjwvbGk+PC91bD4KPHA+PGI+KGMpPC9iPiBFeGFtcGxlIHNvbHV0aW9uLiBPbmUgbWFyayBwZXIgcG9pbnQuIFs0XTwvcD4KPHByZT5GVU5DVElPTiBQdXNoKENhcmQgOiBTVFJJTkcpIFJFVFVSTlMgQk9PTEVBTgogICAgSUYgQ2FyZHNPblBpbGUgPSAxMDggVEhFTgogICAgICAgIFJFVFVSTiBGQUxTRSAgICAvLyB0aGUgcGlsZSBpcyBhbHJlYWR5IGZ1bGwKICAgIEVORElGCiAgICBQaWxlW05leHRGcmVlXSDihpAgQ2FyZAogICAgTmV4dEZyZWUg4oaQIE5leHRGcmVlICsgMQogICAgQ2FyZHNPblBpbGUg4oaQIENhcmRzT25QaWxlICsgMQogICAgUkVUVVJOIFRSVUUKRU5ERlVOQ1RJT048L3ByZT4KPG9sPjxsaT5UZXN0IGZvciBhIGZ1bGwgcGlsZTogPHNwYW4gY2xhc3M9Im1vbm8iPkNhcmRzT25QaWxlID0gMTA4PC9zcGFuPiAvLyA8c3BhbiBjbGFzcz0ibW9ubyI+Q2FyZHNPblBpbGUgJmd0OyAxMDc8L3NwYW4+IC8vIDxzcGFuIGNsYXNzPSJtb25vIj5OZXh0RnJlZSA9IDEwOTwvc3Bhbj4gLy8gPHNwYW4gY2xhc3M9Im1vbm8iPk5leHRGcmVlICZndDsgMTA4PC9zcGFuPjwvbGk+CjxsaT48c3BhbiBjbGFzcz0ibW9ubyI+UkVUVVJOIEZBTFNFPC9zcGFuPiB3aGVuIHRoZSBwaWxlIGlzIGZ1bGwsIGJlZm9yZSBhbnl0aGluZyBpcyBjaGFuZ2VkPC9saT4KPGxpPjxzcGFuIGNsYXNzPSJtb25vIj5QaWxlW05leHRGcmVlXSDihpAgQ2FyZDwvc3Bhbj48L2xpPgo8bGk+PHNwYW4gY2xhc3M9Im1vbm8iPk5leHRGcmVlIOKGkCBOZXh0RnJlZSArIDE8L3NwYW4+IGFmdGVyIHRoZSBjYXJkIGlzIHN0b3JlZCAod2l0aCBDYXJkc09uUGlsZSBpbmNyZW1lbnRlZCBhbmQgVFJVRSByZXR1cm5lZCk8L2xpPjwvb2w+CjxwPk5vdCBjcmVkaXRlZDogaW5jcmVtZW50aW5nIE5leHRGcmVlIDxpPmJlZm9yZTwvaT4gc3RvcmluZyAodGhhdCBsZWF2ZXMgUGlsZVsxXSBlbXB0eSBhbmQgd3JpdGVzIHBhc3QgdGhlIGVuZCksIG9yIDxzcGFuIGNsYXNzPSJtb25vIj5OZXh0RnJlZSA9IDEwODwvc3Bhbj4gYXMgdGhlIGZ1bGwgdGVzdCAoaXQgcmVmdXNlcyB0aGUgbGFzdCBjYXJkKS48L3A+Cg==", "4": "CjxoMz5RdWVzdGlvbiA0IG1hcmsgc2NoZW1lPC9oMz4KPHA+PGI+KGEpPC9iPiBFeGFtcGxlIHNvbHV0aW9uLiBPbmUgbWFyayBwZXIgcG9pbnQsIG1heCA2LiBbNl08L3A+CjxwcmU+UFJPQ0VEVVJFIEZpenpCdXp6Q291bnQoKQogICAgREVDTEFSRSBUaGlzTnVtLCBUaHJlZUNvdW50LCBGaXZlQ291bnQgOiBJTlRFR0VSCiAgICBUaHJlZUNvdW50IOKGkCAwCiAgICBGaXZlQ291bnQg4oaQIDAKICAgIElOUFVUIFRoaXNOdW0KICAgIFdISUxFIFRoaXNOdW0gJmx0OyZndDsgMAogICAgICAgIElGIFRoaXNOdW0gTU9EIDMgPSAwIFRIRU4KICAgICAgICAgICAgVGhyZWVDb3VudCDihpAgVGhyZWVDb3VudCArIDEKICAgICAgICBFTkRJRgogICAgICAgIElGIFRoaXNOdW0gTU9EIDUgPSAwIFRIRU4KICAgICAgICAgICAgRml2ZUNvdW50IOKGkCBGaXZlQ291bnQgKyAxCiAgICAgICAgRU5ESUYKICAgICAgICBJTlBVVCBUaGlzTnVtCiAgICBFTkRXSElMRQogICAgT1VUUFVUICJNdWx0aXBsZXMgb2YgMzogIiwgVGhyZWVDb3VudCwgIiAgTXVsdGlwbGVzIG9mIDU6ICIsIEZpdmVDb3VudApFTkRQUk9DRURVUkU8L3ByZT4KPG9sPjxsaT5Qcm9jZWR1cmUgaGVhZGluZyBhbmQgZW5kaW5nPC9saT4KPGxpPkxvY2FsIFRoaXNOdW0sIFRocmVlQ291bnQgYW5kIEZpdmVDb3VudCBkZWNsYXJlZCBhcyBpbnRlZ2VyczwvbGk+CjxsaT5Db25kaXRpb25hbCBsb29wIHdoaWxlIFRoaXNOdW0gJmx0OyZndDsgMCAob3IgUkVQRUFUIC4uLiBVTlRJTCBUaGlzTnVtID0gMCk8L2xpPgo8bGk+SW5wdXQgVGhpc051bSBpbiB0aGUgbG9vcDwvbGk+CjxsaT5DaGVjayBmb3IgYSBtdWx0aXBsZSBvZiAzIGFuZCBhIG11bHRpcGxlIG9mIDUgaW4gdGhlIGxvb3AgKE1PRCwgbm90ICUpLCBhcyB0d28gc2VwYXJhdGUgY2hlY2tzPC9saT4KPGxpPkluY3JlbWVudCB0aGUgYXBwcm9wcmlhdGUgY291bnQocykgaW4gdGhlIGxvb3A7IGJvdGggY291bnRzIGluaXRpYWxpc2VkIGJlZm9yZSB0aGUgbG9vcDsgMCBub3QgY291bnRlZDwvbGk+CjxsaT5BZnRlciB0aGUgbG9vcCwgb3V0cHV0IGJvdGggY291bnRzIHdpdGggYSBzdWl0YWJsZSBtZXNzYWdlIChjb21tYSBzZXBhcmF0b3JzLCBub3QgJmFtcDsgd2l0aCBhbiBpbnRlZ2VyKTwvbGk+PC9vbD4KPHA+PGI+KGIpPC9iPiBPbmUgbWFyayBwZXIgc2VxdWVuY2UsIGluY2x1ZGluZyBpdHMgc3RhdGVkIHB1cnBvc2UsIG1heCAzLiBFYWNoIHNlcXVlbmNlIGVuZHMgd2l0aCAwLiBbM108L3A+Cjx1bD48bGk+b25seSBtdWx0aXBsZXMgb2YgMyAobm90IG9mIDUpLCBlLmcuIDMsIDYsIDksIDA6IG9ubHkgdGhlIDNzIGNvdW50IGNoYW5nZXM8L2xpPgo8bGk+b25seSBtdWx0aXBsZXMgb2YgNSAobm90IG9mIDMpLCBlLmcuIDUsIDEwLCAyMCwgMDogb25seSB0aGUgNXMgY291bnQgY2hhbmdlczwvbGk+CjxsaT5tdWx0aXBsZXMgb2YgYm90aCwgZS5nLiAxNSwgMzAsIDA6IGVhY2ggdmFsdWUgaXMgY291bnRlZCBpbiBib3RoIGNvdW50czwvbGk+CjxsaT5tdWx0aXBsZXMgb2YgbmVpdGhlciwgZS5nLiAxLCAyLCA3LCAwOiBib3RoIGNvdW50cyBzdGF5IGF0IDA8L2xpPgo8bGk+anVzdCAwOiBub3RoaW5nIHRvIGNvdW50LCBib3RoIGNvdW50cyBvdXRwdXQgYXMgMDwvbGk+CjxsaT5hIHNlcXVlbmNlIHdpdGhvdXQgdGhlIHRlcm1pbmF0aW5nIDAgLy8gMCBwbGFjZWQgZWFybHksIGUuZy4gMywgMCwgNTogdmFsdWVzIGFmdGVyIHRoZSAwIGFyZSBpZ25vcmVkPC9saT48L3VsPgo8cD5Ob3QgY3JlZGl0ZWQ6IGEgc2VxdWVuY2UgdGhhdCBpcyBvbmx5IGEgZGlmZmVyZW50IHR5cGljYWwgbWl4IGxpa2UgdGhlIGV4YW1wbGU7IGFueSBzZXF1ZW5jZSB3aXRob3V0IGEgcHVycG9zZS48L3A+Cg==", "5": "CjxoMz5RdWVzdGlvbiA1IG1hcmsgc2NoZW1lPC9oMz4KPHA+PGI+KGEpPC9iPiBFeGFtcGxlIHNvbHV0aW9uLiBPbmUgbWFyayBwZXIgcG9pbnQuIFs2XTwvcD4KPHByZT5QUk9DRURVUkUgUmVjb3JkU3RyZWFrKCkKICAgIERFQ0xBUkUgVGhpc1RpbWUsIExhc3RUaW1lIDogUkVBTAogICAgREVDTEFSRSBJbmRleCA6IElOVEVHRVIKICAgIElOUFVUIFRoaXNUaW1lCiAgICBTdHJlYWtbMV0g4oaQIFRoaXNUaW1lCiAgICBMYXN0VGltZSDihpAgVGhpc1RpbWUKICAgIEluZGV4IOKGkCAyCiAgICBJTlBVVCBUaGlzVGltZQogICAgV0hJTEUgSW5kZXggJmx0Oz0gMTIgQU5EIFRoaXNUaW1lICZsdDsgTGFzdFRpbWUKICAgICAgICBTdHJlYWtbSW5kZXhdIOKGkCBUaGlzVGltZQogICAgICAgIExhc3RUaW1lIOKGkCBUaGlzVGltZQogICAgICAgIEluZGV4IOKGkCBJbmRleCArIDEKICAgICAgICBJRiBJbmRleCAmbHQ7PSAxMiBUSEVOCiAgICAgICAgICAgIElOUFVUIFRoaXNUaW1lCiAgICAgICAgRU5ESUYKICAgIEVORFdISUxFCiAgICBPVVRQVVQgSW5kZXggLSAxLCAiIGxhcCB0aW1lcyBzdG9yZWQgaW4gdGhlIHN0cmVhayIKRU5EUFJPQ0VEVVJFPC9wcmU+CjxvbD48bGk+RGVjbGFyZSBsb2NhbCB2YXJpYWJsZXM6IEluZGV4IGFzIElOVEVHRVIsIFRoaXNUaW1lIGFuZCBMYXN0VGltZSBhcyBSRUFMIChTdHJlYWsgaXMgZ2xvYmFsIGFuZCBtdXN0IG5vdCBiZSBkZWNsYXJlZCBhZ2Fpbik8L2xpPgo8bGk+SW5wdXQgYSB2YWx1ZSBhbmQgYXNzaWduIGl0IHRvIHRoZSBmaXJzdCBlbGVtZW50LCBiZWZvcmUgdGhlIGxvb3A8L2xpPgo8bGk+QXR0ZW1wdCBhdCBhIGNvbmRpdGlvbmFsIGxvb3AgaW5jbHVkaW5nIGJvdGggdGVzdHMgKGFycmF5IG5vdCBmdWxsLCB0aW1lIHNtYWxsZXIgdGhhbiB0aGUgcHJldmlvdXMpPC9saT4KPGxpPkNvbXBsZXRlbHkgY29ycmVjdCBjb25kaXRpb25hbCBsb29wIGluY2x1ZGluZyBib3RoIHRlc3RzPC9saT4KPGxpPkFzc2lnbiB0aGUgaW5wdXQgdmFsdWUgdG8gdGhlIG5leHQgZWxlbWVudCBpZiBpdCBpcyBzbWFsbGVyIHRoYW4gdGhlIHByZXZpb3VzLCBhbmQgaW5wdXQgdGhlIG5leHQgdmFsdWUsIGluIHRoZSBsb29wPC9saT4KPGxpPkFmdGVyIHRoZSBsb29wLCBvdXRwdXQgdGhlIGNvdW50IG9mIGVsZW1lbnRzIHN0b3JlZCB3aXRoIGEgbWVzc2FnZTwvbGk+PC9vbD4KPHA+QWxzbyBhY2NlcHRlZDogYSBGT1IgbG9vcCBmcm9tIDIgdG8gMTIgdGhhdCBleGl0cyAoQlJFQUsgLyBSRVRVUk4pIGFzIHNvb24gYXMgYSB0aW1lIGlzIG5vdCBzbWFsbGVyOyBjb21wYXJpbmcgd2l0aCBTdHJlYWtbSW5kZXgg4oiSIDFdIGluc3RlYWQgb2YgTGFzdFRpbWUuIE5vdCBjcmVkaXRlZDogdHdvIElOUFVUcyBpbiB0aGUgbG9vcDsgc3RvcmluZyBldmVyeSB2YWx1ZTsgcmVhZGluZyBTdHJlYWtbMF0gb3IgU3RyZWFrWzEzXS48L3A+CjxwPjxiPihiKShpKTwvYj4gT25lIG1hcmsgcGVyIHBvaW50LiBbMl08L3A+Cjx1bD48bGk+VGhlIG51bWJlciBvZiB2YWx1ZXMgc3RvcmVkIGluIGEgdGV4dCBmaWxlIGlzIG5vdCBmaXhlZCAvIG5vdCBsaW1pdGVkIHRvIHRoZSBzaXplIG9mIHRoZSBhcnJheSAob25seSBieSB0aGUgc2Vjb25kYXJ5IHN0b3JhZ2UgYXZhaWxhYmxlKTwvbGk+CjxsaT5UaGUgZGF0YSBpcyBzdG9yZWQgcGVybWFuZW50bHkgLyBpcyBub24tdm9sYXRpbGUsIHNvIGl0IGNhbiBiZSB1c2VkIGFnYWluIG9yIGJ5IGFub3RoZXIgcHJvZ3JhbSAodGhlIGxlYWRlcmJvYXJkKSB3aXRob3V0IHJlLWVudGVyaW5nIGl0PC9saT48L3VsPgo8cD48Yj4oYikoaWkpPC9iPiA8c3BhbiBjbGFzcz0ibW9ubyI+V1JJVEVGSUxFICJMYXBzLnR4dCIsIE5VTV9UT19TVFIoTGFwVGltZSk8L3NwYW4+IFsxXTogdGhlIFJFQUwgdmFsdWUgbXVzdCBiZSBjb252ZXJ0ZWQgdG8gYSBzdHJpbmcuPC9wPgo="};
+const MS = {"1": "CjxoMz5RdWVzdGlvbiAxIG1hcmsgc2NoZW1lPC9oMz4KPHA+PGI+KGEpPC9iPiBPbmUgbWFyayBwZXIgcm93LiBbNF08L3A+Cjx0YWJsZT48dHI+PHRoPkV4cHJlc3Npb248L3RoPjx0aD5EYXRhIHR5cGU8L3RoPjwvdHI+Cjx0cj48dGQgY2xhc3M9Im1vbm8iPlJJR0hUKEhlcm9OYW1lLCA0KSAmYW1wOyAiISI8L3RkPjx0ZD5TVFJJTkc8L3RkPjwvdHI+Cjx0cj48dGQgY2xhc3M9Im1vbm8iPkxFTkdUSChIZXJvTmFtZSkgTU9EIDM8L3RkPjx0ZD5JTlRFR0VSPC90ZD48L3RyPgo8dHI+PHRkIGNsYXNzPSJtb25vIj5Hb2xkICZndDsgNTAgT1IgU2hpZWxkPC90ZD48dGQ+Qk9PTEVBTjwvdGQ+PC90cj4KPHRyPjx0ZCBjbGFzcz0ibW9ubyI+R29sZCAvIDQ8L3RkPjx0ZD5SRUFMPC90ZD48L3RyPjwvdGFibGU+CjxwPkNvbW1vbiBzbGlwczogQ0hBUiBmb3Igcm93IDEgKGl0IGlzIG1vcmUgdGhhbiBvbmUgY2hhcmFjdGVyKSwgSU5URUdFUiBmb3Igcm93IDQgKHRoZSAvIG9wZXJhdG9yIGdpdmVzIGEgUkVBTCkuPC9wPgo8cD48Yj4oYikoaSk8L2I+IDIgLyB0d28uIFsxXTwvcD4KPHA+PGI+KGIpKGlpKTwvYj4gNjAwLiBbMV0gJm5ic3A7KDIwIHJvd3M6IDE5IOKIkiAwICsgMSwgdGltZXMgMzAgY29sdW1uczogMzAg4oiSIDEgKyAxLikgTm90IDU3MCwgbm90IDYyMC48L3A+CjxwPjxiPihiKShpaWkpPC9iPiA8c3BhbiBjbGFzcz0ibW9ubyI+REVDTEFSRSBNYXAgOiBBUlJBWVswOjE5LCAxOjMwXSBPRiBTVFJJTkc8L3NwYW4+IFsyXTwvcD4KPHVsPjxsaT4xIG1hcms6IGNvcnJlY3QgbG93ZXIgYW5kIHVwcGVyIGJvdW5kcyBmb3IgYm90aCBkaW1lbnNpb25zLCA8c3BhbiBjbGFzcz0ibW9ubyI+WzA6MTksIDE6MzBdPC9zcGFuPjwvbGk+CjxsaT4xIG1hcms6IGFsbCBvdGhlciBwYXJ0cyBvZiB0aGUgZGVjbGFyYXRpb246IDxzcGFuIGNsYXNzPSJtb25vIj5ERUNMQVJFIE1hcCA6IEFSUkFZIC4uLiBPRiBTVFJJTkc8L3NwYW4+PC9saT48L3VsPgo=", "2": "CjxoMz5RdWVzdGlvbiAyIG1hcmsgc2NoZW1lPC9oMz4KPHA+RXhhbXBsZSBzb2x1dGlvbi4gT25lIG1hcmsgcGVyIHBvaW50LCBtYXggNS4gWzVdPC9wPgo8cHJlPkRFQ0xBUkUgTWF4IDogSU5URUdFUgpERUNMQVJFIEluZGV4IDogSU5URUdFUgpNYXgg4oaQIFZpZXdzWzFdCkZPUiBJbmRleCDihpAgMiBUTyAzMDAKICAgIElGIFZpZXdzW0luZGV4XSAmZ3Q7IE1heCBUSEVOCiAgICAgICAgTWF4IOKGkCBWaWV3c1tJbmRleF0KICAgIEVORElGCk5FWFQgSW5kZXgKT1VUUFVUICJNb3N0IHZpZXdzOiAiLCBNYXg8L3ByZT4KPG9sPjxsaT5EZWNsYXJlIE1heCAoYW5kIEluZGV4KSBhcyBJTlRFR0VSPC9saT4KPGxpPkFzc2lnbiB0aGUgZmlyc3QgZWxlbWVudCB0byBNYXg6IDxzcGFuIGNsYXNzPSJtb25vIj5NYXgg4oaQIFZpZXdzWzFdPC9zcGFuPjwvbGk+CjxsaT5BIGxvb3AgdGhyb3VnaCB0aGUgd2hvbGUgYXJyYXk6IDxzcGFuIGNsYXNzPSJtb25vIj5GT1IgSW5kZXgg4oaQIDEgVE8gMzAwPC9zcGFuPiAob3IgMiBUTyAzMDApIC4uLiA8c3BhbiBjbGFzcz0ibW9ubyI+TkVYVCBJbmRleDwvc3Bhbj48L2xpPgo8bGk+VGhlIGxvb3AgY291bnRlciB1c2VkIGFzIHRoZSBhcnJheSBpbmRleDogPHNwYW4gY2xhc3M9Im1vbm8iPlZpZXdzW0luZGV4XTwvc3Bhbj48L2xpPgo8bGk+SW5zaWRlIHRoZSBsb29wLCBjb21wYXJlIHRoZSBjdXJyZW50IGVsZW1lbnQgd2l0aCBNYXg6IDxzcGFuIGNsYXNzPSJtb25vIj5JRiBWaWV3c1tJbmRleF0gJmd0OyBNYXggVEhFTjwvc3Bhbj48L2xpPgo8bGk+Li4uIGFuZCBpZiBpdCBpcyBncmVhdGVyLCA8c3BhbiBjbGFzcz0ibW9ubyI+TWF4IOKGkCBWaWV3c1tJbmRleF08L3NwYW4+PC9saT4KPGxpPkFmdGVyIHRoZSBsb29wLCA8c3BhbiBjbGFzcz0ibW9ubyI+T1VUUFVUIE1heDwvc3Bhbj4gKHdpdGggb3Igd2l0aG91dCBhIG1lc3NhZ2UpPC9saT48L29sPgo8cD5ObyBtYXJrcyBmb3I6IGlucHV0dGluZyB0aGUgdmFsdWVzOyA8c3BhbiBjbGFzcz0ibW9ubyI+TWF4IOKGkCAwPC9zcGFuPjsgY29tcGFyaW5nIDxzcGFuIGNsYXNzPSJtb25vIj5WaWV3c1tJbmRleF08L3NwYW4+IHdpdGggPHNwYW4gY2xhc3M9Im1vbm8iPlZpZXdzW0luZGV4ICsgMV08L3NwYW4+OyBzd2FwcGluZyBlbGVtZW50czsgT1VUUFVUIGluc2lkZSB0aGUgbG9vcDsgcmVhZGluZyBWaWV3c1swXSBvciBWaWV3c1szMDFdLjwvcD4K", "3": "CjxoMz5RdWVzdGlvbiAzIG1hcmsgc2NoZW1lPC9oMz4KPHA+PGI+KGEpPC9iPiBOZXh0RnJlZTogMSAmbmJzcDsgQ2FyZHNPblBpbGU6IDAuIE9uZSBtYXJrIGZvciBib3RoIGNvcnJlY3QgdmFsdWVzLiBbMV08L3A+CjxwPjxiPihiKTwvYj4gT25lIG1hcmsgcGVyIHBvaW50LiBbMl08L3A+Cjx1bD48bGk+TVAxOiB2YWx1ZXMgYXQgb3IgYWJvdmUgTmV4dEZyZWUgY2Fubm90IGJlIHBvcHBlZCAvIHRha2VuIG9mZiB0aGUgc3RhY2sgLy8gdmFsdWVzIGxlZnQgaW4gdGhlIGFycmF5IGFyZSBuZXZlciB1c2VkIC8gY2Fubm90IGJlIGFjY2Vzc2VkIC4uLjwvbGk+CjxsaT5NUDI6IC4uLiB1bnRpbCBhIG5ldyB2YWx1ZSBoYXMgZmlyc3QgYmVlbiBwdXNoZWQsIHdoaWNoIG92ZXJ3cml0ZXMgdGhlIHByZXZpb3VzIHZhbHVlLjwvbGk+PC91bD4KPHA+PGI+KGMpPC9iPiBFeGFtcGxlIHNvbHV0aW9uLiBPbmUgbWFyayBwZXIgcG9pbnQuIFs0XTwvcD4KPHByZT5GVU5DVElPTiBQdXNoKENhcmQgOiBTVFJJTkcpIFJFVFVSTlMgQk9PTEVBTgogICAgSUYgQ2FyZHNPblBpbGUgPSAxMDggVEhFTgogICAgICAgIFJFVFVSTiBGQUxTRSAgICAvLyB0aGUgcGlsZSBpcyBhbHJlYWR5IGZ1bGwKICAgIEVORElGCiAgICBQaWxlW05leHRGcmVlXSDihpAgQ2FyZAogICAgTmV4dEZyZWUg4oaQIE5leHRGcmVlICsgMQogICAgQ2FyZHNPblBpbGUg4oaQIENhcmRzT25QaWxlICsgMQogICAgUkVUVVJOIFRSVUUKRU5ERlVOQ1RJT048L3ByZT4KPG9sPjxsaT5UZXN0IGZvciBhIGZ1bGwgcGlsZTogPHNwYW4gY2xhc3M9Im1vbm8iPkNhcmRzT25QaWxlID0gMTA4PC9zcGFuPiAvLyA8c3BhbiBjbGFzcz0ibW9ubyI+Q2FyZHNPblBpbGUgJmd0OyAxMDc8L3NwYW4+IC8vIDxzcGFuIGNsYXNzPSJtb25vIj5OZXh0RnJlZSA9IDEwOTwvc3Bhbj4gLy8gPHNwYW4gY2xhc3M9Im1vbm8iPk5leHRGcmVlICZndDsgMTA4PC9zcGFuPjwvbGk+CjxsaT48c3BhbiBjbGFzcz0ibW9ubyI+UkVUVVJOIEZBTFNFPC9zcGFuPiB3aGVuIHRoZSBwaWxlIGlzIGZ1bGwsIGJlZm9yZSBhbnl0aGluZyBpcyBjaGFuZ2VkPC9saT4KPGxpPjxzcGFuIGNsYXNzPSJtb25vIj5QaWxlW05leHRGcmVlXSDihpAgQ2FyZDwvc3Bhbj48L2xpPgo8bGk+PHNwYW4gY2xhc3M9Im1vbm8iPk5leHRGcmVlIOKGkCBOZXh0RnJlZSArIDE8L3NwYW4+IGFmdGVyIHRoZSBjYXJkIGlzIHN0b3JlZCAod2l0aCBDYXJkc09uUGlsZSBpbmNyZW1lbnRlZCBhbmQgVFJVRSByZXR1cm5lZCk8L2xpPjwvb2w+CjxwPk5vdCBjcmVkaXRlZDogaW5jcmVtZW50aW5nIE5leHRGcmVlIDxpPmJlZm9yZTwvaT4gc3RvcmluZyAodGhhdCBsZWF2ZXMgUGlsZVsxXSBlbXB0eSBhbmQgd3JpdGVzIHBhc3QgdGhlIGVuZCksIG9yIDxzcGFuIGNsYXNzPSJtb25vIj5OZXh0RnJlZSA9IDEwODwvc3Bhbj4gYXMgdGhlIGZ1bGwgdGVzdCAoaXQgcmVmdXNlcyB0aGUgbGFzdCBjYXJkKS48L3A+Cg==", "4": "CjxoMz5RdWVzdGlvbiA0IG1hcmsgc2NoZW1lPC9oMz4KPHA+PGI+KGEpPC9iPiBFeGFtcGxlIHNvbHV0aW9uLiBPbmUgbWFyayBwZXIgcG9pbnQsIG1heCA2LiBbNl08L3A+CjxwcmU+UFJPQ0VEVVJFIEZpenpCdXp6Q291bnQoKQogICAgREVDTEFSRSBUaGlzTnVtLCBUaHJlZUNvdW50LCBGaXZlQ291bnQgOiBJTlRFR0VSCiAgICBUaHJlZUNvdW50IOKGkCAwCiAgICBGaXZlQ291bnQg4oaQIDAKICAgIElOUFVUIFRoaXNOdW0KICAgIFdISUxFIFRoaXNOdW0gJmx0OyZndDsgMAogICAgICAgIElGIFRoaXNOdW0gTU9EIDMgPSAwIFRIRU4KICAgICAgICAgICAgVGhyZWVDb3VudCDihpAgVGhyZWVDb3VudCArIDEKICAgICAgICBFTkRJRgogICAgICAgIElGIFRoaXNOdW0gTU9EIDUgPSAwIFRIRU4KICAgICAgICAgICAgRml2ZUNvdW50IOKGkCBGaXZlQ291bnQgKyAxCiAgICAgICAgRU5ESUYKICAgICAgICBJTlBVVCBUaGlzTnVtCiAgICBFTkRXSElMRQogICAgT1VUUFVUICJNdWx0aXBsZXMgb2YgMzogIiwgVGhyZWVDb3VudCwgIiAgTXVsdGlwbGVzIG9mIDU6ICIsIEZpdmVDb3VudApFTkRQUk9DRURVUkU8L3ByZT4KPG9sPjxsaT5Qcm9jZWR1cmUgaGVhZGluZyBhbmQgZW5kaW5nPC9saT4KPGxpPkxvY2FsIFRoaXNOdW0sIFRocmVlQ291bnQgYW5kIEZpdmVDb3VudCBkZWNsYXJlZCBhcyBpbnRlZ2VyczwvbGk+CjxsaT5Db25kaXRpb25hbCBsb29wIHdoaWxlIFRoaXNOdW0gJmx0OyZndDsgMCAob3IgUkVQRUFUIC4uLiBVTlRJTCBUaGlzTnVtID0gMCk8L2xpPgo8bGk+SW5wdXQgVGhpc051bSBpbiB0aGUgbG9vcDwvbGk+CjxsaT5DaGVjayBmb3IgYSBtdWx0aXBsZSBvZiAzIGFuZCBhIG11bHRpcGxlIG9mIDUgaW4gdGhlIGxvb3AgKE1PRCwgbm90ICUpLCBhcyB0d28gc2VwYXJhdGUgY2hlY2tzPC9saT4KPGxpPkluY3JlbWVudCB0aGUgYXBwcm9wcmlhdGUgY291bnQocykgaW4gdGhlIGxvb3A7IGJvdGggY291bnRzIGluaXRpYWxpc2VkIGJlZm9yZSB0aGUgbG9vcDsgMCBub3QgY291bnRlZDwvbGk+CjxsaT5BZnRlciB0aGUgbG9vcCwgb3V0cHV0IGJvdGggY291bnRzIHdpdGggYSBzdWl0YWJsZSBtZXNzYWdlIChjb21tYSBzZXBhcmF0b3JzLCBub3QgJmFtcDsgd2l0aCBhbiBpbnRlZ2VyKTwvbGk+PC9vbD4KPHA+PGI+KGIpPC9iPiBPbmUgbWFyayBwZXIgc2VxdWVuY2UsIGluY2x1ZGluZyBpdHMgc3RhdGVkIHB1cnBvc2UsIG1heCAzLiBFYWNoIHNlcXVlbmNlIGVuZHMgd2l0aCAwLiBbM108L3A+Cjx1bD48bGk+b25seSBtdWx0aXBsZXMgb2YgMyAobm90IG9mIDUpLCBlLmcuIDMsIDYsIDksIDA6IG9ubHkgdGhlIDNzIGNvdW50IGNoYW5nZXM8L2xpPgo8bGk+b25seSBtdWx0aXBsZXMgb2YgNSAobm90IG9mIDMpLCBlLmcuIDUsIDEwLCAyMCwgMDogb25seSB0aGUgNXMgY291bnQgY2hhbmdlczwvbGk+CjxsaT5tdWx0aXBsZXMgb2YgYm90aCwgZS5nLiAxNSwgMzAsIDA6IGVhY2ggdmFsdWUgaXMgY291bnRlZCBpbiBib3RoIGNvdW50czwvbGk+CjxsaT5tdWx0aXBsZXMgb2YgbmVpdGhlciwgZS5nLiAxLCAyLCA3LCAwOiBib3RoIGNvdW50cyBzdGF5IGF0IDA8L2xpPgo8bGk+anVzdCAwOiBub3RoaW5nIHRvIGNvdW50LCBib3RoIGNvdW50cyBvdXRwdXQgYXMgMDwvbGk+CjxsaT5hIHNlcXVlbmNlIHdpdGhvdXQgdGhlIHRlcm1pbmF0aW5nIDAgLy8gMCBwbGFjZWQgZWFybHksIGUuZy4gMywgMCwgNTogdmFsdWVzIGFmdGVyIHRoZSAwIGFyZSBpZ25vcmVkPC9saT48L3VsPgo8cD5Ob3QgY3JlZGl0ZWQ6IGEgc2VxdWVuY2UgdGhhdCBpcyBvbmx5IGEgZGlmZmVyZW50IHR5cGljYWwgbWl4IGxpa2UgdGhlIGV4YW1wbGU7IGFueSBzZXF1ZW5jZSB3aXRob3V0IGEgcHVycG9zZS48L3A+Cg==", "5": "CjxoMz5RdWVzdGlvbiA1IG1hcmsgc2NoZW1lPC9oMz4KPHA+PGI+KGEpPC9iPiBFeGFtcGxlIHNvbHV0aW9uLiBPbmUgbWFyayBwZXIgcG9pbnQuIFs2XTwvcD4KPHByZT5QUk9DRURVUkUgUmVjb3JkU3RyZWFrKCkKICAgIERFQ0xBUkUgVGhpc1RpbWUsIExhc3RUaW1lIDogUkVBTAogICAgREVDTEFSRSBJbmRleCA6IElOVEVHRVIKICAgIElOUFVUIFRoaXNUaW1lCiAgICBTdHJlYWtbMV0g4oaQIFRoaXNUaW1lCiAgICBMYXN0VGltZSDihpAgVGhpc1RpbWUKICAgIEluZGV4IOKGkCAyCiAgICBJTlBVVCBUaGlzVGltZQogICAgV0hJTEUgSW5kZXggJmx0Oz0gMTIgQU5EIFRoaXNUaW1lICZsdDsgTGFzdFRpbWUKICAgICAgICBTdHJlYWtbSW5kZXhdIOKGkCBUaGlzVGltZQogICAgICAgIExhc3RUaW1lIOKGkCBUaGlzVGltZQogICAgICAgIEluZGV4IOKGkCBJbmRleCArIDEKICAgICAgICBJRiBJbmRleCAmbHQ7PSAxMiBUSEVOCiAgICAgICAgICAgIElOUFVUIFRoaXNUaW1lCiAgICAgICAgRU5ESUYKICAgIEVORFdISUxFCiAgICBPVVRQVVQgSW5kZXggLSAxLCAiIGxhcCB0aW1lcyBzdG9yZWQgaW4gdGhlIHN0cmVhayIKRU5EUFJPQ0VEVVJFPC9wcmU+CjxvbD48bGk+RGVjbGFyZSBsb2NhbCB2YXJpYWJsZXM6IEluZGV4IGFzIElOVEVHRVIsIFRoaXNUaW1lIGFuZCBMYXN0VGltZSBhcyBSRUFMIChTdHJlYWsgaXMgZ2xvYmFsIGFuZCBtdXN0IG5vdCBiZSBkZWNsYXJlZCBhZ2Fpbik8L2xpPgo8bGk+SW5wdXQgYSB2YWx1ZSBhbmQgYXNzaWduIGl0IHRvIHRoZSBmaXJzdCBlbGVtZW50LCBiZWZvcmUgdGhlIGxvb3A8L2xpPgo8bGk+QXR0ZW1wdCBhdCBhIGNvbmRpdGlvbmFsIGxvb3AgaW5jbHVkaW5nIGJvdGggdGVzdHMgKGFycmF5IG5vdCBmdWxsLCB0aW1lIHNtYWxsZXIgdGhhbiB0aGUgcHJldmlvdXMpPC9saT4KPGxpPkNvbXBsZXRlbHkgY29ycmVjdCBjb25kaXRpb25hbCBsb29wIGluY2x1ZGluZyBib3RoIHRlc3RzPC9saT4KPGxpPkFzc2lnbiB0aGUgaW5wdXQgdmFsdWUgdG8gdGhlIG5leHQgZWxlbWVudCBpZiBpdCBpcyBzbWFsbGVyIHRoYW4gdGhlIHByZXZpb3VzLCBhbmQgaW5wdXQgdGhlIG5leHQgdmFsdWUsIGluIHRoZSBsb29wPC9saT4KPGxpPkFmdGVyIHRoZSBsb29wLCBvdXRwdXQgdGhlIGNvdW50IG9mIGVsZW1lbnRzIHN0b3JlZCB3aXRoIGEgbWVzc2FnZTwvbGk+PC9vbD4KPHA+QWxzbyBhY2NlcHRlZDogYSBGT1IgbG9vcCBmcm9tIDIgdG8gMTIgdGhhdCBleGl0cyAoQlJFQUsgLyBSRVRVUk4pIGFzIHNvb24gYXMgYSB0aW1lIGlzIG5vdCBzbWFsbGVyOyBjb21wYXJpbmcgd2l0aCBTdHJlYWtbSW5kZXgg4oiSIDFdIGluc3RlYWQgb2YgTGFzdFRpbWUuIE5vdCBjcmVkaXRlZDogdHdvIElOUFVUcyBpbiB0aGUgbG9vcDsgc3RvcmluZyBldmVyeSB2YWx1ZTsgcmVhZGluZyBTdHJlYWtbMF0gb3IgU3RyZWFrWzEzXS48L3A+CjxwPjxiPihiKShpKTwvYj4gT25lIG1hcmsgcGVyIHBvaW50LiBbMl08L3A+Cjx1bD48bGk+VGhlIG51bWJlciBvZiB2YWx1ZXMgc3RvcmVkIGluIGEgdGV4dCBmaWxlIGlzIG5vdCBmaXhlZCAvIG5vdCBsaW1pdGVkIHRvIHRoZSBzaXplIG9mIHRoZSBhcnJheSAob25seSBieSB0aGUgc2Vjb25kYXJ5IHN0b3JhZ2UgYXZhaWxhYmxlKTwvbGk+CjxsaT5UaGUgZGF0YSBpcyBzdG9yZWQgcGVybWFuZW50bHkgLyBpcyBub24tdm9sYXRpbGUsIHNvIGl0IGNhbiBiZSB1c2VkIGFnYWluIG9yIGJ5IGFub3RoZXIgcHJvZ3JhbSAodGhlIGxlYWRlcmJvYXJkKSB3aXRob3V0IHJlLWVudGVyaW5nIGl0PC9saT48L3VsPgo8cD48Yj4oYikoaWkpPC9iPiA8c3BhbiBjbGFzcz0ibW9ubyI+V1JJVEVGSUxFICJMYXBzLnR4dCIsIE5VTV9UT19TVFIoTGFwVGltZSk8L3NwYW4+IFsxXTogdGhlIFJFQUwgdmFsdWUgbXVzdCBiZSBjb252ZXJ0ZWQgdG8gYSBzdHJpbmcuPC9wPgo="};
 const KEY = "y12progmock-";
 function store(k, v){ try{ localStorage.setItem(KEY+k, v); }catch(e){} }
 function load(k){ try{ return localStorage.getItem(KEY+k); }catch(e){ return null; } }
