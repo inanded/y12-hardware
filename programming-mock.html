@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Year 12 Programming Mock | Section B Practice</title>
+<style>
+:root{--bord:#7E2D40;--green:#154734;--grey:#857874;--ink:#1d1d1f;--soft:#f6f3f1;--line:#ddd5d0;--amber:#b86e00;--blue:#1f4e79}
+*{box-sizing:border-box}
+section{scroll-margin-top:110px}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.55;font-size:17px}
+header.top{background:var(--green);color:#fff;padding:22px 20px 18px}
+header.top h1{margin:0 0 4px;font-size:1.6rem}
+header.top p{margin:0;opacity:.92}
+.bar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:2px solid var(--line);padding:8px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.bar a{color:var(--green);font-weight:600;text-decoration:none;padding:4px 8px;border-radius:6px;background:var(--soft);font-size:.9rem}
+.bar .spacer{flex:1}
+#timer{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.05rem;min-width:62px;text-align:right}
+main{max-width:920px;margin:0 auto;padding:10px 16px 80px}
+h2{color:var(--bord);margin:34px 0 6px;font-size:1.45rem;border-bottom:3px solid var(--bord);padding-bottom:4px}
+h3{margin:22px 0 6px;font-size:1.1rem}
+.skill{display:inline-block;background:var(--soft);border:1px solid var(--line);border-radius:20px;padding:2px 12px;font-size:.85rem;color:var(--grey);margin-bottom:8px}
+.box{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0;background:#fff}
+.box.info{background:#f2f7f4;border-color:#bcd5c7}
+.box.warn{background:#fff7ea;border-color:#efcf98}
+.part{border-left:4px solid var(--green);padding:4px 0 4px 14px;margin:20px 0}
+.part .q{font-weight:600}
+.marks{float:right;font-weight:700;color:var(--bord);margin-left:10px}
+table{border-collapse:collapse;margin:10px 0;width:100%;max-width:640px}
+th,td{border:1px solid #9a8f8a;padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft)}
+code,pre,.mono{font-family:Consolas,"Courier New",monospace}
+pre{background:#f7f7f7;border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:.92rem;line-height:1.45;margin:8px 0}
+textarea{width:100%;min-height:90px;font-family:Consolas,"Courier New",monospace;font-size:.95rem;border:1px solid #b9b0ab;border-radius:8px;padding:8px;margin-top:8px;resize:vertical}
+textarea.tall{min-height:240px}
+input[type=text]{font-size:1rem;padding:6px 8px;border:1px solid #b9b0ab;border-radius:6px;width:min(320px,100%)}
+button{font:inherit;font-size:.92rem;border-radius:8px;border:1px solid var(--green);background:#fff;color:var(--green);padding:6px 12px;cursor:pointer;margin:6px 6px 0 0}
+button.solid{background:var(--green);color:#fff}
+button.hint{border-color:var(--amber);color:var(--amber)}
+button.used{background:#fff2dc}
+.reveal{display:none;margin-top:8px;border-radius:8px;padding:10px 14px}
+.reveal.on{display:block}
+.reveal.hintbox{background:#fff7ea;border:1px solid #efcf98}
+.reveal.ans{background:#eef6f1;border:1px solid #bcd5c7}
+details.drill{border:2px dashed var(--grey);border-radius:10px;padding:8px 14px;margin:22px 0;background:#fcfbfa}
+details.drill summary{cursor:pointer;font-weight:700;color:var(--grey)}
+details.drill .task{margin:14px 0;padding-top:10px;border-top:1px solid var(--line)}
+.ms{border:2px solid var(--bord);border-radius:10px;padding:10px 14px;margin:18px 0;background:#fdf7f8}
+.ms .locked{color:var(--bord);font-weight:600}
+.ms .content{display:none}
+.ms.open .content{display:block}
+.ms.open .locked{display:none}
+.starter{border:1px solid #c9c0bb;border-radius:10px;padding:10px 12px;margin:10px 0;background:#fbfbfb}
+.starter .lbl{font-weight:700;color:var(--blue)}
+.starter pre{max-height:320px}
+.tag{font-size:.8rem;font-weight:700;color:#fff;background:var(--amber);border-radius:4px;padding:1px 7px;margin-left:6px;vertical-align:2px}
+.ok{color:var(--green);font-weight:600}
+footer{color:var(--grey);font-size:.85rem;text-align:center;padding:30px 10px}
+@media (max-width:600px){body{font-size:16px}.marks{float:none;display:block}h2{font-size:1.25rem}}
+@media print{.bar,button,details.drill,.starter{display:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Year 12 Programming Mock</h1>
+  <p>Section B practice · 5 questions · 38 marks · 60 minutes · Cambridge School of Bucharest</p>
+</header>
+<div class="bar">
+  <a href="#start">Start</a><a href="#q1">Q1</a><a href="#q2">Q2</a><a href="#q3">Q3</a><a href="#q4">Q4</a><a href="#q5">Q5</a><a href="#finish">Finish</a>
+  <span class="spacer"></span>
+  <button id="timerBtn" class="solid" onclick="toggleTimer()">Start 60-minute timer</button>
+  <span id="timer">60:00</span>
+</div>
+<main>
+
+<section id="start">
+<h2>Before You Start</h2>
+<div class="box info">
+<p><b>What this is.</b> A mock of Section B (programming) of your end-of-term assessment. It tests the same five skills, for the same marks, in different situations. Nothing here is a copy of the real paper.</p>
+<p><b>Your name</b> (it goes on your answers file): <input type="text" id="pupilName" placeholder="First name and surname" autocomplete="name"></p>
+<ol>
+<li>Start the 60-minute timer at the top. Aim for about 12 minutes per question.</li>
+<li>Type every answer into the box under the question. Your answers save on this device as you type.</li>
+<li>For code questions, write and test your code in <a href="https://pseudocode.pro/editor" target="_blank" rel="noopener">pseudocode.pro</a> first using the <b>starter code</b>, then paste your final version into the answer box.</li>
+<li>Stuck for more than two minutes? Open the <b>Hint</b>. Hints tell you what the examiner gives marks for. Your answers file records which hints you used, so you know what to revise. That is fine: this is practice.</li>
+<li>At the end, press <b>Download my answers</b> at the bottom of the page. Your teacher will then give you the code that unlocks the mark schemes, and you mark your own work in green.</li>
+</ol>
+</div>
+<div class="box">
+<h3 style="margin-top:0">Using pseudocode.pro</h3>
+<ul>
+<li>Open <a href="https://pseudocode.pro/editor" target="_blank" rel="noopener">pseudocode.pro/editor</a> in a new tab. Check the dropdown at the bottom of the page says <b>9618</b> (A Level).</li>
+<li>Press <b>Copy starter code</b> on this page, paste it into the editor (replace what is there), then press the green Run button.</li>
+<li>Type the arrow <span class="mono">←</span> as <span class="mono">&lt;--</span>. When the program uses INPUT, a box pops up: type the value and press Enter.</li>
+</ul>
+</div>
+<div class="box warn">
+<b>pseudocode.pro is kinder than the examiner.</b> It lets <span class="mono">"Count: " &amp; Count</span> run when Count is an INTEGER, and it lets you write a number to a text file without converting it. Cambridge does not give the mark for either. If code runs here, check it against the hint before you trust it.
+</div>
+<details class="box"><summary><b>Insert: the functions and operators you may use</b> (the real exam gives you this as a separate sheet)</summary>
+<table>
+<tr><th>Function or operator</th><th>Returns</th><th>Example</th></tr>
+<tr><td class="mono">LEFT(ThisString, x)</td><td>STRING</td><td class="mono">LEFT("ABCDEFGH", 3) → "ABC"</td></tr>
+<tr><td class="mono">RIGHT(ThisString, x)</td><td>STRING</td><td class="mono">RIGHT("ABCDEFGH", 3) → "FGH"</td></tr>
+<tr><td class="mono">MID(ThisString, x, y)</td><td>STRING</td><td class="mono">MID("ABCDEFGH", 2, 3) → "BCD"</td></tr>
+<tr><td class="mono">LENGTH(ThisString)</td><td>INTEGER</td><td class="mono">LENGTH("Happy Days") → 10</td></tr>
+<tr><td class="mono">TO_UPPER(x) / TO_LOWER(x)</td><td>same type as x</td><td class="mono">TO_UPPER("Error 803") → "ERROR 803"</td></tr>
+<tr><td class="mono">NUM_TO_STR(x)</td><td>STRING</td><td class="mono">NUM_TO_STR(87.5) → "87.5"</td></tr>
+<tr><td class="mono">STR_TO_NUM(x)</td><td>INTEGER or REAL</td><td class="mono">STR_TO_NUM("23.45") → 23.45</td></tr>
+<tr><td class="mono">IS_NUM(ThisString)</td><td>BOOLEAN</td><td class="mono">IS_NUM("-12.36") → TRUE</td></tr>
+<tr><td class="mono">ASC(ThisChar)</td><td>INTEGER</td><td class="mono">ASC('A') → 65</td></tr>
+<tr><td class="mono">CHR(x)</td><td>CHAR</td><td class="mono">CHR(65) → 'A'</td></tr>
+<tr><td class="mono">INT(x)</td><td>INTEGER</td><td class="mono">INT(27.5415) → 27</td></tr>
+<tr><td class="mono">EOF(FileName)</td><td>BOOLEAN</td><td>TRUE when there are no more lines to read</td></tr>
+<tr><td class="mono">&amp;</td><td>STRING</td><td class="mono">"Summer" &amp; " " &amp; "Pudding" → "Summer Pudding"</td></tr>
+<tr><td class="mono">AND, OR, NOT</td><td>BOOLEAN</td><td class="mono">NOT TRUE → FALSE</td></tr>
+<tr><td class="mono">MOD</td><td>INTEGER</td><td class="mono">10 MOD 3 → 1 (the remainder)</td></tr>
+<tr><td class="mono">DIV</td><td>INTEGER</td><td class="mono">10 DIV 3 → 3 (the whole-number quotient)</td></tr>
+</table>
+</details>
+</section>
+
+<!-- ===================== Q1 ===================== -->
+<section id="q1">
+<h2>Question 1: Dungeon Dash <span class="marks">[8 marks]</span></h2>
+<span class="skill">Skill: data types of expressions · 2D arrays</span>
+<p>A team is writing a dungeon-crawler game called <i>Dungeon Dash</i>. These variables are used in the game:</p>
+<table>
+<tr><th>Variable</th><th>Data type</th><th>Example value</th></tr>
+<tr><td class="mono">HeroName</td><td>STRING</td><td class="mono">"Valkyrie"</td></tr>
+<tr><td class="mono">Gold</td><td>INTEGER</td><td class="mono">87</td></tr>
+<tr><td class="mono">Shield</td><td>BOOLEAN</td><td class="mono">FALSE</td></tr>
+</table>
+
+<div class="part" data-id="1a">
+<p class="q">(a) The table shows four valid pseudocode expressions. Complete the table by giving the data type of each evaluated expression. <span class="marks">[4]</span></p>
+<table>
+<tr><th>Expression</th><th>Data type</th></tr>
+<tr><td class="mono">RIGHT(HeroName, 4) &amp; "!"</td><td>1</td></tr>
+<tr><td class="mono">LENGTH(HeroName) MOD 3</td><td>2</td></tr>
+<tr><td class="mono">Gold &gt; 50 OR Shield</td><td>3</td></tr>
+<tr><td class="mono">Gold / 4</td><td>4</td></tr>
+</table>
+<textarea data-ans="1a" placeholder="1 ...&#10;2 ...&#10;3 ...&#10;4 ..."></textarea>
+<button class="hint" data-hint="1a">Hint</button>
+<div class="reveal hintbox" id="hint-1a">Ask what the expression <b>gives back</b>, not what goes into it. Text functions that cut or join text give back text. Any comparison (&gt;, =, &lt;&gt;) or AND / OR / NOT gives TRUE or FALSE. MOD and DIV always give a whole number. The <span class="mono">/</span> operator is the odd one out: in Cambridge pseudocode it always gives a REAL, even when both numbers are whole. Write the Cambridge data type names in capitals.</div>
+</div>
+
+<p>The dungeon map is stored in a global 2D array <span class="mono">Map</span>. Each element holds the name of the tile at that position. This statement places a trap:</p>
+<pre>Map[Row, Col] ← "Trap"</pre>
+<table>
+<tr><th>Variable</th><th>Lower bound</th><th>Upper bound</th></tr>
+<tr><td class="mono">Row</td><td>0</td><td>19</td></tr>
+<tr><td class="mono">Col</td><td>1</td><td>30</td></tr>
+</table>
+
+<div class="part" data-id="1b">
+<p class="q">(b) (i) State the number of dimensions of <span class="mono">Map</span>. <span class="marks">[1]</span></p>
+<p class="q">(ii) State the total number of elements in <span class="mono">Map</span>. <span class="marks">[1]</span></p>
+<p class="q">(iii) Give the pseudocode declaration for the array <span class="mono">Map</span>. <span class="marks">[2]</span></p>
+<textarea data-ans="1b" placeholder="(i) ...&#10;(ii) ...&#10;(iii) DECLARE ..."></textarea>
+<button class="hint" data-hint="1b">Hint</button>
+<div class="reveal hintbox" id="hint-1b">(i) Count the indexes inside the square brackets.<br>(ii) For each dimension: <b>upper bound − lower bound + 1</b>. Then multiply the two answers. Check the bounds carefully: they do not both start at the same number.<br>(iii) One mark is for both pairs of bounds written exactly as in the table, the other is for everything else: <span class="mono">DECLARE</span>, the identifier, a colon, <span class="mono">ARRAY[ , ]</span>, <span class="mono">OF</span> and the data type. What type is <span class="mono">"Trap"</span>?</div>
+</div>
+
+<details class="drill"><summary>Around the skill: extra practice (not part of the 38 marks)</summary>
+<div class="task"><b>A. Predict, then run.</b> For each expression, write down its value <i>and</i> its data type. Then copy this into pseudocode.pro and run it to check your values.
+<div class="starter"><span class="lbl">Predict-then-run code</span> for pseudocode.pro<br><button class="copy solid">Copy starter code</button><a href="https://pseudocode.pro/editor" target="_blank" rel="noopener"><button>Open pseudocode.pro</button></a><button class="toggle">Hide code</button><pre>// DUNGEON DASH: predict, then run to check (practice for Question 1)
+// Write down the VALUE and the DATA TYPE of each expression first. Then press Run.
+DECLARE HeroName : STRING
+DECLARE Gold : INTEGER
+DECLARE Shield : BOOLEAN
+HeroName &lt;-- &quot;Valkyrie&quot;
+Gold &lt;-- 87
+Shield &lt;-- FALSE
+
+OUTPUT &quot;1  RIGHT(HeroName, 4) &amp; &#x27;!&#x27;      =  &quot;, RIGHT(HeroName, 4) &amp; &quot;!&quot;
+OUTPUT &quot;2  LENGTH(HeroName) MOD 3      =  &quot;, LENGTH(HeroName) MOD 3
+OUTPUT &quot;3  Gold &gt; 50 OR Shield         =  &quot;, Gold &gt; 50 OR Shield
+OUTPUT &quot;4  Gold / 4                    =  &quot;, Gold / 4
+OUTPUT &quot;5  Gold DIV 4                  =  &quot;, Gold DIV 4
+OUTPUT &quot;6  NUM_TO_STR(Gold) &amp; &#x27;g&#x27;     =  &quot;, NUM_TO_STR(Gold) &amp; &quot;g&quot;
+OUTPUT &quot;7  IS_NUM(HeroName)            =  &quot;, IS_NUM(HeroName)
+</pre></div>
+<button data-show="d1a">Show answers</button>
+<div class="reveal ans" id="d1a"><table><tr><th>#</th><th>Value</th><th>Type</th></tr><tr><td>1</td><td class="mono">"yrie!"</td><td>STRING</td></tr><tr><td>2</td><td>2 (8 MOD 3)</td><td>INTEGER</td></tr><tr><td>3</td><td>TRUE</td><td>BOOLEAN</td></tr><tr><td>4</td><td>21.75</td><td>REAL</td></tr><tr><td>5</td><td>21</td><td>INTEGER</td></tr><tr><td>6</td><td class="mono">"87g"</td><td>STRING</td></tr><tr><td>7</td><td>FALSE</td><td>BOOLEAN</td></tr></table></div>
+</div>
+<div class="task"><b>B. Spot the error.</b> Each statement may contain an error. State the error, or write NO ERROR.
+<table><tr><th>Statement</th></tr>
+<tr><td class="mono">1 &nbsp;Shield ← "FALSE"</td></tr>
+<tr><td class="mono">2 &nbsp;Total ← STR_TO_NUM("12") + 3</td></tr>
+<tr><td class="mono">3 &nbsp;Code ← LEFT(HeroName)</td></tr>
+<tr><td class="mono">4 &nbsp;Message ← "Gold: " &amp; Gold</td></tr></table>
+<button data-show="d1b">Show answers</button>
+<div class="reveal ans" id="d1b">1 &nbsp;<span class="mono">"FALSE"</span> is a STRING but Shield is BOOLEAN: no quotation marks.<br>2 &nbsp;NO ERROR (12 + 3 = 15).<br>3 &nbsp;LEFT needs two parameters: the string and how many characters.<br>4 &nbsp;<span class="mono">&amp;</span> joins strings, but Gold is an INTEGER: use <span class="mono">NUM_TO_STR(Gold)</span>.</div>
+</div>
+<div class="task"><b>C. Count the elements.</b> How many elements in: (1) <span class="mono">ARRAY[1:12, 0:7]</span> (2) <span class="mono">ARRAY[0:9]</span> (3) <span class="mono">ARRAY[5:14, 5:14]</span>?
+<button data-show="d1c">Show answers</button>
+<div class="reveal ans" id="d1c">(1) 12 × 8 = 96 &nbsp; (2) 10 &nbsp; (3) 10 × 10 = 100. Always upper − lower + 1.</div>
+</div>
+</details>
+
+<div class="ms" data-ms="1"><div class="locked">Mark scheme locked. Your teacher will give you the code at the end.</div><div class="content"></div></div>
+</section>
+
+<!-- ===================== Q2 ===================== -->
+<section id="q2">
+<h2>Question 2: ClipStar <span class="marks">[5 marks]</span></h2>
+<span class="skill">Skill: describe an array algorithm in steps</span>
+<p>The video app <i>ClipStar</i> stores the number of views of each video in a 1D array <span class="mono">Views</span> of type INTEGER. The array contains 300 elements. Each element has a different value.</p>
+<p>An algorithm is needed to find the largest number of views and output it.</p>
+
+<div class="part" data-id="2">
+<p class="q">Describe the steps that the algorithm should perform. <span class="marks">[5]</span></p>
+<p>Write numbered steps in English. You do not need to write pseudocode.</p>
+<textarea class="tall" data-ans="2" placeholder="1 ...&#10;2 ...&#10;3 ..."></textarea>
+<button class="hint" data-hint="2">Hint</button>
+<div class="reveal hintbox" id="hint-2">There is one mark for each clear step, up to 5. A strong answer covers all of these, in order:
+<ul><li>a variable that will hold the largest value (and its data type);</li><li>what that variable starts as (where should the starting value come from?);</li><li>a loop, and exactly how many times it repeats;</li><li>how the loop counter is used;</li><li>the comparison made each time round;</li><li>what happens when the comparison is true;</li><li>what happens after the loop ends.</li></ul>
+Answers lose marks for: inputting the 300 values (they are already in the array), starting the largest value at 0, saying "loop through the array" without saying how many times, and comparing an element with the next element instead of with the largest so far.</div>
+</div>
+
+<details class="drill"><summary>Around the skill: extra practice (not part of the 38 marks)</summary>
+<div class="task"><b>A. Spot the faults.</b> Sam wrote this answer and scored 1 out of 5. Find four things wrong with it.
+<pre>1. Set Max to 0
+2. Input the 300 values
+3. Loop through the array
+4. If the next element is bigger than the current element, swap them
+5. Output Max</pre>
+<button data-show="d2a">Show answers</button>
+<div class="reveal ans" id="d2a">1. Max should start as the <b>first element</b>, Views[1], not 0.<br>2. The values are already in the array, so there is nothing to input.<br>3. The loop must say how many times it repeats (300, or from 1 to 300) and that the loop counter is used as the index.<br>4. Each element should be compared with <b>Max</b>, and if it is bigger it is assigned to Max. Swapping is sorting, not searching.<br>Step 5 is fine, as long as it happens after the loop. That is the one mark Sam got.</div>
+</div>
+<div class="task"><b>B. Code it, and find the position too.</b> Turn your steps into pseudocode. As well as the largest value, output its position (index) in the array.
+<div class="starter"><span class="lbl">Starter code</span> for pseudocode.pro<br><button class="copy solid">Copy starter code</button><a href="https://pseudocode.pro/editor" target="_blank" rel="noopener"><button>Open pseudocode.pro</button></a><button class="toggle">Hide code</button><pre>// CLIPSTAR: find the most-viewed video (practice for Question 2)
+// Views holds the number of views for each of 300 videos. Every value is different.
+// YOUR JOB: turn your Question 2 steps into code. Find the LARGEST value in Views,
+// then output it AND its position (index) in the array.
+
+DECLARE Views : ARRAY[1:300] OF INTEGER
+DECLARE Index : INTEGER
+
+// ---------- test data: do not change ----------
+FOR Index &lt;-- 1 TO 300
+    Views[Index] &lt;-- ((Index * 37) MOD 301) * 1000 + Index
+NEXT Index
+// ----------------------------------------------
+
+// Step 1: declare the variables you need (one for the largest value, one for its position)
+
+// Step 2: start them off using the FIRST element
+
+// Steps 3 to 6: loop through the array, compare, update
+
+// Step 7: after the loop, output the largest value and its position
+</pre></div>
+<p>Expected output: the largest value is <b>300122</b>, at position <b>122</b>.</p>
+<button data-show="d2b">Show a model answer</button>
+<div class="reveal ans" id="d2b"><pre>DECLARE Max : INTEGER
+DECLARE MaxIndex : INTEGER
+Max ← Views[1]
+MaxIndex ← 1
+FOR Index ← 2 TO 300
+    IF Views[Index] &gt; Max THEN
+        Max ← Views[Index]
+        MaxIndex ← Index
+    ENDIF
+NEXT Index
+OUTPUT "Most views: ", Max, " (video ", MaxIndex, ")"</pre></div>
+</div>
+</details>
+
+<div class="ms" data-ms="2"><div class="locked">Mark scheme locked. Your teacher will give you the code at the end.</div><div class="content"></div></div>
+</section>
+
+<!-- ===================== Q3 ===================== -->
+<section id="q3">
+<h2>Question 3: The Discard Pile <span class="marks">[7 marks]</span></h2>
+<span class="skill">Skill: stack in a 1D array · Push()</span>
+<p>In a card game, players put cards face up on a discard pile. Only the top card can be seen or taken. The pile is a stack that can hold up to 108 cards.</p>
+<p>The stack is implemented using a 1D array and two integer variables:</p>
+<pre>DECLARE Pile : ARRAY[1:108] OF STRING</pre>
+<ul>
+<li>Global variable <span class="mono">NextFree</span> points to the <b>next free location</b> in the array. Its value is an array index.</li>
+<li>Global variable <span class="mono">CardsOnPile</span> is the number of cards currently on the pile.</li>
+<li>The stack grows upwards from array element 1.</li>
+</ul>
+
+<div class="part" data-id="3a">
+<p class="q">(a) Give the initial values that should be assigned to the two variables. <span class="marks">[1]</span></p>
+<textarea data-ans="3a" placeholder="NextFree = ...&#10;CardsOnPile = ..."></textarea>
+<button class="hint" data-hint="3a">Hint</button>
+<div class="reveal hintbox" id="hint-3a">Both values are needed for the mark. Read the definition again: NextFree points to the next <b>free</b> location, not the top card. When the pile is empty, which element will the first card go into?</div>
+</div>
+
+<div class="part" data-id="3b">
+<p class="q">(b) The pile starts empty. These operations happen in order:</p>
+<pre>Push "R7"     Push "G2"     Push "G9"     Pop     Pop</pre>
+<p>Only "R7" is now on the pile, but <span class="mono">Pile[2]</span> and <span class="mono">Pile[3]</span> still hold "G2" and "G9".</p>
+<p class="q">Explain why this does not cause a problem, and why the elements of <span class="mono">Pile</span> do not need to be given starting values before the stack is used. <span class="marks">[2]</span></p>
+<textarea data-ans="3b"></textarea>
+<button class="hint" data-hint="3b">Hint</button>
+<div class="reveal hintbox" id="hint-3b">Two marks means two separate points. Point 1: can an element at NextFree or above ever be popped or read while it is in that position? Point 2: what happens to the old value in that element when the next card is pushed?</div>
+</div>
+
+<div class="part" data-id="3c">
+<p class="q">(c) Push() adds a card to the pile and returns TRUE. If the pile is already full, it returns FALSE and the pile is not changed.</p>
+<p class="q">Write pseudocode for Push(). The header is given. <span class="marks">[4]</span></p>
+<pre>FUNCTION Push(Card : STRING) RETURNS BOOLEAN</pre>
+<div class="starter"><span class="lbl">Starter code (with tests)</span> for pseudocode.pro<br><button class="copy solid">Copy starter code</button><a href="https://pseudocode.pro/editor" target="_blank" rel="noopener"><button>Open pseudocode.pro</button></a><button class="toggle">Hide code</button><pre>// QUESTION 3(c): PUSH A CARD ONTO THE DISCARD PILE
+// NextFree points to the next free location in Pile. CardsOnPile is the number of cards on the pile.
+// Push() adds Card to the pile and returns TRUE.
+// If the pile is already full, Push() returns FALSE and the pile is not changed.
+// YOUR JOB: write the body of Push(). Then press Run and compare with the expected output.
+
+DECLARE Pile : ARRAY[1:108] OF STRING
+DECLARE NextFree : INTEGER
+DECLARE CardsOnPile : INTEGER
+
+FUNCTION Push(Card : STRING) RETURNS BOOLEAN
+    // write your code here (delete the line below when you start)
+    RETURN FALSE
+ENDFUNCTION
+
+// ---------- tests: do not change ----------
+DECLARE Result : BOOLEAN
+DECLARE T : INTEGER
+NextFree &lt;-- 1
+CardsOnPile &lt;-- 0
+Result &lt;-- Push(&quot;R7&quot;)
+Result &lt;-- Push(&quot;G2&quot;)
+IF CardsOnPile &gt;= 2 THEN
+    OUTPUT &quot;Test 1: &quot;, Pile[1], &quot; &quot;, Pile[2], &quot;   NextFree = &quot;, NextFree, &quot;   CardsOnPile = &quot;, CardsOnPile
+ELSE
+    OUTPUT &quot;Test 1: no cards on the pile yet (CardsOnPile = &quot;, CardsOnPile, &quot;)&quot;
+ENDIF
+FOR T &lt;-- 3 TO 108
+    Result &lt;-- Push(&quot;Y&quot; &amp; NUM_TO_STR(T))
+NEXT T
+OUTPUT &quot;Test 2: push number 108 returned &quot;, Result, &quot;   NextFree = &quot;, NextFree
+Result &lt;-- Push(&quot;WILD&quot;)
+OUTPUT &quot;Test 3: push onto a full pile returned &quot;, Result, &quot;   CardsOnPile = &quot;, CardsOnPile, &quot;   NextFree = &quot;, NextFree
+</pre></div>
+<p>When your code is right, Run shows:</p>
+<pre>Test 1: R7 G2   NextFree = 3   CardsOnPile = 2
+Test 2: push number 108 returned TRUE   NextFree = 109
+Test 3: push onto a full pile returned FALSE   CardsOnPile = 108   NextFree = 109</pre>
+<textarea class="tall" data-ans="3c" placeholder="FUNCTION Push(Card : STRING) RETURNS BOOLEAN&#10;   ...&#10;ENDFUNCTION"></textarea>
+<button class="hint" data-hint="3c">Hint</button>
+<button class="hint" data-hint="3c2">Show me the frame</button>
+<div class="reveal hintbox" id="hint-3c">The four marks are for: (1) the test for a full pile, (2) returning FALSE straight away when it is full, (3) putting the card into the array at the right index, (4) moving NextFree on by one (and keeping CardsOnPile up to date, then returning TRUE). The order of (3) and (4) matters: NextFree points to the free location, so store first, then move the pointer.</div>
+<div class="reveal hintbox" id="hint-3c2">This is the frame the exam gives you. Fill the four gaps:
+<pre>FUNCTION Push(Card : STRING) RETURNS BOOLEAN
+    IF ................................ THEN
+        RETURN ............   // the pile is already full
+    ENDIF
+    ................................ ← Card
+    NextFree ← ................................
+    CardsOnPile ← CardsOnPile + 1
+    RETURN TRUE
+ENDFUNCTION</pre></div>
+</div>
+
+<details class="drill"><summary>Around the skill: extra practice (not part of the 38 marks)</summary>
+<div class="task"><b>A. Trace it.</b> The pile starts empty. Show the contents of Pile[1] to Pile[4] and the values of NextFree and CardsOnPile after: <span class="mono">Push "R7", Push "G2", Push "G9", Pop, Push "B4"</span>.
+<button data-show="d3a">Show answer</button>
+<div class="reveal ans" id="d3a"><table><tr><th>Pile[1]</th><th>Pile[2]</th><th>Pile[3]</th><th>Pile[4]</th><th>NextFree</th><th>CardsOnPile</th></tr><tr><td>"R7"</td><td>"G2"</td><td>"B4"</td><td>(empty)</td><td>4</td><td>3</td></tr></table>"G9" was popped, then "B4" was pushed into the same element and overwrote it. That is exactly why the array never needs initialising.</div>
+</div>
+<div class="task"><b>B. Write Pop().</b> Pop() removes the top card and returns it, or returns "EMPTY" if there are no cards. Careful: the top card is <b>not</b> at Pile[NextFree].
+<div class="starter"><span class="lbl">Pop() starter code</span> for pseudocode.pro<br><button class="copy solid">Copy starter code</button><a href="https://pseudocode.pro/editor" target="_blank" rel="noopener"><button>Open pseudocode.pro</button></a><button class="toggle">Hide code</button><pre>// EXTRA PRACTICE: POP A CARD OFF THE DISCARD PILE
+// Same pile as Question 3: NextFree points to the next FREE location, CardsOnPile counts the cards.
+// Pop() removes the top card and returns it. If the pile is empty it returns &quot;EMPTY&quot;.
+// Careful: the top card is NOT at Pile[NextFree]. Where is it?
+// Push() is already written for you.
+
+DECLARE Pile : ARRAY[1:108] OF STRING
+DECLARE NextFree : INTEGER
+DECLARE CardsOnPile : INTEGER
+
+FUNCTION Push(Card : STRING) RETURNS BOOLEAN
+    IF CardsOnPile = 108 THEN
+        RETURN FALSE
+    ENDIF
+    Pile[NextFree] &lt;-- Card
+    NextFree &lt;-- NextFree + 1
+    CardsOnPile &lt;-- CardsOnPile + 1
+    RETURN TRUE
+ENDFUNCTION
+
+FUNCTION Pop() RETURNS STRING
+    DECLARE Card : STRING
+    // write your code here (delete the line below when you start)
+    RETURN &quot;?&quot;
+ENDFUNCTION
+
+// ---------- tests: do not change ----------
+DECLARE Result : BOOLEAN
+NextFree &lt;-- 1
+CardsOnPile &lt;-- 0
+Result &lt;-- Push(&quot;R7&quot;)
+Result &lt;-- Push(&quot;G2&quot;)
+Result &lt;-- Push(&quot;G9&quot;)
+OUTPUT &quot;Popped &quot;, Pop(), &quot;, then &quot;, Pop()
+OUTPUT &quot;NextFree = &quot;, NextFree, &quot;   CardsOnPile = &quot;, CardsOnPile
+OUTPUT &quot;Popped &quot;, Pop(), &quot;, then &quot;, Pop()
+OUTPUT &quot;Pile[2] still holds &quot;, Pile[2], &quot; but it is not on the stack any more&quot;
+</pre></div>
+<p>Expected output:</p><pre>Popped G9, then G2
+NextFree = 2   CardsOnPile = 1
+Popped R7, then EMPTY
+Pile[2] still holds G2 but it is not on the stack any more</pre>
+<button data-show="d3b">Show a model answer</button>
+<div class="reveal ans" id="d3b"><pre>FUNCTION Pop() RETURNS STRING
+    DECLARE Card : STRING
+    IF CardsOnPile = 0 THEN
+        RETURN "EMPTY"
+    ENDIF
+    NextFree ← NextFree - 1
+    Card ← Pile[NextFree]
+    CardsOnPile ← CardsOnPile - 1
+    RETURN Card
+ENDFUNCTION</pre>Push stores then moves the pointer up. Pop is the mirror image: move the pointer down, then read.</div>
+</div>
+<div class="task"><b>C. The other way of doing it.</b> Some questions use a pointer <span class="mono">TopOfPile</span> that points to the <b>top card</b> instead. (1) What is its initial value? (2) How does Push() change? (3) What is the test for a full pile?
+<button data-show="d3c">Show answer</button>
+<div class="reveal ans" id="d3c">(1) 0, because there is no top card yet.<br>(2) Move the pointer up <b>first</b> (<span class="mono">TopOfPile ← TopOfPile + 1</span>), then store (<span class="mono">Pile[TopOfPile] ← Card</span>).<br>(3) <span class="mono">TopOfPile = 108</span>. Always read the question to see which kind of pointer it uses.</div>
+</div>
+</details>
+
+<div class="ms" data-ms="3"><div class="locked">Mark scheme locked. Your teacher will give you the code at the end.</div><div class="content"></div></div>
+</section>
+
+<!-- ===================== Q4 ===================== -->
+<section id="q4">
+<h2>Question 4: FizzBuzz <span class="marks">[9 marks]</span></h2>
+<span class="skill">Skill: count procedure with a conditional loop · test data</span>
+<p>FizzBuzz is a counting game: players say "Fizz" for multiples of 3 and "Buzz" for multiples of 5. A procedure <span class="mono">FizzBuzzCount()</span> will:</p>
+<ol>
+<li>input a value (all values will be positive integers)</li>
+<li>count the number of values that are multiples of 3, and count the number of values that are multiples of 5 (a value such as 15 is a multiple of both, so it is counted in both counts)</li>
+<li>repeat from step 1 until the value input is 0</li>
+<li>output the two count values, with a suitable message.</li>
+</ol>
+<p>The value 0 must not be counted.</p>
+
+<div class="part" data-id="4a">
+<p class="q">(a) Write pseudocode for the procedure <span class="mono">FizzBuzzCount()</span>. <span class="marks">[6]</span></p>
+<div class="starter"><span class="lbl">Starter code</span> for pseudocode.pro<br><button class="copy solid">Copy starter code</button><a href="https://pseudocode.pro/editor" target="_blank" rel="noopener"><button>Open pseudocode.pro</button></a><button class="toggle">Hide code</button><pre>// QUESTION 4(a): FIZZBUZZCOUNT()
+// The procedure will:
+//   1. input a value (all values are positive integers)
+//   2. count the multiples of 3 and count the multiples of 5
+//      (a value such as 15 is a multiple of both, so it is counted in BOTH counts)
+//   3. repeat from step 1 until the value input is 0
+//   4. output the two counts, with a suitable message.
+// The value 0 must not be counted.
+// YOUR JOB: write the whole procedure, including the local DECLAREs. Then Run it and type:
+//   9, 10, 15, 7, 0   -&gt;  expect 2 multiples of 3 and 2 multiples of 5
+//   0                 -&gt;  expect 0 and 0
+//   30, 45, 0         -&gt;  expect 2 and 2
+
+PROCEDURE FizzBuzzCount()
+    // write your code here
+
+ENDPROCEDURE
+
+CALL FizzBuzzCount()
+</pre></div>
+<p>Run it and type these. Your message can be worded your own way, but the numbers must match.</p>
+<table><tr><th>Type in</th><th>Multiples of 3</th><th>Multiples of 5</th></tr>
+<tr><td class="mono">9, 10, 15, 7, 0</td><td>2</td><td>2</td></tr>
+<tr><td class="mono">0</td><td>0</td><td>0</td></tr>
+<tr><td class="mono">30, 45, 0</td><td>2</td><td>2</td></tr></table>
+<textarea class="tall" data-ans="4a" placeholder="PROCEDURE FizzBuzzCount()&#10;   ...&#10;ENDPROCEDURE"></textarea>
+<button class="hint" data-hint="4a">Hint</button>
+<button class="hint" data-hint="4a2">Common mistakes</button>
+<div class="reveal hintbox" id="hint-4a">Marks are given for: (1) the procedure heading and ENDPROCEDURE; (2) declaring the input variable and both counts as local INTEGERs; (3) a conditional loop that ends on 0; (4) an INPUT inside the loop; (5) checking for multiples of 3 and of 5 inside the loop; (6) adding 1 to the right count, with both counts set to 0 before the loop; (7) outputting both counts with a message after the loop. That is 7 points for 6 marks.<br><br>A multiple of 3 leaves no remainder: <span class="mono">ThisNum MOD 3 = 0</span>. Use two separate IFs, not IF...ELSE, because 15 must be counted twice.</div>
+<div class="reveal hintbox" id="hint-4a2">These lost marks in the real exam:<ul><li>a WHILE loop that tests a variable before anything has been input into it (input once before the loop, then again as the <b>last</b> line inside it);</li><li>using % instead of MOD;</li><li>counting the 0 that ends the input;</li><li>missing ENDPROCEDURE;</li><li><span class="mono">OUTPUT "Threes: " &amp; ThreeCount</span>: you cannot join an INTEGER to a string with &amp;. Use a comma.</li></ul></div>
+</div>
+
+<div class="part" data-id="4b">
+<p class="q">(b) The procedure is to be tested. Typical test data would be a mix of values, for example:</p>
+<pre>3, 10, 30, 7, 22, 0</pre>
+<p>The purpose of this test is to check the counts for a typical mix of values.</p>
+<p class="q">Give <b>three</b> other test data sequences that test different aspects of the procedure. For each one, give its purpose. Do not include invalid data. <span class="marks">[3]</span></p>
+<textarea class="tall" data-ans="4b" placeholder="Sequence 1: ...&#10;Purpose: ...&#10;&#10;Sequence 2: ...&#10;Purpose: ...&#10;&#10;Sequence 3: ..."></textarea>
+<button class="hint" data-hint="4b">Hint</button>
+<div class="reveal hintbox" id="hint-4b">One mark per sequence, and it must come with its purpose. Every sequence must <b>end with 0</b>: most candidates lost marks by forgetting it. Make each sequence test something the typical mix does not: values that only add to one count, values that add to both, values that add to neither, and what happens when there is nothing to count. Do not just change the numbers in the example.</div>
+</div>
+
+<details class="drill"><summary>Around the skill: extra practice (not part of the 38 marks)</summary>
+<div class="task"><b>A. One line, one lost mark.</b> Why does <span class="mono">OUTPUT "Threes: " &amp; ThreeCount</span> lose the mark when ThreeCount is an INTEGER? Give two ways to fix it.
+<button data-show="d4a">Show answer</button>
+<div class="reveal ans" id="d4a">&amp; only joins strings (or a CHAR with a STRING). Fix 1: use a comma, <span class="mono">OUTPUT "Threes: ", ThreeCount</span>. Fix 2: convert first, <span class="mono">OUTPUT "Threes: " &amp; NUM_TO_STR(ThreeCount)</span>. pseudocode.pro lets the wrong version run, so you will not spot this by testing.</div>
+</div>
+<div class="task"><b>B. Same job, REPEAT...UNTIL.</b> Rewrite FizzBuzzCount() using REPEAT...UNTIL instead of WHILE. How do you stop the final 0 being counted? (Hint: 0 MOD 3 = 0.)
+<button data-show="d4b">Show a model answer</button>
+<div class="reveal ans" id="d4b"><pre>PROCEDURE FizzBuzzCount()
+    DECLARE ThisNum, ThreeCount, FiveCount : INTEGER
+    ThreeCount ← 0
+    FiveCount ← 0
+    REPEAT
+        INPUT ThisNum
+        IF ThisNum &lt;&gt; 0 THEN
+            IF ThisNum MOD 3 = 0 THEN
+                ThreeCount ← ThreeCount + 1
+            ENDIF
+            IF ThisNum MOD 5 = 0 THEN
+                FiveCount ← FiveCount + 1
+            ENDIF
+        ENDIF
+    UNTIL ThisNum = 0
+    OUTPUT "Multiples of 3: ", ThreeCount, "   Multiples of 5: ", FiveCount
+ENDPROCEDURE</pre>Without the <span class="mono">IF ThisNum &lt;&gt; 0</span>, the 0 counts as a multiple of 3 <b>and</b> of 5, so both counts are 1 too high.</div>
+</div>
+</details>
+
+<div class="ms" data-ms="4"><div class="locked">Mark scheme locked. Your teacher will give you the code at the end.</div><div class="content"></div></div>
+</section>
+
+<!-- ===================== Q5 ===================== -->
+<section id="q5">
+<h2>Question 5: Kart Time Trial <span class="marks">[9 marks]</span></h2>
+<span class="skill">Skill: conditional loop that stores in an array · text file vs array</span>
+<p>In a kart-racing game, a player is on a <i>hot streak</i> while each lap is faster than the lap before. A faster lap has a <b>smaller</b> time.</p>
+<p>The program contains a global 1D array <span class="mono">Streak</span> of 12 elements of type REAL. A procedure <span class="mono">RecordStreak()</span> will input a sequence of up to 12 lap times (in seconds), one at a time. These values are assigned to elements of the array using four steps:</p>
+<ul style="list-style:none;padding-left:8px">
+<li><b>Step 1:</b> store the first lap time in the first element of the array</li>
+<li><b>Step 2:</b> input the next lap time. If it is smaller than the previous lap time, assign it to the next array element, otherwise go to Step 4</li>
+<li><b>Step 3:</b> repeat from Step 2 unless the array is full</li>
+<li><b>Step 4:</b> output the number of lap times stored in the array, with a suitable message.</li>
+</ul>
+
+<div class="part" data-id="5a">
+<p class="q">(a) Complete the pseudocode for <span class="mono">RecordStreak()</span>. All variables used in the procedure must be declared. <span class="marks">[6]</span></p>
+<pre>PROCEDURE RecordStreak()
+    ...
+ENDPROCEDURE</pre>
+<div class="starter"><span class="lbl">Starter code (with tests)</span> for pseudocode.pro<br><button class="copy solid">Copy starter code</button><a href="https://pseudocode.pro/editor" target="_blank" rel="noopener"><button>Open pseudocode.pro</button></a><button class="toggle">Hide code</button><pre>// QUESTION 5(a): RECORDSTREAK()
+// Streak is a global array of 12 REAL values. RecordStreak() inputs up to 12 lap times, one at a time:
+//   Step 1: store the first lap time in the first element of the array
+//   Step 2: input the next lap time. If it is SMALLER than the previous lap time, store it in the
+//           next array element, otherwise go to Step 4
+//   Step 3: repeat from Step 2 unless the array is full
+//   Step 4: output the number of lap times stored in the array, with a suitable message.
+// YOUR JOB: write the procedure, declaring every local variable. Then Run it and type:
+//   41.2, 39.8, 38.5, 39.0         -&gt;  expect 3 stored (39.0 is slower, so the streak ends)
+//   50, 52                         -&gt;  expect 1 stored
+//   60, 59, 58 ... down to 49      -&gt;  expect 12 stored, and NO 13th lap time asked for
+
+DECLARE Streak : ARRAY[1:12] OF REAL
+
+PROCEDURE RecordStreak()
+    // declare your local variables here
+
+    // write your code here
+
+ENDPROCEDURE
+
+// ---------- tests: do not change ----------
+DECLARE T : INTEGER
+FOR T &lt;-- 1 TO 12
+    Streak[T] &lt;-- 0
+NEXT T
+CALL RecordStreak()
+OUTPUT &quot;What is in the array:&quot;
+FOR T &lt;-- 1 TO 12
+    IF Streak[T] &lt;&gt; 0 THEN
+        OUTPUT &quot;  Streak[&quot;, T, &quot;] = &quot;, Streak[T]
+    ENDIF
+NEXT T
+</pre></div>
+<table><tr><th>Type in</th><th>Lap times stored</th></tr>
+<tr><td class="mono">41.2, 39.8, 38.5, 39.0</td><td>3 (39.0 is slower, so the streak ends)</td></tr>
+<tr><td class="mono">50, 52</td><td>1</td></tr>
+<tr><td class="mono">60, 59, 58 … down to 49</td><td>12, and the program must <b>not</b> ask for a 13th lap time</td></tr></table>
+<textarea class="tall" data-ans="5a" placeholder="PROCEDURE RecordStreak()&#10;   ...&#10;ENDPROCEDURE"></textarea>
+<button class="hint" data-hint="5a">Hint</button>
+<button class="hint" data-hint="5a2">Show me a plan</button>
+<div class="reveal hintbox" id="hint-5a">Marks are given for: (1) declaring local variables, an INTEGER index and REAL variables for this lap and the last lap (Streak is global, so do not declare it again); (2) inputting the first time and assigning it to Streak[1] <b>before</b> the loop; (3) a conditional loop that tests both things: array not full <b>and</b> lap faster; (4) the loop being completely correct, with no extra input once the array is full; (5) assigning the faster time to the next element and inputting the next time, inside the loop; (6) outputting the count with a message after the loop.<br><br>Keep the previous time in its own variable (for example LastTime). Comparing with Streak[Index − 1] works too, but it caused out-of-range errors for many candidates.</div>
+<div class="reveal hintbox" id="hint-5a2">A plan you can turn into code:
+<ol><li>INPUT a time, store it in Streak[1], remember it as LastTime.</li><li>Set Index to 2. INPUT the next time.</li><li>WHILE Index is not past 12 AND this time is smaller than LastTime:<ul><li>store this time in Streak[Index] and remember it as LastTime;</li><li>add 1 to Index;</li><li>only if the array is not full yet, INPUT the next time.</li></ul></li><li>After the loop, Index − 1 times have been stored. OUTPUT it with a message.</li></ol>
+There is exactly one INPUT inside the loop. Two INPUTs in the loop was the most common mistake in the real exam.</div>
+</div>
+
+<div class="part" data-id="5b">
+<p class="q">(b) The requirements change:</p>
+<ul><li>the number of laps in a streak is unknown and may be more than 12</li><li>a separate leaderboard program will need to use the lap times.</li></ul>
+<p>The lap times will be stored in a text file instead of the array.</p>
+<p class="q">(i) Give <b>two</b> benefits of using a text file instead of the array. <span class="marks">[2]</span></p>
+<p class="q">(ii) The REAL variable <span class="mono">LapTime</span> holds a lap time. The file <span class="mono">Laps.txt</span> is already open for APPEND. Write one pseudocode statement that writes LapTime to the file. <span class="marks">[1]</span></p>
+<textarea data-ans="5b" placeholder="(i) 1 ...&#10;    2 ...&#10;(ii) ..."></textarea>
+<button class="hint" data-hint="5b">Hint</button>
+<div class="reveal hintbox" id="hint-5b">(i) Use the two bullet points: what limits how many values an array can hold, and what happens to the array's values when the program ends? Answer about the file, not about files in general.<br>(ii) A text file stores <b>strings</b>. What must happen to a REAL before it is written? Look at the insert. The statement starts <span class="mono">WRITEFILE "Laps.txt", ...</span></div>
+</div>
+
+<details class="drill"><summary>Around the skill: extra practice (not part of the 38 marks)</summary>
+<div class="task"><b>A. Find the bugs.</b> Alex wrote this loop for part (a). It runs, but it is wrong. Find three problems.
+<pre>INPUT ThisTime
+Streak[1] ← ThisTime
+Index ← 2
+WHILE Index &lt;= 12
+    INPUT ThisTime
+    IF ThisTime &lt; Streak[Index - 1] THEN
+        Streak[Index] ← ThisTime
+    ENDIF
+    Index ← Index + 1
+ENDWHILE</pre>
+<button data-show="d5a">Show answer</button>
+<div class="reveal ans" id="d5a">1. The loop only tests whether the array is full, so the streak never ends on a slower lap: it always asks for 12 times.<br>2. A slower lap leaves Streak[Index] empty, but Index still goes up, so the next comparison uses that empty element.<br>3. There is no output of the count after the loop (and ThisTime and Index are not declared).</div>
+</div>
+<div class="task"><b>B. Save the streak.</b> Write SaveStreak(Count), which writes the first Count lap times from Streak into the text file Streak.txt, one per line.
+<div class="starter"><span class="lbl">SaveStreak() starter code</span> for pseudocode.pro<br><button class="copy solid">Copy starter code</button><a href="https://pseudocode.pro/editor" target="_blank" rel="noopener"><button>Open pseudocode.pro</button></a><button class="toggle">Hide code</button><pre>// EXTRA PRACTICE: SAVE THE STREAK TO A TEXT FILE
+// SaveStreak(Count) writes the first Count lap times from Streak into the file Streak.txt,
+// one lap time per line. A text file stores STRINGS, so convert each number before writing it.
+// YOUR JOB: write the body of SaveStreak(). The test reads the file back for you.
+// Until your code creates the file, Run shows &quot;File &#x27;Streak.txt&#x27; doesn&#x27;t exist&quot;. That is expected.
+
+DECLARE Streak : ARRAY[1:12] OF REAL
+
+PROCEDURE SaveStreak(Count : INTEGER)
+    DECLARE Index : INTEGER
+    // write your code here
+
+ENDPROCEDURE
+
+// ---------- tests: do not change ----------
+DECLARE Line : STRING
+Streak[1] &lt;-- 41.2
+Streak[2] &lt;-- 39.8
+Streak[3] &lt;-- 38.5
+CALL SaveStreak(3)
+OUTPUT &quot;Streak.txt contains:&quot;
+OPENFILE &quot;Streak.txt&quot; FOR READ
+WHILE NOT EOF(&quot;Streak.txt&quot;)
+    READFILE &quot;Streak.txt&quot;, Line
+    OUTPUT &quot;  &quot;, Line
+ENDWHILE
+CLOSEFILE &quot;Streak.txt&quot;
+</pre></div>
+<p>Expected output:</p><pre>Streak.txt contains:
+  41.2
+  39.8
+  38.5</pre>
+<button data-show="d5b">Show a model answer</button>
+<div class="reveal ans" id="d5b"><pre>PROCEDURE SaveStreak(Count : INTEGER)
+    DECLARE Index : INTEGER
+    OPENFILE "Streak.txt" FOR WRITE
+    FOR Index ← 1 TO Count
+        WRITEFILE "Streak.txt", NUM_TO_STR(Streak[Index])
+    NEXT Index
+    CLOSEFILE "Streak.txt"
+ENDPROCEDURE</pre>pseudocode.pro would also accept the line without NUM_TO_STR. The examiner would not.</div>
+</div>
+</details>
+
+<div class="ms" data-ms="5"><div class="locked">Mark scheme locked. Your teacher will give you the code at the end.</div><div class="content"></div></div>
+</section>
+
+<section id="finish">
+<h2>Finish</h2>
+<div class="box info">
+<p><b>1. Save your answers.</b> This downloads a text file with your name, every answer, and the hints you used.</p>
+<button class="solid" onclick="downloadAnswers()">Download my answers</button> <span id="saveMsg" class="ok"></span>
+<p style="margin-top:16px"><b>2. Unlock the mark schemes</b> when your teacher gives you the code.</p>
+<input type="text" id="unlockCode" placeholder="Code from your teacher" autocomplete="off"> <button class="solid" onclick="unlock()">Unlock</button> <span id="unlockMsg"></span>
+<p style="margin-top:16px"><b>3. Mark in green.</b> Write your mark for each question. Then pick the question where you lost most marks and do its "Around the skill" practice.</p>
+<table id="markTable"><tr><th>Question</th><th>Skill</th><th>Out of</th><th>My mark</th></tr>
+<tr><td>1</td><td>Data types, 2D arrays</td><td>8</td><td><input type="text" data-ans="mark1" style="width:70px"></td></tr>
+<tr><td>2</td><td>Describe an array algorithm</td><td>5</td><td><input type="text" data-ans="mark2" style="width:70px"></td></tr>
+<tr><td>3</td><td>Stack, Push()</td><td>7</td><td><input type="text" data-ans="mark3" style="width:70px"></td></tr>
+<tr><td>4</td><td>Count procedure, test data</td><td>9</td><td><input type="text" data-ans="mark4" style="width:70px"></td></tr>
+<tr><td>5</td><td>Conditional loop, text file</td><td>9</td><td><input type="text" data-ans="mark5" style="width:70px"></td></tr>
+<tr><th colspan="2">Total</th><th>38</th><th id="markTotal"></th></tr></table>
+</div>
+</section>
+</main>
+<footer>Year 12 Computer Science · Cambridge School of Bucharest · Practice questions written for CSB in the style of Cambridge 9618 Paper 2. Not real exam questions.</footer>
+
+<script>
+const MS = {"1": "CjxoMz5RdWVzdGlvbiAxIG1hcmsgc2NoZW1lPC9oMz4KPHA+PGI+KGEpPC9iPiBPbmUgbWFyayBwZXIgcm93LiBbNF08L3A+Cjx0YWJsZT48dHI+PHRoPkV4cHJlc3Npb248L3RoPjx0aD5EYXRhIHR5cGU8L3RoPjwvdHI+Cjx0cj48dGQgY2xhc3M9Im1vbm8iPlJJR0hUKEhlcm9OYW1lLCA0KSAmYW1wOyAiISI8L3RkPjx0ZD5TVFJJTkc8L3RkPjwvdHI+Cjx0cj48dGQgY2xhc3M9Im1vbm8iPkxFTkdUSChIZXJvTmFtZSkgTU9EIDM8L3RkPjx0ZD5JTlRFR0VSPC90ZD48L3RyPgo8dHI+PHRkIGNsYXNzPSJtb25vIj5Hb2xkICZndDsgNTAgT1IgU2hpZWxkPC90ZD48dGQ+Qk9PTEVBTjwvdGQ+PC90cj4KPHRyPjx0ZCBjbGFzcz0ibW9ubyI+R29sZCAvIDQ8L3RkPjx0ZD5SRUFMPC90ZD48L3RyPjwvdGFibGU+CjxwPkNvbW1vbiBzbGlwczogQ0hBUiBmb3Igcm93IDEgKGl0IGlzIG1vcmUgdGhhbiBvbmUgY2hhcmFjdGVyKSwgSU5URUdFUiBmb3Igcm93IDQgKHRoZSAvIG9wZXJhdG9yIGdpdmVzIGEgUkVBTCkuPC9wPgo8cD48Yj4oYikoaSk8L2I+IDIgLyB0d28uIFsxXTwvcD4KPHA+PGI+KGIpKGlpKTwvYj4gNjAwLiBbMV0gJm5ic3A7KDIwIHJvd3M6IDE5IOKIkiAwICsgMSwgdGltZXMgMzAgY29sdW1uczogMzAg4oiSIDEgKyAxLikgTm90IDU3MCwgbm90IDYyMC48L3A+CjxwPjxiPihiKShpaWkpPC9iPiA8c3BhbiBjbGFzcz0ibW9ubyI+REVDTEFSRSBNYXAgOiBBUlJBWVswOjE5LCAxOjMwXSBPRiBTVFJJTkc8L3NwYW4+IFsyXTwvcD4KPHVsPjxsaT4xIG1hcms6IGNvcnJlY3QgbG93ZXIgYW5kIHVwcGVyIGJvdW5kcyBmb3IgYm90aCBkaW1lbnNpb25zLCA8c3BhbiBjbGFzcz0ibW9ubyI+WzA6MTksIDE6MzBdPC9zcGFuPjwvbGk+CjxsaT4xIG1hcms6IGFsbCBvdGhlciBwYXJ0cyBvZiB0aGUgZGVjbGFyYXRpb246IDxzcGFuIGNsYXNzPSJtb25vIj5ERUNMQVJFIE1hcCA6IEFSUkFZIC4uLiBPRiBTVFJJTkc8L3NwYW4+PC9saT48L3VsPgo=", "2": "CjxoMz5RdWVzdGlvbiAyIG1hcmsgc2NoZW1lPC9oMz4KPHA+T25lIG1hcmsgcGVyIHBvaW50LCBtYXggNS4gWzVdPC9wPgo8b2w+PGxpPkRlY2xhcmUgYSB2YXJpYWJsZSAvIGFuIGludGVnZXIgTWF4PC9saT4KPGxpPkFzc2lnbiB0aGUgdmFsdWUgb2YgdGhlIGZpcnN0IGVsZW1lbnQgdG8gTWF4PC9saT4KPGxpPlNldCB1cCBhIGxvb3AgdG8gcmVwZWF0IDMwMCB0aW1lcyAvIGZyb20gdGhlIHN0YXJ0IHRvIHRoZSBlbmQgb2YgdGhlIGFycmF5PC9saT4KPGxpPlVzZSB0aGUgbG9vcCBjb3VudGVyIGFzIHRoZSBhcnJheSBpbmRleDwvbGk+CjxsaT5JZiB0aGUgdmFsdWUgb2YgdGhlIGN1cnJlbnQgZWxlbWVudCBpcyBncmVhdGVyIHRoYW4gTWF4IC4uLjwvbGk+CjxsaT4uLi4gdGhlbiBhc3NpZ24gdGhhdCB2YWx1ZSB0byBNYXg8L2xpPgo8bGk+QWZ0ZXIgdGhlIGxvb3AsIG91dHB1dCBNYXg8L2xpPjwvb2w+CjxwPk5vIG1hcmtzIGZvcjogaW5wdXR0aW5nIHRoZSAzMDAgdmFsdWVzOyBzdGFydGluZyBNYXggYXQgMCAob3Igbm90IHNldHRpbmcgaXQgYXQgYWxsKTsgc2VhcmNoaW5nIGZvciBvbmUgcGFydGljdWxhciB2YWx1ZTsgc3dhcHBpbmcgYWRqYWNlbnQgZWxlbWVudHM7IGEgbG9vcCB3aXRoIG5vIG51bWJlciBvZiByZXBlYXRzOyB2YWd1ZSBjb21wYXJpc29ucyB3aXRoICJ0aGUgbmV4dCBlbGVtZW50Ii48L3A+Cg==", "3": "CjxoMz5RdWVzdGlvbiAzIG1hcmsgc2NoZW1lPC9oMz4KPHA+PGI+KGEpPC9iPiBOZXh0RnJlZTogMSAmbmJzcDsgQ2FyZHNPblBpbGU6IDAuIE9uZSBtYXJrIGZvciBib3RoIGNvcnJlY3QgdmFsdWVzLiBbMV08L3A+CjxwPjxiPihiKTwvYj4gT25lIG1hcmsgcGVyIHBvaW50LiBbMl08L3A+Cjx1bD48bGk+TVAxOiB2YWx1ZXMgYXQgb3IgYWJvdmUgTmV4dEZyZWUgY2Fubm90IGJlIHBvcHBlZCAvIHRha2VuIG9mZiB0aGUgc3RhY2sgLy8gdmFsdWVzIGxlZnQgaW4gdGhlIGFycmF5IGFyZSBuZXZlciB1c2VkIC8gY2Fubm90IGJlIGFjY2Vzc2VkIC4uLjwvbGk+CjxsaT5NUDI6IC4uLiB1bnRpbCBhIG5ldyB2YWx1ZSBoYXMgZmlyc3QgYmVlbiBwdXNoZWQsIHdoaWNoIG92ZXJ3cml0ZXMgdGhlIHByZXZpb3VzIHZhbHVlLjwvbGk+PC91bD4KPHA+PGI+KGMpPC9iPiBFeGFtcGxlIHNvbHV0aW9uLiBPbmUgbWFyayBwZXIgcG9pbnQuIFs0XTwvcD4KPHByZT5GVU5DVElPTiBQdXNoKENhcmQgOiBTVFJJTkcpIFJFVFVSTlMgQk9PTEVBTgogICAgSUYgQ2FyZHNPblBpbGUgPSAxMDggVEhFTgogICAgICAgIFJFVFVSTiBGQUxTRSAgICAvLyB0aGUgcGlsZSBpcyBhbHJlYWR5IGZ1bGwKICAgIEVORElGCiAgICBQaWxlW05leHRGcmVlXSDihpAgQ2FyZAogICAgTmV4dEZyZWUg4oaQIE5leHRGcmVlICsgMQogICAgQ2FyZHNPblBpbGUg4oaQIENhcmRzT25QaWxlICsgMQogICAgUkVUVVJOIFRSVUUKRU5ERlVOQ1RJT048L3ByZT4KPG9sPjxsaT5UZXN0IGZvciBhIGZ1bGwgcGlsZTogPHNwYW4gY2xhc3M9Im1vbm8iPkNhcmRzT25QaWxlID0gMTA4PC9zcGFuPiAvLyA8c3BhbiBjbGFzcz0ibW9ubyI+Q2FyZHNPblBpbGUgJmd0OyAxMDc8L3NwYW4+IC8vIDxzcGFuIGNsYXNzPSJtb25vIj5OZXh0RnJlZSA9IDEwOTwvc3Bhbj4gLy8gPHNwYW4gY2xhc3M9Im1vbm8iPk5leHRGcmVlICZndDsgMTA4PC9zcGFuPjwvbGk+CjxsaT48c3BhbiBjbGFzcz0ibW9ubyI+UkVUVVJOIEZBTFNFPC9zcGFuPiB3aGVuIHRoZSBwaWxlIGlzIGZ1bGwsIGJlZm9yZSBhbnl0aGluZyBpcyBjaGFuZ2VkPC9saT4KPGxpPjxzcGFuIGNsYXNzPSJtb25vIj5QaWxlW05leHRGcmVlXSDihpAgQ2FyZDwvc3Bhbj48L2xpPgo8bGk+PHNwYW4gY2xhc3M9Im1vbm8iPk5leHRGcmVlIOKGkCBOZXh0RnJlZSArIDE8L3NwYW4+IGFmdGVyIHRoZSBjYXJkIGlzIHN0b3JlZCAod2l0aCBDYXJkc09uUGlsZSBpbmNyZW1lbnRlZCBhbmQgVFJVRSByZXR1cm5lZCk8L2xpPjwvb2w+CjxwPk5vdCBjcmVkaXRlZDogaW5jcmVtZW50aW5nIE5leHRGcmVlIDxpPmJlZm9yZTwvaT4gc3RvcmluZyAodGhhdCBsZWF2ZXMgUGlsZVsxXSBlbXB0eSBhbmQgd3JpdGVzIHBhc3QgdGhlIGVuZCksIG9yIDxzcGFuIGNsYXNzPSJtb25vIj5OZXh0RnJlZSA9IDEwODwvc3Bhbj4gYXMgdGhlIGZ1bGwgdGVzdCAoaXQgcmVmdXNlcyB0aGUgbGFzdCBjYXJkKS48L3A+Cg==", "4": "CjxoMz5RdWVzdGlvbiA0IG1hcmsgc2NoZW1lPC9oMz4KPHA+PGI+KGEpPC9iPiBFeGFtcGxlIHNvbHV0aW9uLiBPbmUgbWFyayBwZXIgcG9pbnQsIG1heCA2LiBbNl08L3A+CjxwcmU+UFJPQ0VEVVJFIEZpenpCdXp6Q291bnQoKQogICAgREVDTEFSRSBUaGlzTnVtLCBUaHJlZUNvdW50LCBGaXZlQ291bnQgOiBJTlRFR0VSCiAgICBUaHJlZUNvdW50IOKGkCAwCiAgICBGaXZlQ291bnQg4oaQIDAKICAgIElOUFVUIFRoaXNOdW0KICAgIFdISUxFIFRoaXNOdW0gJmx0OyZndDsgMAogICAgICAgIElGIFRoaXNOdW0gTU9EIDMgPSAwIFRIRU4KICAgICAgICAgICAgVGhyZWVDb3VudCDihpAgVGhyZWVDb3VudCArIDEKICAgICAgICBFTkRJRgogICAgICAgIElGIFRoaXNOdW0gTU9EIDUgPSAwIFRIRU4KICAgICAgICAgICAgRml2ZUNvdW50IOKGkCBGaXZlQ291bnQgKyAxCiAgICAgICAgRU5ESUYKICAgICAgICBJTlBVVCBUaGlzTnVtCiAgICBFTkRXSElMRQogICAgT1VUUFVUICJNdWx0aXBsZXMgb2YgMzogIiwgVGhyZWVDb3VudCwgIiAgTXVsdGlwbGVzIG9mIDU6ICIsIEZpdmVDb3VudApFTkRQUk9DRURVUkU8L3ByZT4KPG9sPjxsaT5Qcm9jZWR1cmUgaGVhZGluZyBhbmQgZW5kaW5nPC9saT4KPGxpPkxvY2FsIFRoaXNOdW0sIFRocmVlQ291bnQgYW5kIEZpdmVDb3VudCBkZWNsYXJlZCBhcyBpbnRlZ2VyczwvbGk+CjxsaT5Db25kaXRpb25hbCBsb29wIHdoaWxlIFRoaXNOdW0gJmx0OyZndDsgMCAob3IgUkVQRUFUIC4uLiBVTlRJTCBUaGlzTnVtID0gMCk8L2xpPgo8bGk+SW5wdXQgVGhpc051bSBpbiB0aGUgbG9vcDwvbGk+CjxsaT5DaGVjayBmb3IgYSBtdWx0aXBsZSBvZiAzIGFuZCBhIG11bHRpcGxlIG9mIDUgaW4gdGhlIGxvb3AgKE1PRCwgbm90ICUpLCBhcyB0d28gc2VwYXJhdGUgY2hlY2tzPC9saT4KPGxpPkluY3JlbWVudCB0aGUgYXBwcm9wcmlhdGUgY291bnQocykgaW4gdGhlIGxvb3A7IGJvdGggY291bnRzIGluaXRpYWxpc2VkIGJlZm9yZSB0aGUgbG9vcDsgMCBub3QgY291bnRlZDwvbGk+CjxsaT5BZnRlciB0aGUgbG9vcCwgb3V0cHV0IGJvdGggY291bnRzIHdpdGggYSBzdWl0YWJsZSBtZXNzYWdlIChjb21tYSBzZXBhcmF0b3JzLCBub3QgJmFtcDsgd2l0aCBhbiBpbnRlZ2VyKTwvbGk+PC9vbD4KPHA+PGI+KGIpPC9iPiBPbmUgbWFyayBwZXIgc2VxdWVuY2UsIGluY2x1ZGluZyBpdHMgc3RhdGVkIHB1cnBvc2UsIG1heCAzLiBFYWNoIHNlcXVlbmNlIGVuZHMgd2l0aCAwLiBbM108L3A+Cjx1bD48bGk+b25seSBtdWx0aXBsZXMgb2YgMyAobm90IG9mIDUpLCBlLmcuIDMsIDYsIDksIDA6IG9ubHkgdGhlIDNzIGNvdW50IGNoYW5nZXM8L2xpPgo8bGk+b25seSBtdWx0aXBsZXMgb2YgNSAobm90IG9mIDMpLCBlLmcuIDUsIDEwLCAyMCwgMDogb25seSB0aGUgNXMgY291bnQgY2hhbmdlczwvbGk+CjxsaT5tdWx0aXBsZXMgb2YgYm90aCwgZS5nLiAxNSwgMzAsIDA6IGVhY2ggdmFsdWUgaXMgY291bnRlZCBpbiBib3RoIGNvdW50czwvbGk+CjxsaT5tdWx0aXBsZXMgb2YgbmVpdGhlciwgZS5nLiAxLCAyLCA3LCAwOiBib3RoIGNvdW50cyBzdGF5IGF0IDA8L2xpPgo8bGk+anVzdCAwOiBub3RoaW5nIHRvIGNvdW50LCBib3RoIGNvdW50cyBvdXRwdXQgYXMgMDwvbGk+CjxsaT5hIHNlcXVlbmNlIHdpdGhvdXQgdGhlIHRlcm1pbmF0aW5nIDAgLy8gMCBwbGFjZWQgZWFybHksIGUuZy4gMywgMCwgNTogdmFsdWVzIGFmdGVyIHRoZSAwIGFyZSBpZ25vcmVkPC9saT48L3VsPgo8cD5Ob3QgY3JlZGl0ZWQ6IGEgc2VxdWVuY2UgdGhhdCBpcyBvbmx5IGEgZGlmZmVyZW50IHR5cGljYWwgbWl4IGxpa2UgdGhlIGV4YW1wbGU7IGFueSBzZXF1ZW5jZSB3aXRob3V0IGEgcHVycG9zZS48L3A+Cg==", "5": "CjxoMz5RdWVzdGlvbiA1IG1hcmsgc2NoZW1lPC9oMz4KPHA+PGI+KGEpPC9iPiBFeGFtcGxlIHNvbHV0aW9uLiBPbmUgbWFyayBwZXIgcG9pbnQuIFs2XTwvcD4KPHByZT5QUk9DRURVUkUgUmVjb3JkU3RyZWFrKCkKICAgIERFQ0xBUkUgVGhpc1RpbWUsIExhc3RUaW1lIDogUkVBTAogICAgREVDTEFSRSBJbmRleCA6IElOVEVHRVIKICAgIElOUFVUIFRoaXNUaW1lCiAgICBTdHJlYWtbMV0g4oaQIFRoaXNUaW1lCiAgICBMYXN0VGltZSDihpAgVGhpc1RpbWUKICAgIEluZGV4IOKGkCAyCiAgICBJTlBVVCBUaGlzVGltZQogICAgV0hJTEUgSW5kZXggJmx0Oz0gMTIgQU5EIFRoaXNUaW1lICZsdDsgTGFzdFRpbWUKICAgICAgICBTdHJlYWtbSW5kZXhdIOKGkCBUaGlzVGltZQogICAgICAgIExhc3RUaW1lIOKGkCBUaGlzVGltZQogICAgICAgIEluZGV4IOKGkCBJbmRleCArIDEKICAgICAgICBJRiBJbmRleCAmbHQ7PSAxMiBUSEVOCiAgICAgICAgICAgIElOUFVUIFRoaXNUaW1lCiAgICAgICAgRU5ESUYKICAgIEVORFdISUxFCiAgICBPVVRQVVQgSW5kZXggLSAxLCAiIGxhcCB0aW1lcyBzdG9yZWQgaW4gdGhlIHN0cmVhayIKRU5EUFJPQ0VEVVJFPC9wcmU+CjxvbD48bGk+RGVjbGFyZSBsb2NhbCB2YXJpYWJsZXM6IEluZGV4IGFzIElOVEVHRVIsIFRoaXNUaW1lIGFuZCBMYXN0VGltZSBhcyBSRUFMIChTdHJlYWsgaXMgZ2xvYmFsIGFuZCBtdXN0IG5vdCBiZSBkZWNsYXJlZCBhZ2Fpbik8L2xpPgo8bGk+SW5wdXQgYSB2YWx1ZSBhbmQgYXNzaWduIGl0IHRvIHRoZSBmaXJzdCBlbGVtZW50LCBiZWZvcmUgdGhlIGxvb3A8L2xpPgo8bGk+QXR0ZW1wdCBhdCBhIGNvbmRpdGlvbmFsIGxvb3AgaW5jbHVkaW5nIGJvdGggdGVzdHMgKGFycmF5IG5vdCBmdWxsLCB0aW1lIHNtYWxsZXIgdGhhbiB0aGUgcHJldmlvdXMpPC9saT4KPGxpPkNvbXBsZXRlbHkgY29ycmVjdCBjb25kaXRpb25hbCBsb29wIGluY2x1ZGluZyBib3RoIHRlc3RzPC9saT4KPGxpPkFzc2lnbiB0aGUgaW5wdXQgdmFsdWUgdG8gdGhlIG5leHQgZWxlbWVudCBpZiBpdCBpcyBzbWFsbGVyIHRoYW4gdGhlIHByZXZpb3VzLCBhbmQgaW5wdXQgdGhlIG5leHQgdmFsdWUsIGluIHRoZSBsb29wPC9saT4KPGxpPkFmdGVyIHRoZSBsb29wLCBvdXRwdXQgdGhlIGNvdW50IG9mIGVsZW1lbnRzIHN0b3JlZCB3aXRoIGEgbWVzc2FnZTwvbGk+PC9vbD4KPHA+QWxzbyBhY2NlcHRlZDogYSBGT1IgbG9vcCBmcm9tIDIgdG8gMTIgdGhhdCBleGl0cyAoQlJFQUsgLyBSRVRVUk4pIGFzIHNvb24gYXMgYSB0aW1lIGlzIG5vdCBzbWFsbGVyOyBjb21wYXJpbmcgd2l0aCBTdHJlYWtbSW5kZXgg4oiSIDFdIGluc3RlYWQgb2YgTGFzdFRpbWUuIE5vdCBjcmVkaXRlZDogdHdvIElOUFVUcyBpbiB0aGUgbG9vcDsgc3RvcmluZyBldmVyeSB2YWx1ZTsgcmVhZGluZyBTdHJlYWtbMF0gb3IgU3RyZWFrWzEzXS48L3A+CjxwPjxiPihiKShpKTwvYj4gT25lIG1hcmsgcGVyIHBvaW50LiBbMl08L3A+Cjx1bD48bGk+VGhlIG51bWJlciBvZiB2YWx1ZXMgc3RvcmVkIGluIGEgdGV4dCBmaWxlIGlzIG5vdCBmaXhlZCAvIG5vdCBsaW1pdGVkIHRvIHRoZSBzaXplIG9mIHRoZSBhcnJheSAob25seSBieSB0aGUgc2Vjb25kYXJ5IHN0b3JhZ2UgYXZhaWxhYmxlKTwvbGk+CjxsaT5UaGUgZGF0YSBpcyBzdG9yZWQgcGVybWFuZW50bHkgLyBpcyBub24tdm9sYXRpbGUsIHNvIGl0IGNhbiBiZSB1c2VkIGFnYWluIG9yIGJ5IGFub3RoZXIgcHJvZ3JhbSAodGhlIGxlYWRlcmJvYXJkKSB3aXRob3V0IHJlLWVudGVyaW5nIGl0PC9saT48L3VsPgo8cD48Yj4oYikoaWkpPC9iPiA8c3BhbiBjbGFzcz0ibW9ubyI+V1JJVEVGSUxFICJMYXBzLnR4dCIsIE5VTV9UT19TVFIoTGFwVGltZSk8L3NwYW4+IFsxXTogdGhlIFJFQUwgdmFsdWUgbXVzdCBiZSBjb252ZXJ0ZWQgdG8gYSBzdHJpbmcuPC9wPgo="};
+const KEY = "y12progmock-";
+function store(k, v){ try{ localStorage.setItem(KEY+k, v); }catch(e){} }
+function load(k){ try{ return localStorage.getItem(KEY+k); }catch(e){ return null; } }
+const hintsUsed = new Set((load("hints")||"").split(",").filter(Boolean));
+
+document.querySelectorAll("[data-ans]").forEach(el=>{
+  const k = el.dataset.ans; const v = load("a-"+k); if(v!==null) el.value = v;
+  el.addEventListener("input", ()=>{ store("a-"+k, el.value); if(k.startsWith("mark")) total(); });
+});
+const nameBox = document.getElementById("pupilName");
+nameBox.value = load("name")||""; nameBox.addEventListener("input", ()=>store("name", nameBox.value));
+
+document.querySelectorAll("button[data-hint]").forEach(b=>{
+  const id = b.dataset.hint;
+  if(hintsUsed.has(id)) b.classList.add("used");
+  b.addEventListener("click", ()=>{
+    document.getElementById("hint-"+id).classList.toggle("on");
+    hintsUsed.add(id); b.classList.add("used"); store("hints", [...hintsUsed].join(","));
+  });
+});
+document.querySelectorAll("button[data-show]").forEach(b=>{
+  b.addEventListener("click", ()=>document.getElementById(b.dataset.show).classList.toggle("on"));
+});
+
+function copyText(t){
+  if(navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
+  const ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); }catch(e){} document.body.removeChild(ta); return Promise.resolve();
+}
+document.querySelectorAll(".starter").forEach(s=>{
+  const code = s.querySelector("pre").textContent;
+  s.querySelector(".copy").addEventListener("click", ev=>{
+    copyText(code).then(()=>{ ev.target.textContent = "Copied: now paste it into pseudocode.pro"; setTimeout(()=>ev.target.textContent="Copy starter code", 3500); });
+  });
+  s.querySelector(".toggle").addEventListener("click", ev=>{
+    const p = s.querySelector("pre"); const shown = p.style.display !== "none";
+    p.style.display = shown ? "none" : "block"; ev.target.textContent = shown ? "Show code" : "Hide code";
+  });
+});
+
+function total(){
+  let t = 0, any = false;
+  for(let i=1;i<=5;i++){ const v = parseFloat((load("a-mark"+i)||"").trim()); if(!isNaN(v)){ t+=v; any=true; } }
+  document.getElementById("markTotal").textContent = any ? t + " / 38" : "";
+}
+total();
+
+function hash(s){ let h = 5381; for(const c of s.trim().toUpperCase()) h = ((h*33) ^ c.charCodeAt(0)) >>> 0; return h; }
+function decode(b){ return decodeURIComponent(escape(atob(b))); }
+function openMS(){
+  document.querySelectorAll(".ms").forEach(m=>{ m.querySelector(".content").innerHTML = decode(MS[m.dataset.ms]); m.classList.add("open"); });
+}
+function unlock(){
+  const c = document.getElementById("unlockCode").value;
+  const msg = document.getElementById("unlockMsg");
+  if(hash(c) === 2907449445){ openMS(); store("unlocked","1"); msg.textContent = "Unlocked. Scroll up to each question."; msg.className="ok"; }
+  else { msg.textContent = "That code is not right yet."; msg.className=""; }
+}
+if(load("unlocked")==="1") openMS();
+
+let secs = 3600, tick = null;
+function show(){ const m = Math.floor(secs/60), s = secs%60; document.getElementById("timer").textContent = m + ":" + String(s).padStart(2,"0"); }
+function toggleTimer(){
+  const b = document.getElementById("timerBtn");
+  if(tick){ clearInterval(tick); tick = null; b.textContent = "Resume timer"; return; }
+  b.textContent = "Pause timer";
+  tick = setInterval(()=>{ if(secs>0){ secs--; show(); } if(secs===0){ clearInterval(tick); tick=null; document.getElementById("timer").textContent = "Time!"; b.textContent="Time is up"; } }, 1000);
+}
+
+function downloadAnswers(){
+  const name = (nameBox.value||"").trim() || "No name";
+  const parts = [["1a","Q1(a) Data types"],["1b","Q1(b) 2D array"],["2","Q2 Describe the algorithm"],["3a","Q3(a) Initial values"],["3b","Q3(b) Explain"],["3c","Q3(c) Push()"],["4a","Q4(a) FizzBuzzCount()"],["4b","Q4(b) Test data"],["5a","Q5(a) RecordStreak()"],["5b","Q5(b) Text file"]];
+  let out = "YEAR 12 PROGRAMMING MOCK (Section B practice)\nName: " + name + "\nSaved: " + new Date().toLocaleString("en-GB") + "\n";
+  out += "Hints used: " + ([...hintsUsed].sort().join(", ") || "none") + "\n";
+  const marks = [1,2,3,4,5].map(i=>load("a-mark"+i)||"-");
+  out += "Self-marks: Q1 " + marks[0] + "/8, Q2 " + marks[1] + "/5, Q3 " + marks[2] + "/7, Q4 " + marks[3] + "/9, Q5 " + marks[4] + "/9\n";
+  for(const [k,label] of parts){ out += "\n==================== " + label + " ====================\n" + (load("a-"+k)||"(no answer)") + "\n"; }
+  const blob = new Blob([out], {type:"text/plain"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+  a.download = "Y12 Programming Mock - " + name.replace(/[^A-Za-z0-9 -]/g,"") + ".txt";
+  document.body.appendChild(a); a.click(); a.remove();
+  document.getElementById("saveMsg").textContent = "Downloaded. Keep the file safe.";
+}
+</script>
+</body>
+</html>
