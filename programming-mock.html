@@ -46,10 +46,10 @@ details.drill{border:2px dashed var(--grey);border-radius:10px;padding:8px 14px;
 details.drill summary{cursor:pointer;font-weight:700;color:var(--grey)}
 details.drill .task{margin:14px 0;padding-top:10px;border-top:1px solid var(--line)}
 .ms{border:2px solid var(--bord);border-radius:10px;padding:10px 14px;margin:18px 0;background:#fdf7f8}
-.ms .locked{color:var(--bord);font-weight:600}
+.ms .locked{color:var(--bord);font-size:.9rem}
 .ms .content{display:none}
 .ms.open .content{display:block}
-.ms.open .locked{display:none}
+
 .starter{border:1px solid #c9c0bb;border-radius:10px;padding:10px 12px;margin:10px 0;background:#fbfbfb}
 .starter .lbl{font-weight:700;color:var(--blue)}
 .starter pre{max-height:320px}
@@ -83,7 +83,7 @@ footer{color:var(--grey);font-size:.85rem;text-align:center;padding:30px 10px}
 <li>Type every answer into the box under the question. Your answers save on this device as you type.</li>
 <li>For code questions, write and test your code in <a href="https://pseudocode.pro/editor" target="_blank" rel="noopener">pseudocode.pro</a> first using the <b>starter code</b>, then paste your final version into the answer box.</li>
 <li>Stuck for more than two minutes? Open the <b>Hint</b>. Hints tell you what the examiner gives marks for. Your answers file records which hints you used, so you know what to revise. That is fine: this is practice.</li>
-<li>At the end, press <b>Download my answers</b> at the bottom of the page. Your teacher will then give you the code that unlocks the mark schemes, and you mark your own work in green.</li>
+<li>When you have answered a question, press <b>Show mark scheme</b> under it and mark your work in green. At the end, press <b>Download my answers</b> at the bottom of the page.</li>
 </ol>
 </div>
 <div class="box">
@@ -200,7 +200,7 @@ OUTPUT &quot;7  IS_NUM(HeroName)            =  &quot;, IS_NUM(HeroName)
 </div>
 </details>
 
-<div class="ms" data-ms="1"><div class="locked">Mark scheme locked. Your teacher will give you the code at the end.</div><div class="content"></div></div>
+<div class="ms" data-ms="1"><button class="solid msbtn">Show mark scheme</button> <span class="locked">Have a go first, then check your answer here.</span><div class="content"></div></div>
 </section>
 
 <!-- ===================== Q2 ===================== -->
@@ -269,7 +269,7 @@ OUTPUT "Most views: ", Max, " (video ", MaxIndex, ")"</pre></div>
 </div>
 </details>
 
-<div class="ms" data-ms="2"><div class="locked">Mark scheme locked. Your teacher will give you the code at the end.</div><div class="content"></div></div>
+<div class="ms" data-ms="2"><button class="solid msbtn">Show mark scheme</button> <span class="locked">Have a go first, then check your answer here.</span><div class="content"></div></div>
 </section>
 
 <!-- ===================== Q3 ===================== -->
@@ -426,7 +426,7 @@ ENDFUNCTION</pre>Push stores then moves the pointer up. Pop is the mirror image:
 </div>
 </details>
 
-<div class="ms" data-ms="3"><div class="locked">Mark scheme locked. Your teacher will give you the code at the end.</div><div class="content"></div></div>
+<div class="ms" data-ms="3"><button class="solid msbtn">Show mark scheme</button> <span class="locked">Have a go first, then check your answer here.</span><div class="content"></div></div>
 </section>
 
 <!-- ===================== Q4 ===================== -->
@@ -513,7 +513,7 @@ ENDPROCEDURE</pre>Without the <span class="mono">IF ThisNum &lt;&gt; 0</span>, t
 </div>
 </details>
 
-<div class="ms" data-ms="4"><div class="locked">Mark scheme locked. Your teacher will give you the code at the end.</div><div class="content"></div></div>
+<div class="ms" data-ms="4"><button class="solid msbtn">Show mark scheme</button> <span class="locked">Have a go first, then check your answer here.</span><div class="content"></div></div>
 </section>
 
 <!-- ===================== Q5 ===================== -->
@@ -652,7 +652,7 @@ ENDPROCEDURE</pre>pseudocode.pro would also accept the line without NUM_TO_STR. 
 </div>
 </details>
 
-<div class="ms" data-ms="5"><div class="locked">Mark scheme locked. Your teacher will give you the code at the end.</div><div class="content"></div></div>
+<div class="ms" data-ms="5"><button class="solid msbtn">Show mark scheme</button> <span class="locked">Have a go first, then check your answer here.</span><div class="content"></div></div>
 </section>
 
 <section id="finish">
@@ -660,8 +660,8 @@ ENDPROCEDURE</pre>pseudocode.pro would also accept the line without NUM_TO_STR. 
 <div class="box info">
 <p><b>1. Save your answers.</b> This downloads a text file with your name, every answer, and the hints you used.</p>
 <button class="solid" onclick="downloadAnswers()">Download my answers</button> <span id="saveMsg" class="ok"></span>
-<p style="margin-top:16px"><b>2. Unlock the mark schemes</b> when your teacher gives you the code.</p>
-<input type="text" id="unlockCode" placeholder="Code from your teacher" autocomplete="off"> <button class="solid" onclick="unlock()">Unlock</button> <span id="unlockMsg"></span>
+<p style="margin-top:16px"><b>2. Check every answer.</b> Each question has its own <b>Show mark scheme</b> button, or open them all at once.</p>
+<button class="solid" onclick="openAll()">Show all mark schemes</button>
 <p style="margin-top:16px"><b>3. Mark in green.</b> Write your mark for each question. Then pick the question where you lost most marks and do its "Around the skill" practice.</p>
 <table id="markTable"><tr><th>Question</th><th>Skill</th><th>Out of</th><th>My mark</th></tr>
 <tr><td>1</td><td>Data types, 2D arrays</td><td>8</td><td><input type="text" data-ans="mark1" style="width:70px"></td></tr>
@@ -724,18 +724,17 @@ function total(){
 }
 total();
 
-function hash(s){ let h = 5381; for(const c of s.trim().toUpperCase()) h = ((h*33) ^ c.charCodeAt(0)) >>> 0; return h; }
 function decode(b){ return decodeURIComponent(escape(atob(b))); }
-function openMS(){
-  document.querySelectorAll(".ms").forEach(m=>{ m.querySelector(".content").innerHTML = decode(MS[m.dataset.ms]); m.classList.add("open"); });
+function setMS(m, open){
+  const c = m.querySelector(".content");
+  if(open && !c.innerHTML.trim()) c.innerHTML = decode(MS[m.dataset.ms]);
+  m.classList.toggle("open", open);
+  m.querySelector(".msbtn").textContent = open ? "Hide mark scheme" : "Show mark scheme";
 }
-function unlock(){
-  const c = document.getElementById("unlockCode").value;
-  const msg = document.getElementById("unlockMsg");
-  if(hash(c) === 2907449445){ openMS(); store("unlocked","1"); msg.textContent = "Unlocked. Scroll up to each question."; msg.className="ok"; }
-  else { msg.textContent = "That code is not right yet."; msg.className=""; }
-}
-if(load("unlocked")==="1") openMS();
+document.querySelectorAll(".ms").forEach(m=>{
+  m.querySelector(".msbtn").addEventListener("click", ()=>setMS(m, !m.classList.contains("open")));
+});
+function openAll(){ document.querySelectorAll(".ms").forEach(m=>setMS(m, true)); }
 
 let secs = 3600, tick = null;
 function show(){ const m = Math.floor(secs/60), s = secs%60; document.getElementById("timer").textContent = m + ":" + String(s).padStart(2,"0"); }
