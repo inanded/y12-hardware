@@ -77,13 +77,12 @@ footer{color:var(--grey);font-size:.85rem;text-align:center;padding:30px 10px}
 <h2>Before You Start</h2>
 <div class="box info">
 <p><b>What this is.</b> A mock of Section B (programming) of your end-of-term assessment. It tests the same five skills, for the same marks, in different situations. Nothing here is a copy of the real paper.</p>
-<p><b>Your name</b> (it goes on your answers file): <input type="text" id="pupilName" placeholder="First name and surname" autocomplete="name"></p>
 <ol>
 <li>Start the 60-minute timer at the top. Aim for about 12 minutes per question.</li>
-<li>Type every answer into the box under the question. Your answers save on this device as you type.</li>
+<li>Type each answer into the box under the question. Your answers stay on this device as you type, so you can come back to them. Nothing is sent to anyone.</li>
 <li>For code questions, write and test your code in <a href="https://pseudocode.pro/editor" target="_blank" rel="noopener">pseudocode.pro</a> first using the <b>starter code</b>, then paste your final version into the answer box.</li>
-<li>Stuck for more than two minutes? Open the <b>Hint</b>. Hints tell you what the examiner gives marks for. Your answers file records which hints you used, so you know what to revise. That is fine: this is practice.</li>
-<li>When you have answered a question, press <b>Show mark scheme</b> under it and mark your work in green. At the end, press <b>Download my answers</b> at the bottom of the page.</li>
+<li>Stuck for more than two minutes? Open the <b>Hint</b>. Hints tell you what the examiner gives marks for. A hint you have opened stays highlighted, so you can see what to revise. That is fine: this is practice.</li>
+<li>When you have answered a question, press <b>Show mark scheme</b> under it and mark your work in green.</li>
 </ol>
 </div>
 <div class="box">
@@ -658,11 +657,9 @@ ENDPROCEDURE</pre>pseudocode.pro would also accept the line without NUM_TO_STR. 
 <section id="finish">
 <h2>Finish</h2>
 <div class="box info">
-<p><b>1. Save your answers.</b> This downloads a text file with your name, every answer, and the hints you used.</p>
-<button class="solid" onclick="downloadAnswers()">Download my answers</button> <span id="saveMsg" class="ok"></span>
-<p style="margin-top:16px"><b>2. Check every answer.</b> Each question has its own <b>Show mark scheme</b> button, or open them all at once.</p>
+<p><b>1. Check every answer.</b> Each question has its own <b>Show mark scheme</b> button, or open them all at once.</p>
 <button class="solid" onclick="openAll()">Show all mark schemes</button>
-<p style="margin-top:16px"><b>3. Mark in green.</b> Write your mark for each question. Then pick the question where you lost most marks and do its "Around the skill" practice.</p>
+<p style="margin-top:16px"><b>2. Mark in green.</b> Write your mark for each question. Then pick the question where you lost most marks and do its "Around the skill" practice.</p>
 <table id="markTable"><tr><th>Question</th><th>Skill</th><th>Out of</th><th>My mark</th></tr>
 <tr><td>1</td><td>Data types, 2D arrays</td><td>8</td><td><input type="text" data-ans="mark1" style="width:70px"></td></tr>
 <tr><td>2</td><td>Describe an array algorithm</td><td>5</td><td><input type="text" data-ans="mark2" style="width:70px"></td></tr>
@@ -686,8 +683,6 @@ document.querySelectorAll("[data-ans]").forEach(el=>{
   const k = el.dataset.ans; const v = load("a-"+k); if(v!==null) el.value = v;
   el.addEventListener("input", ()=>{ store("a-"+k, el.value); if(k.startsWith("mark")) total(); });
 });
-const nameBox = document.getElementById("pupilName");
-nameBox.value = load("name")||""; nameBox.addEventListener("input", ()=>store("name", nameBox.value));
 
 document.querySelectorAll("button[data-hint]").forEach(b=>{
   const id = b.dataset.hint;
@@ -745,20 +740,6 @@ function toggleTimer(){
   tick = setInterval(()=>{ if(secs>0){ secs--; show(); } if(secs===0){ clearInterval(tick); tick=null; document.getElementById("timer").textContent = "Time!"; b.textContent="Time is up"; } }, 1000);
 }
 
-function downloadAnswers(){
-  const name = (nameBox.value||"").trim() || "No name";
-  const parts = [["1a","Q1(a) Data types"],["1b","Q1(b) 2D array"],["2","Q2 Describe the algorithm"],["3a","Q3(a) Initial values"],["3b","Q3(b) Explain"],["3c","Q3(c) Push()"],["4a","Q4(a) FizzBuzzCount()"],["4b","Q4(b) Test data"],["5a","Q5(a) RecordStreak()"],["5b","Q5(b) Text file"]];
-  let out = "YEAR 12 PROGRAMMING MOCK (Section B practice)\nName: " + name + "\nSaved: " + new Date().toLocaleString("en-GB") + "\n";
-  out += "Hints used: " + ([...hintsUsed].sort().join(", ") || "none") + "\n";
-  const marks = [1,2,3,4,5].map(i=>load("a-mark"+i)||"-");
-  out += "Self-marks: Q1 " + marks[0] + "/8, Q2 " + marks[1] + "/5, Q3 " + marks[2] + "/7, Q4 " + marks[3] + "/9, Q5 " + marks[4] + "/9\n";
-  for(const [k,label] of parts){ out += "\n==================== " + label + " ====================\n" + (load("a-"+k)||"(no answer)") + "\n"; }
-  const blob = new Blob([out], {type:"text/plain"});
-  const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
-  a.download = "Y12 Programming Mock - " + name.replace(/[^A-Za-z0-9 -]/g,"") + ".txt";
-  document.body.appendChild(a); a.click(); a.remove();
-  document.getElementById("saveMsg").textContent = "Downloaded. Keep the file safe.";
-}
 </script>
 </body>
 </html>
